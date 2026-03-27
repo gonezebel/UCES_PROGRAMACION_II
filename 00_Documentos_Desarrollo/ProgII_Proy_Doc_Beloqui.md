@@ -63,7 +63,7 @@ beloqui_gonzalo
 
 ### 1. Clase abstracta Persona
 
-+ [ClaseAgenda](../01_Proyecto/beloqui_gonzalo/01_modelo/Agenda.java)
++ [ClaseAgenda](../01_Proyecto/beloqui_gonzalo/01_modelo/Persona.java)
 
 **Atributos**
 
@@ -149,6 +149,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 - String toString()
 
 ### 4. Clase Agenda
+
++ [ClaseAgenda](../01_Proyecto/beloqui_gonzalo/01_modelo/Agenda.java)
 
 **Atributos**
 
