@@ -3,10 +3,15 @@
 ## Portada
 
 **Carrera:** Tecnicatura Univestiaria en Programación
+
 **Asignatura:** Programación II
+
 **Nombre del/a docente:** Mario Daniel Detke
+
 **Nombre del/a estudiante:** Gonzalo Ezequiel Beloqui
+
 **Nombre de la actividad:** Unidad 1 - Actividad 1
+
 **Fecha de entrega:** 28/03/2026
 
 
