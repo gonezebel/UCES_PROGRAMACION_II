@@ -257,6 +257,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 
 Se implementa la interfaz Notificable en las clases Paciente y Profesional.
 
++ [ClaseNotificacion](../01_Proyecto/beloqui_gonzalo/01_modelo/Notificable.java)
+
 **Métodos de la interfaz**
 
 - String obtenerDestinoNotificacion()
