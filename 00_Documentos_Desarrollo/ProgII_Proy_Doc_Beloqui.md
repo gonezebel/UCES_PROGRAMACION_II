@@ -1,4 +1,3 @@
-# UNIVERSIDAD DE CIENCIAS EMPRESARIALES Y SOCIALES
 
 ![Logo UCES](../02_imagenes/logo_uces.svg)
 
