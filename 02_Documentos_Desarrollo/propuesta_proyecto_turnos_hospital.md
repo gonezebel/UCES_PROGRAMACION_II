@@ -20,7 +20,7 @@
 
 El proyecto consiste en desarrollar un sistema de gestion de turnos para un centro de salud local, el cual permitirá registrar pacientes y profesionales, crear agendas de atencion, asignar y anular turnos, y enviar recordatorios de consultas. El tema surge del boceto trabajado en la materia Diseño Orientado a Objetos (2024), donde se defineron teóricamente las clases, actividades, secuencias y casos de uso, bajo los parámetros de diseño UML. Link del repositorio público: https://github.com/gonezebel/SistemaGestionTurnos.git
 
-La propuesta es pertinente y factible de implementar en Java, porque permite aplicar correctamente encapsulamiento, herencia, polimorfismo, interfaces, constructores, getters, setters y metodos de negocio en clases representativas del dominio.
+La propuesta es pertinente y factible de prototipar en Java, porque permite aplicar correctamente encapsulamiento, herencia, polimorfismo, interfaces, constructores, getters, setters y metodos de negocio en clases representativas del dominio.
 
 ## Lineamientos del proyecto
 
