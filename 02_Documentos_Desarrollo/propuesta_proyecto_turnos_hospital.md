@@ -1,6 +1,6 @@
 # UNIVERSIDAD DE CIENCIAS EMPRESARIALES Y SOCIALES
 
-![Logo_uces](04_imagenes/logo_uces.jpg)
+![Logo_uces](04_imagenes/logo_uces.svg)
 
 ## Datos Generales
 
