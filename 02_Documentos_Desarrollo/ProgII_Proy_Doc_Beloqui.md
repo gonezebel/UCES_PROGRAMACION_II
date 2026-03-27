@@ -2,7 +2,7 @@
 
 ## Portada
 
-**Carrera:** Tecnicatura Univestiaria en Programación
+**Carrera:** Tecnicatura Universitaria en Programación
 
 **Asignatura:** Programación II
 
@@ -16,11 +16,11 @@
 
 ## PROYECTO: Sistema de turnos de centro de salud de cercanía
 
-### Fundamentacion
+### Fundamentación
 
-El proyecto consiste en desarrollar un sistema de gestion de turnos para un centro de salud local, el cual permitirá registrar pacientes y profesionales, crear agendas de atencion, asignar y anular turnos, y enviar recordatorios de consultas. El tema surge del boceto trabajado en la materia Diseño Orientado a Objetos (2024), donde se definieron teóricamente las clases, actividades, secuencias y casos de uso, bajo los parámetros de diseño UML. Link del repositorio público: https://github.com/gonezebel/SistemaGestionTurnos.git
+El proyecto consiste en desarrollar un sistema de gestión de turnos para un centro de salud local, el cual permitirá registrar pacientes y profesionales, crear agendas de atención, asignar y anular turnos, y enviar recordatorios de consultas. El tema surge del boceto trabajado en la materia Diseño Orientado a Objetos (2024), donde se definieron teóricamente las clases, actividades, secuencias y casos de uso, bajo los parámetros de diseño UML. Link del repositorio público: https://github.com/gonezebel/SistemaGestionTurnos.git
 
-La propuesta es pertinente y factible de prototipar en Java, porque permite aplicar correctamente encapsulamiento, herencia, polimorfismo, interfaces, constructores, getters, setters y metodos de negocio en clases representativas del dominio.
+La propuesta es pertinente y factible de prototipar en Java, porque permite aplicar correctamente encapsulamiento, herencia, polimorfismo, interfaces, constructores, getters, setters y métodos de negocio en clases representativas del dominio.
 
 ## Lineamientos del proyecto
 
@@ -36,20 +36,20 @@ La propuesta es pertinente y factible de prototipar en Java, porque permite apli
 
 ```text
 beloqui_gonzalo
-├── 00_principal
-│   └── Principal.java
-├── 01_modelo
-│   ├── Persona.java
-│   ├── Paciente.java
-│   ├── Profesional.java
-│   ├── Agenda.java
-│   ├── Turno.java
-│   ├── Notificacion.java
-│   └── Notificable.java
-├── 02_controlador
-│   └── ControladorTurno.java
-└── 03_vista
-    └── VistaTurno.java
+|- 00_principal
+|  \- Principal.java
+|- 01_modelo
+|  |- Persona.java
+|  |- Paciente.java
+|  |- Profesional.java
+|  |- Agenda.java
+|  |- Turno.java
+|  |- Notificacion.java
+|  \- Notificable.java
+|- 02_controlador
+|  \- ControladorTurno.java
+\- 03_vista
+   \- VistaTurno.java
 ```
 
 ## Clases principales del proyecto
@@ -68,14 +68,14 @@ beloqui_gonzalo
 - Persona()
 - Persona(String nombre, String apellido, String dni, String telefono)
 
-**Metodos getters y setters**
+**Métodos getters y setters**
 
 - getNombre() / setNombre(String nombre)
 - getApellido() / setApellido(String apellido)
 - getDni() / setDni(String dni)
 - getTelefono() / setTelefono(String telefono)
 
-**Metodos necesarios**
+**Métodos necesarios**
 
 - String getNombreCompleto()
 - boolean validarDni()
@@ -96,13 +96,13 @@ Hereda de Persona e implementa la interfaz Notificable.
 - Paciente()
 - Paciente(String nombre, String apellido, String dni, String telefono, int numeroHistoriaClinica, String obraSocial, String email)
 
-**Metodos getters y setters**
+**Métodos getters y setters**
 
 - getNumeroHistoriaClinica() / setNumeroHistoriaClinica(int numeroHistoriaClinica)
 - getObraSocial() / setObraSocial(String obraSocial)
 - getEmail() / setEmail(String email)
 
-**Metodos necesarios**
+**Métodos necesarios**
 
 - boolean validarEmail()
 - String obtenerDestinoNotificacion()
@@ -125,13 +125,13 @@ Hereda de Persona e implementa la interfaz Notificable.
 - Profesional()
 - Profesional(String nombre, String apellido, String dni, String telefono, String matricula, String especialidad, String emailInstitucional)
 
-**Metodos getters y setters**
+**Métodos getters y setters**
 
 - getMatricula() / setMatricula(String matricula)
 - getEspecialidad() / setEspecialidad(String especialidad)
 - getEmailInstitucional() / setEmailInstitucional(String emailInstitucional)
 
-**Metodos necesarios**
+**Métodos necesarios**
 
 - boolean estaDisponible(String estadoAgenda)
 - String obtenerDestinoNotificacion()
@@ -155,7 +155,7 @@ Hereda de Persona e implementa la interfaz Notificable.
 - Agenda()
 - Agenda(int idAgenda, Profesional profesional, String diaSemana, String horaInicio, String horaFin, String estado)
 
-**Metodos getters y setters**
+**Métodos getters y setters**
 
 - getIdAgenda() / setIdAgenda(int idAgenda)
 - getProfesional() / setProfesional(Profesional profesional)
@@ -164,7 +164,7 @@ Hereda de Persona e implementa la interfaz Notificable.
 - getHoraFin() / setHoraFin(String horaFin)
 - getEstado() / setEstado(String estado)
 
-**Metodos necesarios**
+**Métodos necesarios**
 
 - void suspenderAgenda()
 - void activarAgenda()
@@ -188,7 +188,7 @@ Hereda de Persona e implementa la interfaz Notificable.
 - Turno()
 - Turno(int idTurno, Paciente paciente, Profesional profesional, Agenda agenda, String fecha, String hora, String estado)
 
-**Metodos getters y setters**
+**Métodos getters y setters**
 
 - getIdTurno() / setIdTurno(int idTurno)
 - getPaciente() / setPaciente(Paciente paciente)
@@ -198,7 +198,7 @@ Hereda de Persona e implementa la interfaz Notificable.
 - getHora() / setHora(String hora)
 - getEstado() / setEstado(String estado)
 
-**Metodos necesarios**
+**Métodos necesarios**
 
 - boolean asignarTurno()
 - void anularTurno()
@@ -220,7 +220,7 @@ Hereda de Persona e implementa la interfaz Notificable.
 - Notificacion()
 - Notificacion(int idNotificacion, String tipo, String mensaje, String fechaEnvio, boolean enviada)
 
-**Metodos getters y setters**
+**Métodos getters y setters**
 
 - getIdNotificacion() / setIdNotificacion(int idNotificacion)
 - getTipo() / setTipo(String tipo)
@@ -228,7 +228,7 @@ Hereda de Persona e implementa la interfaz Notificable.
 - getFechaEnvio() / setFechaEnvio(String fechaEnvio)
 - isEnviada() / setEnviada(boolean enviada)
 
-**Metodos necesarios**
+**Métodos necesarios**
 
 - String enviarA(Notificable destinatario)
 - String mostrarDetalle()
@@ -238,16 +238,16 @@ Hereda de Persona e implementa la interfaz Notificable.
 
 Se implementa la interfaz Notificable en las clases Paciente y Profesional.
 
-**Metodos de la interfaz**
+**Métodos de la interfaz**
 
 - String obtenerDestinoNotificacion()
 - String enviarNotificacion(String mensaje)
 
 La interfaz es utilizada por la clase Notificacion, que puede enviar mensajes a cualquier objeto que implemente Notificable.
 
-## Metodos sobreescritos
+## Métodos sobreescritos
 
-En el proyecto se sobreescriben varios metodos heredados, cumpliendo y superando el minimo requerido:
+En el proyecto se sobreescriben varios métodos heredados, cumpliendo y superando el mínimo requerido:
 
 - mostrarDatos() en Paciente
 - mostrarDatos() en Profesional
