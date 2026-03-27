@@ -56,6 +56,8 @@ beloqui_gonzalo
 
 ### 1. Clase abstracta Persona
 
++ [ClasePersona](01_Proyecto/beloqui_gonzalo/01_modelo/Agenda.java)
+
 **Atributos**
 
 - String nombre
