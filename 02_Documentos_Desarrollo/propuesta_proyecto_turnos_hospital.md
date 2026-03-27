@@ -2,7 +2,8 @@
 
 ![Logo_uces](04_imagenes/logo_uces.jpg)
 
-## Tema del proyecto
+## Datos Generales
+
 
 Sistema de turnos de hospital
 
