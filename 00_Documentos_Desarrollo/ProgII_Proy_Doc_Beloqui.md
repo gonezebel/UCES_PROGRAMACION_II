@@ -1,6 +1,11 @@
 
 ![Logo UCES](../02_imagenes/logo_uces.svg)
 
+
+
+
+
+
 **Carrera:** Tecnicatura Universitaria en Programación
 
 **Asignatura:** Programación II
@@ -12,6 +17,9 @@
 **Nombre de la actividad:** Unidad 1 - Actividad 1
 
 **Fecha de entrega:** 28/03/2026
+
+
+
 
 ## PROYECTO: Sistema de turnos de centro de salud de cercanía
 
