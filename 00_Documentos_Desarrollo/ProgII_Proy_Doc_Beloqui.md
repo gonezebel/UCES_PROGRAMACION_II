@@ -27,8 +27,6 @@ La propuesta es pertinente y factible de prototipar en Java, porque permite apli
 - Nombre del proyecto: beloqui_gonzalo
 - Paquete para guardar las clases de los objetos: com.beloqui.modelo
 - Paquete para guardar el archivo principal: com.beloqui.main
-- Paquete para el controlador: com.beloqui.controlador
-- Paquete para la vista: com.beloqui.vista
 - Nombres de las clases: representativos del contenido de cada clase
 - Nombre del archivo principal: Principal.java
 
@@ -47,9 +45,7 @@ beloqui_gonzalo
 |  |- Notificacion.java
 |  \- Notificable.java
 |- 02_controlador
-|  \- ControladorTurno.java
 \- 03_vista
-   \- VistaTurno.java
 ```
 
 ## Clases principales del proyecto

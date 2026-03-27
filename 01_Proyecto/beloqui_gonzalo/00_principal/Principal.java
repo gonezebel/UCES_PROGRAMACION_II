@@ -1,8 +1,6 @@
 package com.beloqui.main;
 
-import com.beloqui.controlador.*;
 import com.beloqui.modelo.*;
-import com.beloqui.vista.*;
 
 public class Principal {
     public static void main(String[] args) {
@@ -21,21 +19,18 @@ public class Principal {
         Notificacion notificacion = new Notificacion(1, "Recordatorio",
                 "Recuerde su turno del 15/04/2026 a las 09:30.", "14/04/2026", false);
 
-        ControladorTurno controladorTurno = new ControladorTurno();
-        VistaTurno vistaTurno = new VistaTurno();
-
         // Ejecucion del sistema
-        vistaTurno.mostrarMensaje(paciente.mostrarDatos());
-        vistaTurno.mostrarMensaje(profesional.mostrarDatos());
-        vistaTurno.mostrarMensaje(agenda.toString());
+        System.out.println(paciente.mostrarDatos());
+        System.out.println(profesional.mostrarDatos());
+        System.out.println(agenda.toString());
 
-        if (controladorTurno.asignarTurno(turno)) {
-            vistaTurno.mostrarMensaje(turno.mostrarResumenTurno());
+        if (turno.asignarTurno()) {
+            System.out.println(turno.mostrarResumenTurno());
         } else {
-            vistaTurno.mostrarMensaje("No fue posible asignar el turno.");
+            System.out.println("No fue posible asignar el turno.");
         }
 
-        vistaTurno.mostrarMensaje(controladorTurno.enviarRecordatorio(notificacion, paciente));
-        vistaTurno.mostrarMensaje(notificacion.toString());
+        System.out.println(notificacion.enviarA(paciente));
+        System.out.println(notificacion.toString());
     }
 }
