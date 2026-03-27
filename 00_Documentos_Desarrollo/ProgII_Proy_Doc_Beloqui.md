@@ -266,7 +266,7 @@ La interfaz es utilizada por la clase Notificacion, que puede enviar mensajes a 
 
 ## Métodos sobreescritos
 
-En el proyecto se sobreescriben varios métodos heredados, cumpliendo y superando el mínimo requerido:
+En el proyecto se sobreescriben varios métodos heredados:
 
 - mostrarDatos() en Paciente
 - mostrarDatos() en Profesional
