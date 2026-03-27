@@ -14,8 +14,7 @@
 
 **Fecha de entrega:** 28/03/2026
 
-
-Sistema de turnos de hospital
+## PROYECTO: Sistema de turnos de hospital
 
 ## Fundamentacion
 
