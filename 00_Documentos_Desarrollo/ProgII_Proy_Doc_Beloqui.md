@@ -1,9 +1,6 @@
 
 ![Logo UCES](../02_imagenes/logo_uces.svg)
 
-
-## Portada
-
 **Carrera:** Tecnicatura Universitaria en Programación
 
 **Asignatura:** Programación II
