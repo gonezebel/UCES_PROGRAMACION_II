@@ -1,17 +1,26 @@
 # UNIVERSIDAD DE CIENCIAS EMPRESARIALES Y SOCIALES
 
-![Logo_uces](04_imagenes/logo_uces.jpg)
+## Portada
 
-## Datos Generales
+**Carrera:** Tecnicatura Univestiaria en Programación
 
+**Asignatura:** Programación II
 
-Sistema de turnos de hospital
+**Nombre del/a docente:** Mario Daniel Detke
 
-## Fundamentacion
+**Nombre del/a estudiante:** Gonzalo Ezequiel Beloqui
 
-El proyecto consiste en desarrollar un sistema de gestion de turnos para un hospital o centro de salud. El sistema permitira registrar pacientes y profesionales, crear agendas de atencion, asignar y anular turnos, y enviar recordatorios de consultas. El tema surge del material trabajado en la carpeta `00_Boceto_POO`, donde se definieron como funciones principales el registro de pacientes y profesionales, la asignacion de turnos, la anulacion de turnos y el envio de recordatorios.
+**Nombre de la actividad:** Unidad 1 - Actividad 1
 
-La propuesta es pertinente y factible de implementar en Java, porque permite aplicar correctamente encapsulamiento, herencia, polimorfismo, interfaces, constructores, getters, setters y metodos de negocio en clases representativas del dominio.
+**Fecha de entrega:** 28/03/2026
+
+## PROYECTO: Sistema de turnos de centro de salud de cercanía
+
+### Fundamentacion
+
+El proyecto consiste en desarrollar un sistema de gestion de turnos para un centro de salud local, el cual permitirá registrar pacientes y profesionales, crear agendas de atencion, asignar y anular turnos, y enviar recordatorios de consultas. El tema surge del boceto trabajado en la materia Diseño Orientado a Objetos (2024), donde se defineron teóricamente las clases, actividades, secuencias y casos de uso, bajo los parámetros de diseño UML. Link del repositorio público: https://github.com/gonezebel/SistemaGestionTurnos.git
+
+La propuesta es pertinente y factible de prototipar en Java, porque permite aplicar correctamente encapsulamiento, herencia, polimorfismo, interfaces, constructores, getters, setters y metodos de negocio en clases representativas del dominio.
 
 ## Lineamientos del proyecto
 
