@@ -1,4 +1,4 @@
-package modelo;
+package com.beloqui.modelo;
 
 public abstract class Persona {
     // Atributos

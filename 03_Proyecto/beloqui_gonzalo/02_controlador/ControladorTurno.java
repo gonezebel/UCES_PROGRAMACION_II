@@ -1,8 +1,8 @@
-package controlador;
+package com.beloqui.controlador;
 
-import modelo.Notificacion;
-import modelo.Paciente;
-import modelo.Turno;
+import com.beloqui.modelo.Notificacion;
+import com.beloqui.modelo.Paciente;
+import com.beloqui.modelo.Turno;
 
 public class ControladorTurno {
     // Metodos

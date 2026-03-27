@@ -1,12 +1,8 @@
-package principal;
+package com.beloqui.main;
 
-import controlador.ControladorTurno;
-import modelo.Agenda;
-import modelo.Notificacion;
-import modelo.Paciente;
-import modelo.Profesional;
-import modelo.Turno;
-import vista.VistaTurno;
+import com.beloqui.controlador.*;
+import com.beloqui.modelo.*;
+import com.beloqui.vista.*;
 
 public class Principal {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package vista;
+package com.beloqui.vista;
 
 public class VistaTurno {
     // Metodos

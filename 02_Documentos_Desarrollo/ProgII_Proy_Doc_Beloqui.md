@@ -25,10 +25,10 @@ La propuesta es pertinente y factible de prototipar en Java, porque permite apli
 ## Lineamientos del proyecto
 
 - Nombre del proyecto: beloqui_gonzalo
-- Paquete para guardar las clases de los objetos: modelo
-- Paquete para guardar el archivo principal: principal
-- Paquete para el controlador: controlador
-- Paquete para la vista: vista
+- Paquete para guardar las clases de los objetos: com.beloqui.modelo
+- Paquete para guardar el archivo principal: com.beloqui.main
+- Paquete para el controlador: com.beloqui.controlador
+- Paquete para la vista: com.beloqui.vista
 - Nombres de las clases: representativos del contenido de cada clase
 - Nombre del archivo principal: Principal.java
 

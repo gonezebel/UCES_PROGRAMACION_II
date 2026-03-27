@@ -1,4 +1,4 @@
-package modelo;
+package com.beloqui.modelo;
 
 public class Turno {
     // Atributos
