@@ -1,4 +1,5 @@
-# PROPUESTA DE ACTIVIDAD
+# UNIVERSIDAD DE CIENCIAS EMPRESARIALES Y SOCIALES
+![Ejemplo_Abstracción](imagenes/EJEMPLO_ABSTRACCIÓN_V2.jpg)
 
 ## Tema del proyecto
 
