@@ -1,6 +1,10 @@
-# UNIVERSIDAD DE CIENCIAS EMPRESARIALES Y SOCIALES
 
-## Portada
+![Logo UCES](../02_imagenes/logo_uces.svg)
+
+
+
+
+
 
 **Carrera:** Tecnicatura Universitaria en Programación
 
@@ -13,6 +17,9 @@
 **Nombre de la actividad:** Unidad 1 - Actividad 1
 
 **Fecha de entrega:** 28/03/2026
+
+
+
 
 ## PROYECTO: Sistema de turnos de centro de salud de cercanía
 
@@ -52,7 +59,7 @@ beloqui_gonzalo
 
 ### 1. Clase abstracta Persona
 
-+ [ClasePersona](01_Proyecto/beloqui_gonzalo/01_modelo/Agenda.java)
++ [ClasePersona](../01_Proyecto/beloqui_gonzalo/01_modelo/Persona.java)
 
 **Atributos**
 
@@ -80,6 +87,8 @@ beloqui_gonzalo
 - String mostrarDatos()
 
 ### 2. Clase Paciente
+
++ [ClasePaciente](../01_Proyecto/beloqui_gonzalo/01_modelo/Paciente.java)
 
 Hereda de Persona e implementa la interfaz Notificable.
 
@@ -110,6 +119,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 
 ### 3. Clase Profesional
 
++ [ClaseProfesional](../01_Proyecto/beloqui_gonzalo/01_modelo/Profesional.java)
+
 Hereda de Persona e implementa la interfaz Notificable.
 
 **Atributos**
@@ -138,6 +149,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 - String toString()
 
 ### 4. Clase Agenda
+
++ [ClaseAgenda](../01_Proyecto/beloqui_gonzalo/01_modelo/Agenda.java)
 
 **Atributos**
 
@@ -170,6 +183,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 - String toString()
 
 ### 5. Clase Turno
+
++ [ClaseTurno](../01_Proyecto/beloqui_gonzalo/01_modelo/Turno.java)
 
 **Atributos**
 
@@ -205,6 +220,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 
 ### 6. Clase Notificacion
 
++ [ClaseNotificacion](../01_Proyecto/beloqui_gonzalo/01_modelo/Notificacion.java)
+
 **Atributos**
 
 - int idNotificacion
@@ -236,6 +253,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 
 Se implementa la interfaz Notificable en las clases Paciente y Profesional.
 
++ [InterfazNotificable](../01_Proyecto/beloqui_gonzalo/01_modelo/Notificable.java)
+
 **Métodos de la interfaz**
 
 - String obtenerDestinoNotificacion()
@@ -245,7 +264,7 @@ La interfaz es utilizada por la clase Notificacion, que puede enviar mensajes a 
 
 ## Métodos sobreescritos
 
-En el proyecto se sobreescriben varios métodos heredados, cumpliendo y superando el mínimo requerido:
+En el proyecto se sobreescriben varios métodos heredados:
 
 - mostrarDatos() en Paciente
 - mostrarDatos() en Profesional
