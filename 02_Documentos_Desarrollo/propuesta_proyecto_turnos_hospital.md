@@ -1,5 +1,5 @@
 # UNIVERSIDAD DE CIENCIAS EMPRESARIALES Y SOCIALES
-![Ejemplo_Abstracción](04_imagenes/logo_uces.jpg)
+![Logo_uces](04_imagenes/logo_uces.jpg)
 
 ## Tema del proyecto
 
