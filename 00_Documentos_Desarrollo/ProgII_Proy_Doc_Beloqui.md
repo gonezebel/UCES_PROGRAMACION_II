@@ -63,7 +63,7 @@ beloqui_gonzalo
 
 ### 1. Clase abstracta Persona
 
-+ [ClaseAgenda](../01_Proyecto/beloqui_gonzalo/01_modelo/Persona.java)
++ [ClasePersona](../01_Proyecto/beloqui_gonzalo/01_modelo/Persona.java)
 
 **Atributos**
 
@@ -91,6 +91,8 @@ beloqui_gonzalo
 - String mostrarDatos()
 
 ### 2. Clase Paciente
+
++ [ClasePaciente](../01_Proyecto/beloqui_gonzalo/01_modelo/Paciente.java)
 
 Hereda de Persona e implementa la interfaz Notificable.
 
@@ -120,6 +122,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 - String toString()
 
 ### 3. Clase Profesional
+
++ [ClaseProfesional](../01_Proyecto/beloqui_gonzalo/01_modelo/Profesional.java)
 
 Hereda de Persona e implementa la interfaz Notificable.
 
@@ -184,6 +188,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 
 ### 5. Clase Turno
 
++ [ClaseTurno](../01_Proyecto/beloqui_gonzalo/01_modelo/Turno.java)
+
 **Atributos**
 
 - int idTurno
@@ -217,6 +223,8 @@ Hereda de Persona e implementa la interfaz Notificable.
 - String toString()
 
 ### 6. Clase Notificacion
+
++ [ClaseNotificacion](../01_Proyecto/beloqui_gonzalo/01_modelo/Notificacion.java)
 
 **Atributos**
 
