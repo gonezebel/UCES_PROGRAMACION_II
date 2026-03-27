@@ -1,6 +1,7 @@
-package com.apellido.modelo;
+package modelo;
 
 public class Turno {
+    // Atributos
     private int idTurno;
     private Paciente paciente;
     private Profesional profesional;
@@ -9,6 +10,7 @@ public class Turno {
     private String hora;
     private String estado;
 
+    // Constructores
     public Turno() {
         this.idTurno = 0;
         this.paciente = null;
@@ -30,6 +32,7 @@ public class Turno {
         this.estado = estado;
     }
 
+    // Getters y setters
     public int getIdTurno() {
         return this.idTurno;
     }
@@ -86,6 +89,7 @@ public class Turno {
         this.estado = estado;
     }
 
+    // Metodos
     public boolean asignarTurno() {
         if (this.agenda != null && this.agenda.estaActiva()) {
             this.estado = "Asignado";

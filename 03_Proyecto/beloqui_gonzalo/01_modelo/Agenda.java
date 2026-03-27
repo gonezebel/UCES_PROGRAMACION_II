@@ -1,6 +1,7 @@
-package com.apellido.modelo;
+package modelo;
 
 public class Agenda {
+    // Atributos
     private int idAgenda;
     private Profesional profesional;
     private String diaSemana;
@@ -8,6 +9,7 @@ public class Agenda {
     private String horaFin;
     private String estado;
 
+    // Constructores
     public Agenda() {
         this.idAgenda = 0;
         this.profesional = null;
@@ -27,6 +29,7 @@ public class Agenda {
         this.estado = estado;
     }
 
+    // Getters y setters
     public int getIdAgenda() {
         return this.idAgenda;
     }
@@ -75,6 +78,7 @@ public class Agenda {
         this.estado = estado;
     }
 
+    // Metodos
     public void suspenderAgenda() {
         this.estado = "Suspendida";
     }

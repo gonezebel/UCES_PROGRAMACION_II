@@ -15,11 +15,33 @@ La propuesta es pertinente y factible de implementar en Java, porque permite apl
 
 ## Lineamientos del proyecto
 
-- Nombre del proyecto: `apellido_nombre`
-- Paquete para guardar las clases de los objetos: `com.apellido.modelo`
-- Paquete para guardar el archivo principal: `com.apellido.main`
+- Nombre del proyecto: `beloqui_gonzalo`
+- Paquete para guardar las clases de los objetos: `modelo`
+- Paquete para guardar el archivo principal: `principal`
+- Paquete para el controlador: `controlador`
+- Paquete para la vista: `vista`
 - Nombres de las clases: representativos del contenido de cada clase
 - Nombre del archivo principal: `Principal.java`
+
+## Estructura del proyecto
+
+```text
+beloqui_gonzalo
+├── 00_principal
+│   └── Principal.java
+├── 01_modelo
+│   ├── Persona.java
+│   ├── Paciente.java
+│   ├── Profesional.java
+│   ├── Agenda.java
+│   ├── Turno.java
+│   ├── Notificacion.java
+│   └── Notificable.java
+├── 02_controlador
+│   └── ControladorTurno.java
+└── 03_vista
+    └── VistaTurno.java
+    
 
 ## Clases principales del proyecto
 
@@ -223,6 +245,3 @@ En el proyecto se sobreescriben varios metodos heredados, cumpliendo y superando
 - `toString()` en `Paciente`
 - `toString()` en `Profesional`
 
-## Entrega
-
-El documento en PDF debera ir acompañado por un archivo comprimido `.zip` o `.rar` con una copia completa del proyecto en Java. La carpeta a comprimir sera `apellido_nombre`, respetando los paquetes `com.apellido.modelo` y `com.apellido.main`, y el archivo principal `Principal.java`.

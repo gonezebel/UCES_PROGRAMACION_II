@@ -1,10 +1,12 @@
-package com.apellido.modelo;
+package modelo;
 
 public class Paciente extends Persona implements Notificable {
+    // Atributos
     private int numeroHistoriaClinica;
     private String obraSocial;
     private String email;
 
+    // Constructores
     public Paciente() {
         super();
         this.numeroHistoriaClinica = 0;
@@ -20,6 +22,7 @@ public class Paciente extends Persona implements Notificable {
         this.email = email;
     }
 
+    // Getters y setters
     public int getNumeroHistoriaClinica() {
         return this.numeroHistoriaClinica;
     }
@@ -44,6 +47,7 @@ public class Paciente extends Persona implements Notificable {
         this.email = email;
     }
 
+    // Metodos
     public boolean validarEmail() {
         return this.email != null && this.email.contains("@") && this.email.contains(".");
     }

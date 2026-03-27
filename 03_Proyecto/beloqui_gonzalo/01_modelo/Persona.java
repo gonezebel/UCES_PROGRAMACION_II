@@ -1,11 +1,13 @@
-package com.apellido.modelo;
+package modelo;
 
 public abstract class Persona {
+    // Atributos
     private String nombre;
     private String apellido;
     private String dni;
     private String telefono;
 
+    // Constructores
     public Persona() {
         this.nombre = "";
         this.apellido = "";
@@ -20,6 +22,7 @@ public abstract class Persona {
         this.telefono = telefono;
     }
 
+    // Getters y setters
     public String getNombre() {
         return this.nombre;
     }
@@ -52,6 +55,7 @@ public abstract class Persona {
         this.telefono = telefono;
     }
 
+    // Metodos
     public String getNombreCompleto() {
         return this.nombre + " " + this.apellido;
     }

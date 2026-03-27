@@ -1,12 +1,14 @@
-package com.apellido.modelo;
+package modelo;
 
 public class Notificacion {
+    // Atributos
     private int idNotificacion;
     private String tipo;
     private String mensaje;
     private String fechaEnvio;
     private boolean enviada;
 
+    // Constructores
     public Notificacion() {
         this.idNotificacion = 0;
         this.tipo = "";
@@ -24,6 +26,7 @@ public class Notificacion {
         this.enviada = enviada;
     }
 
+    // Getters y setters
     public int getIdNotificacion() {
         return this.idNotificacion;
     }
@@ -64,6 +67,7 @@ public class Notificacion {
         this.enviada = enviada;
     }
 
+    // Metodos
     public String enviarA(Notificable destinatario) {
         this.enviada = true;
         return destinatario.enviarNotificacion(this.mensaje);

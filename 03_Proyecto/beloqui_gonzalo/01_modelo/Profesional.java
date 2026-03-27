@@ -1,10 +1,12 @@
-package com.apellido.modelo;
+package modelo;
 
 public class Profesional extends Persona implements Notificable {
+    // Atributos
     private String matricula;
     private String especialidad;
     private String emailInstitucional;
 
+    // Constructores
     public Profesional() {
         super();
         this.matricula = "";
@@ -20,6 +22,7 @@ public class Profesional extends Persona implements Notificable {
         this.emailInstitucional = emailInstitucional;
     }
 
+    // Getters y setters
     public String getMatricula() {
         return this.matricula;
     }
@@ -44,6 +47,7 @@ public class Profesional extends Persona implements Notificable {
         this.emailInstitucional = emailInstitucional;
     }
 
+    // Metodos
     public boolean estaDisponible(String estadoAgenda) {
         return estadoAgenda != null && estadoAgenda.equalsIgnoreCase("Activa");
     }
