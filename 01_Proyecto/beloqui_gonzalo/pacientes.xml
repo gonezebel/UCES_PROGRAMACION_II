@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pacientes>
+    <paciente>
+        <nombre>Gonzalo</nombre>
+        <apellido>Beloqui</apellido>
+        <dni>35426789</dni>
+        <telefono>1155551234</telefono>
+        <numeroHistoriaClinica>1025</numeroHistoriaClinica>
+        <obraSocial>Swiss Medical</obraSocial>
+        <email>gonzalo.beloqui@mail.com</email>
+    </paciente>
+    <paciente>
+        <nombre>Ana</nombre>
+        <apellido>Gomez</apellido>
+        <dni>40111222</dni>
+        <telefono>1166667788</telefono>
+        <numeroHistoriaClinica>1026</numeroHistoriaClinica>
+        <obraSocial>OSDE</obraSocial>
+        <email>ana.gomez@mail.com</email>
+    </paciente>
+</pacientes>

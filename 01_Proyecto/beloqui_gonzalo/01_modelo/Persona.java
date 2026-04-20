@@ -1,6 +1,12 @@
 package com.beloqui.modelo;
 
-public abstract class Persona {
+import java.io.Serializable;
+
+public abstract class Persona implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    protected static final String SEPARADOR_ARCHIVO = ";";
+
     // Atributos
     private String nombre;
     private String apellido;
@@ -9,50 +15,50 @@ public abstract class Persona {
 
     // Constructores
     public Persona() {
-        this.nombre = "";
-        this.apellido = "";
-        this.dni = "";
-        this.telefono = "";
+        setNombre("");
+        setApellido("");
+        setDni("");
+        setTelefono("");
     }
 
     public Persona(String nombre, String apellido, String dni, String telefono) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.telefono = telefono;
+        setNombre(nombre);
+        setApellido(apellido);
+        setDni(dni);
+        setTelefono(telefono);
     }
 
     // Getters y setters
     public String getNombre() {
-        return this.nombre;
+        return this.nombre.trim();
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = normalizarTexto(nombre);
     }
 
     public String getApellido() {
-        return this.apellido;
+        return this.apellido.trim();
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellido = normalizarTexto(apellido);
     }
 
     public String getDni() {
-        return this.dni;
+        return this.dni.trim();
     }
 
     public void setDni(String dni) {
-        this.dni = dni;
+        this.dni = normalizarTexto(dni);
     }
 
     public String getTelefono() {
-        return this.telefono;
+        return this.telefono.trim();
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        this.telefono = normalizarTexto(telefono);
     }
 
     // Metodos
@@ -61,8 +67,15 @@ public abstract class Persona {
     }
 
     public boolean validarDni() {
-        return this.dni != null && this.dni.matches("\\d{7,8}");
+        return getDni().matches("\\d{7,8}");
     }
 
     public abstract String mostrarDatos();
+
+    protected static String normalizarTexto(String valor) {
+        if (valor == null) {
+            return "";
+        }
+        return valor.replace(SEPARADOR_ARCHIVO, ",").trim();
+    }
 }
