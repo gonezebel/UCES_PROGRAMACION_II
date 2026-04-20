@@ -55,7 +55,7 @@ beloqui_gonzalo
 \- 03_vista
 ```
 
-## Clases principales del proyecto
+## Activdad Número 1-  Clases principales del proyecto
 
 ### 1. Clase abstracta Persona
 
@@ -270,3 +270,11 @@ En el proyecto se sobreescriben varios métodos heredados:
 - mostrarDatos() en Profesional
 - toString() en Paciente
 - toString() en Profesional
+
+## Activdad Número 2 -  Técnicas de entrada/salida y manejo de archivos
+
+Para aplicar el concpeto de persistencia se diseñaron dos archivos independientes que permiten guardar y recuperar datos correspondientes a dos clases principales del sistema: Paciente y Profesional. El primer archivo se denomina pacientes.txt y almacena la información de los objetos de la clase Paciente. Cada línea del archivo representa un paciente completo, utilizando una estructura de campos separados por punto y coma. Esta organización permite que los datos puedan guardarse como texto plano y, posteriormente, recuperarse para reconstruir los objetos dentro del sistema.
+
+La estructura definida para cada registro de paciente es la siguiente:
+
+++ nombre;apellido;dni;telefono;numeroHistoriaClinica;obraSocial;email
