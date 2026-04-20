@@ -54,6 +54,7 @@ beloqui_gonzalo
 ## Actividades de entrega
 
 I.[Act1_Clases principales del proyecto_20260328](../00_Documentos_Desarrollo/01_Actividad_ClasesPrincipales.md)
+
 II.[Act2_Técnicas de entrada/salida y manejo de archivos_20260421](../00_Documentos_Desarrollo/02_Actividad_Archivos.md)
 
 
