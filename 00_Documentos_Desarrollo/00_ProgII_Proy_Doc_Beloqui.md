@@ -2,10 +2,6 @@
 ![Logo UCES](../02_imagenes/logo_uces.svg)
 
 
-
-
-
-
 **Carrera:** Tecnicatura Universitaria en Programación
 
 **Asignatura:** Programación II
@@ -13,12 +9,6 @@
 **Nombre del/a docente:** Mario Daniel Detke
 
 **Nombre del/a estudiante:** Gonzalo Ezequiel Beloqui
-
-**Nombre de la actividad:** Unidad 1 - Actividad 1
-
-**Fecha de entrega:** 28/03/2026
-
-
 
 
 ## PROYECTO: Sistema de turnos de centro de salud de cercanía
@@ -39,7 +29,7 @@ La propuesta es pertinente y factible de prototipar en Java, porque permite apli
 
 ## Estructura del proyecto
 
-```text
+```
 beloqui_gonzalo
 |- 00_principal
 |  \- Principal.java
@@ -54,6 +44,19 @@ beloqui_gonzalo
 |- 02_controlador
 \- 03_vista
 ```
+
+## Actividades de entrega
+
+    I.     Act1_Clases principales del proyecto_20260326
+    II.    Act2_
+
+
+
+
+
+
+
+
 
 ## Activdad Número 1-  Clases principales del proyecto
 
