@@ -42,7 +42,13 @@ beloqui_gonzalo
 |  |- Notificacion.java
 |  \- Notificable.java
 |- 02_controlador
-\- 03_vista
+|  |- GestorPacientesTexto.java
+|  |- GestorProfesionalesTexto.java
+|  \- GestorAgendasXML.java
+|- 04_datos
+|  |- pacientes.txt
+|  |- profesionales.txt
+|  \- agendas.xml
 ```
 
 ## Actividades de entrega
