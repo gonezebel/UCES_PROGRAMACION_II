@@ -21,6 +21,8 @@ Para aplicar el concepeto de persistencia se diseñaron dos archivos independien
 
 Para administrar este archivo se implementó la clase GestorPacientesTexto, ubicada en el paquete controlador. Esta clase contiene los métodos necesarios para guardar una lista de pacientes, agregar un nuevo paciente al archivo y leer los registros existentes para reconstruir objetos Paciente.
 
++ [GestorPacientesTexto](../01_Proyecto/beloqui_gonzalo/02_controlador/GestorPacientesTexto.java)
+
 La estructura definida para cada registro de paciente es la siguiente:
 
 ```
@@ -28,6 +30,8 @@ nombre;apellido;dni;telefono;numeroHistoriaClinica;obraSocial;email
 ```
 
 El segundo archivo se denomina profesionales.txt y almacena la información de los objetos de la clase Profesional. Al igual que en el caso anterior, cada línea representa un profesional completo, con sus atributos separados por punto y coma.
+
++ [GestorProfesionalesTexto](../01_Proyecto/beloqui_gonzalo/02_controlador/GestorProfesionalesTexto.java)
 
 La estructura definida para cada registro de profesional es la siguiente:
 
