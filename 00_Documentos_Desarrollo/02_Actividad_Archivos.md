@@ -76,4 +76,7 @@ Por ejemplo, la secuencia concreta de los objetos testeados es la siguiente:
 ```
 
 Para implementar esta funcionalidad se creó la clase GestorPacientesXML, ubicada en el paquete controlador. Esta clase permite guardar una lista de pacientes en formato XML y recuperar posteriormente los datos almacenados. En el diseño utilizan las clases de JAXP y DOM, tales como DocumentBuilderFactory, DocumentBuilder, Document, Element, NodeList, TransformerFactory y Transformer.
+
++ [GestorPacientesXML](../01_Proyecto/beloqui_gonzalo/02_controlador/GestorPacientesXML.java)
+
 En su funcionamiento, primeramente, el método de guardado construye un documento XML con la etiqueta raíz <pacientes> y agrega un nodo <paciente> por cada objeto de la lista. Dentro de cada nodo se crean etiquetas individuales para nombre, apellido, dni, telefono, numeroHistoriaClinica, obraSocial y email. Luego, el método de lectura carga el archivo XML, recorre los nodos <paciente> y obtiene el contenido de cada etiqueta para reconstruir objetos de la clase Paciente. 
