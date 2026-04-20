@@ -66,29 +66,17 @@ La persistencia bajo formato XML se eligió para guardar objetos de la clase Pac
 
 Por ejemplo, la secuencia concreta de los objetos testeados es la siguiente:
 
-```
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<pacientes>
-    <paciente>
-        <nombre>Gonzalo</nombre>
-        <apellido>Beloqui</apellido>
-        <dni>35426789</dni>
-        <telefono>1155551234</telefono>
-        <numeroHistoriaClinica>1025</numeroHistoriaClinica>
-        <obraSocial>Swiss Medical</obraSocial>
-        <email>gonzalo.beloqui@mail.com</email>
-    </paciente>
-    <paciente>
-        <nombre>Ana</nombre>
-        <apellido>Gomez</apellido>
-        <dni>40111222</dni>
-        <telefono>1166667788</telefono>
-        <numeroHistoriaClinica>1026</numeroHistoriaClinica>
-        <obraSocial>OSDE</obraSocial>
-        <email>ana.gomez@mail.com</email>
-    </paciente>
-</pacientes>
-
+```xml
+<agendas>
+    <agenda>
+        <idAgenda>1</idAgenda>
+        <idProfesional>1</idProfesional>
+        <diaSemana>Lunes</diaSemana>
+        <horaInicio>08:00</horaInicio>
+        <horaFin>12:00</horaFin>
+        <estado>Activa</estado>
+    </agenda>
+</agendas>
 ```
 
 Para implementar esta funcionalidad se creó la clase GestorPacientesXML, ubicada en el paquete controlador. Esta clase permite guardar una lista de pacientes en formato XML y recuperar posteriormente los datos almacenados. En el diseño utilizan las clases de JAXP y DOM, tales como DocumentBuilderFactory, DocumentBuilder, Document, Element, NodeList, TransformerFactory y Transformer.
