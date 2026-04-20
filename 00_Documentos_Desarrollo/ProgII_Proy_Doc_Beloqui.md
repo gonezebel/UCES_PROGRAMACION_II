@@ -281,6 +281,7 @@ La estructura definida para cada registro de paciente es la siguiente:
 
 ```
 nombre;apellido;dni;telefono;numeroHistoriaClinica;obraSocial;email
+```
 
 El segundo archivo se denomina profesionales.txt y almacena la información de los objetos de la clase Profesional. Al igual que en el caso anterior, cada línea representa un profesional completo, con sus atributos separados por punto y coma.
 
@@ -288,5 +289,6 @@ La estructura definida para cada registro de profesional es la siguiente:
 
 ```
 nombre;apellido;dni;telefono;matricula;especialidad;emailInstitucional
+```
 
 Para administrar este archivo se implementó la clase GestorProfesionalesTexto, también ubicada en el paquete controlador. Esta clase permite guardar profesionales, agregar nuevos registros y recuperar la información almacenada para reconstruir objetos Profesional.
