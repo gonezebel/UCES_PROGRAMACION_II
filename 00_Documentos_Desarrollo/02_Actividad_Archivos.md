@@ -49,7 +49,13 @@ La estructura definida para cada registro de profesional es la siguiente:
 idProfesional;nombre;apellido;dni;telefono;matricula;especialidad;emailInstitucional
 ```
 
-Para administrar este archivo se implementó la clase GestorProfesionalesTexto, también ubicada en el paquete controlador. Esta clase permite guardar profesionales, agregar nuevos registros y recuperar la información almacenada para reconstruir objetos Profesional.
+Para administrar este archivo se implementó la clase GestorProfesionalesTexto, también ubicada en el paquete controlador. Los principales métodos son: 
+
+```
+- guardarProfesionales(List<Profesional> profesionales)
+- agregarProfesional(Profesional profesional)
+- leerProfesionales()
+```
 
 En ambos casos, las clases Paciente y Profesional sobreescriben el método toString() para generar una representación en cadena de caracteres compatible con la estructura del archivo. Además, se agregaron métodos estáticos fromString(String linea) que permiten interpretar cada línea leída y convertirla nuevamente en un objeto del sistema.
 Las operaciones de lectura y escritura utilizan BufferedReader, BufferedWriter, FileReader y FileWriter, aplicando manejo de excepciones mediante try-with-resources, según lo observado en el contenido de la unidad de estudio.
