@@ -277,4 +277,4 @@ Para aplicar el concpeto de persistencia se diseñaron dos archivos independient
 
 La estructura definida para cada registro de paciente es la siguiente:
 
-++ nombre;apellido;dni;telefono;numeroHistoriaClinica;obraSocial;email
+  nombre;apellido;dni;telefono;numeroHistoriaClinica;obraSocial;email
