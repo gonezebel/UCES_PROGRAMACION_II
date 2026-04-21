@@ -1,6 +1,8 @@
 package com.beloqui.modelo;
 
 public class Turno {
+    private static int contadorTurnos = 1;
+
     // Atributos
     private int idTurno;
     private Paciente paciente;
@@ -12,7 +14,7 @@ public class Turno {
 
     // Constructores
     public Turno() {
-        this.idTurno = 0;
+        this.idTurno = contadorTurnos++;
         this.paciente = null;
         this.profesional = null;
         this.agenda = null;
@@ -23,7 +25,7 @@ public class Turno {
 
     public Turno(int idTurno, Paciente paciente, Profesional profesional, Agenda agenda,
             String fecha, String hora, String estado) {
-        this.idTurno = idTurno;
+        setIdTurno(idTurno);
         this.paciente = paciente;
         this.profesional = profesional;
         this.agenda = agenda;
@@ -39,6 +41,9 @@ public class Turno {
 
     public void setIdTurno(int idTurno) {
         this.idTurno = idTurno;
+        if (idTurno >= contadorTurnos) {
+            contadorTurnos = idTurno + 1;
+        }
     }
 
     public Paciente getPaciente() {

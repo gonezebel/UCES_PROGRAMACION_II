@@ -1,6 +1,8 @@
 package com.beloqui.modelo;
 
 public class Notificacion {
+    private static int contadorNotificaciones = 1;
+
     // Atributos
     private int idNotificacion;
     private String tipo;
@@ -10,7 +12,7 @@ public class Notificacion {
 
     // Constructores
     public Notificacion() {
-        this.idNotificacion = 0;
+        this.idNotificacion = contadorNotificaciones++;
         this.tipo = "";
         this.mensaje = "";
         this.fechaEnvio = "";
@@ -19,7 +21,7 @@ public class Notificacion {
 
     public Notificacion(int idNotificacion, String tipo, String mensaje, String fechaEnvio,
             boolean enviada) {
-        this.idNotificacion = idNotificacion;
+        setIdNotificacion(idNotificacion);
         this.tipo = tipo;
         this.mensaje = mensaje;
         this.fechaEnvio = fechaEnvio;
@@ -33,6 +35,9 @@ public class Notificacion {
 
     public void setIdNotificacion(int idNotificacion) {
         this.idNotificacion = idNotificacion;
+        if (idNotificacion >= contadorNotificaciones) {
+            contadorNotificaciones = idNotificacion + 1;
+        }
     }
 
     public String getTipo() {

@@ -2,8 +2,10 @@ package com.beloqui.modelo;
 
 public class Profesional extends Persona implements Notificable {
     private static final long serialVersionUID = 1L;
+    private static int contadorProfesionales = 1;
 
     // Atributos
+    private int idProfesional;
     private String matricula;
     private String especialidad;
     private String emailInstitucional;
@@ -11,6 +13,7 @@ public class Profesional extends Persona implements Notificable {
     // Constructores
     public Profesional() {
         super();
+        this.idProfesional = contadorProfesionales++;
         setMatricula("");
         setEspecialidad("");
         setEmailInstitucional("");
@@ -19,12 +22,33 @@ public class Profesional extends Persona implements Notificable {
     public Profesional(String nombre, String apellido, String dni, String telefono,
             String matricula, String especialidad, String emailInstitucional) {
         super(nombre, apellido, dni, telefono);
+        this.idProfesional = contadorProfesionales++;
+        setMatricula(matricula);
+        setEspecialidad(especialidad);
+        setEmailInstitucional(emailInstitucional);
+    }
+
+    public Profesional(int idProfesional, String nombre, String apellido, String dni, String telefono,
+            String matricula, String especialidad, String emailInstitucional) {
+        super(nombre, apellido, dni, telefono);
+        setIdProfesional(idProfesional);
         setMatricula(matricula);
         setEspecialidad(especialidad);
         setEmailInstitucional(emailInstitucional);
     }
 
     // Getters y setters
+    public int getIdProfesional() {
+        return this.idProfesional;
+    }
+
+    public void setIdProfesional(int idProfesional) {
+        this.idProfesional = idProfesional;
+        if (idProfesional >= contadorProfesionales) {
+            contadorProfesionales = idProfesional + 1;
+        }
+    }
+
     public String getMatricula() {
         return this.matricula.trim();
     }
@@ -67,13 +91,15 @@ public class Profesional extends Persona implements Notificable {
 
     @Override
     public String mostrarDatos() {
-        return "Profesional: " + getNombreCompleto() + " - Especialidad: " + getEspecialidad()
+        return "Profesional ID " + this.idProfesional + ": " + getNombreCompleto()
+                + " - Especialidad: " + getEspecialidad()
                 + " - Matricula: " + getMatricula();
     }
 
     @Override
     public String toString() {
-        return getNombre() + SEPARADOR_ARCHIVO
+        return this.idProfesional + SEPARADOR_ARCHIVO
+                + getNombre() + SEPARADOR_ARCHIVO
                 + getApellido() + SEPARADOR_ARCHIVO
                 + getDni() + SEPARADOR_ARCHIVO
                 + getTelefono() + SEPARADOR_ARCHIVO
@@ -84,17 +110,29 @@ public class Profesional extends Persona implements Notificable {
 
     public static Profesional fromString(String linea) {
         String[] datos = linea.split(SEPARADOR_ARCHIVO, -1);
-        if (datos.length != 7) {
+        if (datos.length == 7) {
+            return new Profesional(
+                    datos[0],
+                    datos[1],
+                    datos[2],
+                    datos[3],
+                    datos[4],
+                    datos[5],
+                    datos[6]);
+        }
+
+        if (datos.length != 8) {
             throw new IllegalArgumentException("La linea no representa un profesional valido.");
         }
 
         return new Profesional(
-                datos[0],
+                Integer.parseInt(datos[0]),
                 datos[1],
                 datos[2],
                 datos[3],
                 datos[4],
                 datos[5],
-                datos[6]);
+                datos[6],
+                datos[7]);
     }
 }

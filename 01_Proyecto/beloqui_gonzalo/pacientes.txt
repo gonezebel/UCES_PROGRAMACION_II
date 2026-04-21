@@ -1,2 +1,0 @@
-Gonzalo;Beloqui;35426789;1155551234;1025;Swiss Medical;gonzalo.beloqui@mail.com
-Ana;Gomez;40111222;1166667788;1026;OSDE;ana.gomez@mail.com

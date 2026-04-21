@@ -1,2 +1,0 @@
-Juan;Perez;28765432;1144449876;MN12345;Cardiologia;jperez@hospital.com
-Laura;Martinez;30999888;1133332222;MN54321;Pediatria;lmartinez@hospital.com

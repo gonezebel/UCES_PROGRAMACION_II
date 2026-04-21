@@ -3,6 +3,7 @@ package com.beloqui.controlador;
 import com.beloqui.modelo.Paciente;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,6 +19,7 @@ public class GestorPacientesTexto {
     }
 
     public void guardarPacientes(List<Paciente> pacientes) {
+        crearCarpetaDatos();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.nombreArchivo))) {
             for (Paciente paciente : pacientes) {
                 bw.write(paciente.toString());
@@ -29,6 +31,7 @@ public class GestorPacientesTexto {
     }
 
     public void agregarPaciente(Paciente paciente) {
+        crearCarpetaDatos();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.nombreArchivo, true))) {
             bw.write(paciente.toString());
             bw.newLine();
@@ -52,5 +55,13 @@ public class GestorPacientesTexto {
         }
 
         return pacientes;
+    }
+
+    private void crearCarpetaDatos() {
+        File archivo = new File(this.nombreArchivo);
+        File carpeta = archivo.getParentFile();
+        if (carpeta != null && !carpeta.exists()) {
+            carpeta.mkdirs();
+        }
     }
 }

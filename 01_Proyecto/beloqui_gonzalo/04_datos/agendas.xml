@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<agendas>
+    <agenda>
+        <idAgenda>1</idAgenda>
+        <idProfesional>1</idProfesional>
+        <diaSemana>Lunes</diaSemana>
+        <horaInicio>08:00</horaInicio>
+        <horaFin>12:00</horaFin>
+        <estado>Activa</estado>
+    </agenda>
+    <agenda>
+        <idAgenda>2</idAgenda>
+        <idProfesional>2</idProfesional>
+        <diaSemana>Miercoles</diaSemana>
+        <horaInicio>14:00</horaInicio>
+        <horaFin>18:00</horaFin>
+        <estado>Activa</estado>
+    </agenda>
+</agendas>

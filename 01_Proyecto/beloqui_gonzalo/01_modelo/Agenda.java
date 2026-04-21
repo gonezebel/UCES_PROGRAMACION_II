@@ -1,6 +1,8 @@
 package com.beloqui.modelo;
 
 public class Agenda {
+    private static int contadorAgendas = 1;
+
     // Atributos
     private int idAgenda;
     private Profesional profesional;
@@ -11,7 +13,7 @@ public class Agenda {
 
     // Constructores
     public Agenda() {
-        this.idAgenda = 0;
+        this.idAgenda = contadorAgendas++;
         this.profesional = null;
         this.diaSemana = "";
         this.horaInicio = "";
@@ -21,7 +23,7 @@ public class Agenda {
 
     public Agenda(int idAgenda, Profesional profesional, String diaSemana, String horaInicio,
             String horaFin, String estado) {
-        this.idAgenda = idAgenda;
+        setIdAgenda(idAgenda);
         this.profesional = profesional;
         this.diaSemana = diaSemana;
         this.horaInicio = horaInicio;
@@ -36,6 +38,9 @@ public class Agenda {
 
     public void setIdAgenda(int idAgenda) {
         this.idAgenda = idAgenda;
+        if (idAgenda >= contadorAgendas) {
+            contadorAgendas = idAgenda + 1;
+        }
     }
 
     public Profesional getProfesional() {
@@ -93,7 +98,10 @@ public class Agenda {
 
     @Override
     public String toString() {
-        return "Agenda " + this.idAgenda + " - " + this.diaSemana + " de " + this.horaInicio
+        String profesionalTexto = this.profesional == null
+                ? "sin profesional asociado"
+                : "Profesional ID " + this.profesional.getIdProfesional();
+        return "Agenda " + this.idAgenda + " - " + profesionalTexto + " - " + this.diaSemana + " de " + this.horaInicio
                 + " a " + this.horaFin + " - Estado: " + this.estado;
     }
 }
