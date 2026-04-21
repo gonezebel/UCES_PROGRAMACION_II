@@ -116,5 +116,6 @@ La clase 'Principal' fue ampliada con un menú de consola que permite ejecutar o
 5. Buscar profesional
 6. Buscar agenda por profesional y dia
 0. Salir
+Escriba "cancelar" dentro de una opcion para volver al menu.
 ```
 
