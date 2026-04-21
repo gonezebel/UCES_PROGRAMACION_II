@@ -11,9 +11,9 @@
 
 **Fecha de engrega:** 2026/04/21
 
-
-
 ## Activdad Número 2 -  Técnicas de entrada/salida y manejo de archivos
+
+
 
 ### Diseño de archivos de texto para persistencia de clases 
 
