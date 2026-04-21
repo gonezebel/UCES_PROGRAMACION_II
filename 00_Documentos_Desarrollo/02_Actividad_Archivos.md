@@ -62,7 +62,7 @@ Las operaciones de lectura y escritura utilizan BufferedReader, BufferedWriter, 
 
 ### Diseño de estructura XML para persistencia de una clase
 
-La persistencia bajo formato XML se eligió para guardar objetos de la clase Paciente. El archivo generado se denomina pacientes.xml.y utiliza una etiqueta raíz <pacientes>, que contiene uno o más elementos <paciente>, donde cada paciente posee etiquetas internas que representan sus atributos principales.
+La persistencia bajo formato XML se eligió para guardar objetos de la clase Agenda. El archivo generado se denomina agenda.xml.y utiliza una etiqueta raíz <pacientes>, que contiene uno o más elementos <agenda>, donde cada agenda posee etiquetas internas que representan sus atributos principales: 'idAgenda', 'diaSemana', 'horaInicio', 'horaFin' y 'estado', además de la relación con 'idProfesional'.
 
 Por ejemplo, la secuencia concreta de los objetos testeados es la siguiente:
 
@@ -79,8 +79,7 @@ Por ejemplo, la secuencia concreta de los objetos testeados es la siguiente:
 </agendas>
 ```
 
-Para implementar esta funcionalidad se creó la clase GestorPacientesXML, ubicada en el paquete controlador. Esta clase permite guardar una lista de pacientes en formato XML y recuperar posteriormente los datos almacenados. En el diseño utilizan las clases de JAXP y DOM, tales como DocumentBuilderFactory, DocumentBuilder, Document, Element, NodeList, TransformerFactory y Transformer.
+Para implementar esta funcionalidad se creó la clase GestorAgendasXML, ubicada en el paquete controlador. Esta clase permite guardar una lista de agendas en formato XML y recuperar posteriormente los datos almacenados. En el diseño utilizan las clases de JAXP y DOM, tales como DocumentBuilderFactory, DocumentBuilder, Document, Element, NodeList, TransformerFactory y Transformer.
 
 + [GestorPacientesXML](../01_Proyecto/beloqui_gonzalo/02_controlador/GestorPacientesXML.java)
 
-En su funcionamiento, primeramente, el método de guardado construye un documento XML con la etiqueta raíz <pacientes> y agrega un nodo <paciente> por cada objeto de la lista. Dentro de cada nodo se crean etiquetas individuales para nombre, apellido, dni, telefono, numeroHistoriaClinica, obraSocial y email. Luego, el método de lectura carga el archivo XML, recorre los nodos <paciente> y obtiene el contenido de cada etiqueta para reconstruir objetos de la clase Paciente. 
