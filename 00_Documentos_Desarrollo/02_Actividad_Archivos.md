@@ -89,7 +89,7 @@ Para implementar esta funcionalidad se creó la clase GestorAgendasXML, ubicada 
 
 En el diseño utilizan las clases de JAXP y DOM, tales como DocumentBuilderFactory, DocumentBuilder, Document, Element, NodeList, TransformerFactory y Transformer.
 
-+ [GestorAgendasXML](../01_Proyecto/beloqui_gonzalo/02_controlador/GestorPacientesXML.java)
++ [GestorAgendasXML](../01_Proyecto/beloqui_gonzalo/02_controlador/GestorAgendasXML.java)
 
 ### Modificación de clases de Actividad 1
 
