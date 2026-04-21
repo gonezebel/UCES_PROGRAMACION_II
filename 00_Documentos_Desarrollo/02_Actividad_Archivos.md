@@ -79,7 +79,42 @@ Por ejemplo, la secuencia concreta de los objetos testeados es la siguiente:
 </agendas>
 ```
 
-Para implementar esta funcionalidad se creó la clase GestorAgendasXML, ubicada en el paquete controlador. Esta clase permite guardar una lista de agendas en formato XML y recuperar posteriormente los datos almacenados. En el diseño utilizan las clases de JAXP y DOM, tales como DocumentBuilderFactory, DocumentBuilder, Document, Element, NodeList, TransformerFactory y Transformer.
+Para implementar esta funcionalidad se creó la clase GestorAgendasXML, ubicada en el paquete controlador, con los siguientes métodos: 
+
+```
+- guardarAgendas(List<Agenda> agendas)
+- leerAgendas()
+- leerAgendas(List<Profesional> profesionales)
+```
+
+En el diseño utilizan las clases de JAXP y DOM, tales como DocumentBuilderFactory, DocumentBuilder, Document, Element, NodeList, TransformerFactory y Transformer.
 
 + [GestorPacientesXML](../01_Proyecto/beloqui_gonzalo/02_controlador/GestorPacientesXML.java)
+
+### Modificación de clases de Actividad 1
+
+#### I. Agregado de Identificadores autoincrementales 
+
+En la versión actual del proyecto se incorporan identificadores numéricos autoincrementales en las clases Paciente, Profesional, Agenda, Turno y Notificacion. En todos los casos, cada clase administra su propio contador estático y asigna automáticamente un valor entero secuencial a cada nuevo objeto creado.
+
+#### II. Conversión entre objetos y registros de archivo
+
+Las clases 'Paciente' y 'Profesional' fueron ampliadas para soportar serialización textual manual, , el método toString() no se usa solo para mostrar información en pantalla, sino también para generar un registro con un formato fijo, donde los atributos se separan mediante ;. A su vez, los métodos fromString(String linea) permiten leer cada línea del archivo, separar sus campos y reconstruir el objeto correspondiente dentro del sistema.
+
+Adicionalmente, para que el guardado en archivos de texto funcione de forma ordenada, la clase Persona (superclase de Paciente y Profesional) incorpora una pequeña validación previa sobre los valores de texto. Mediante el método normalizarTexto(String valor), se eliminan espacios innecesarios (utilizando "trim") y se reemplaza el carácter ";" por ",". 
+
+#### III. Menú interactivo por consola
+
+La clase 'Principal' fue ampliada con un menú de consola que permite ejecutar operaciones del sistema sin modificar el código fuente.
+
+```
+--- Sistema de turnos ---
+1. Agregar paciente
+2. Agregar profesional
+3. Agregar agenda
+4. Buscar paciente
+5. Buscar profesional
+6. Buscar agenda por profesional y dia
+0. Salir
+```
 
