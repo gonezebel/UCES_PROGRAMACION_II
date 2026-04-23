@@ -50,4 +50,11 @@ IV.   "Notificacion": para vincularla con eventos del sistema, por ejemplo la co
 V.  "Principal": para reducir su nivel de responsabilidad y delegar tareas específicas..
 ```
 
- 
+#### II.III Clases a eliminar
+
+No se considera necesario eliminar clases del modelo actual, dado que las existentes responden correctamente al dominio planteado
+
+### III. Análisis de métodos en base a recursividad e iteración
+
+El proyecto actual resuelve las búsquedas y recorridos de listas mediante estructuras iterativas, por ejemplo en los métodos de búsqueda de pacientes, profesionales y agendas, así como en la obtención del siguiente identificador de agenda. Si bien técnicamente todos los métodos podrían reescribirse de forma recursiva, no se considera que esa decisión aporte una mejora real en este caso. La recursividad resulta más adecuada cuando el problema presenta una estructura naturalmente recursiva, como árboles, jerarquías o subdivisión del problema en partes equivalentes. En este sistema, los datos se almacenan en listas lineales obtenidas desde archivos, por lo que el recorrido secuencial es más simple, más legible y más coherente con el nivel de complejidad del proyecto.
+
