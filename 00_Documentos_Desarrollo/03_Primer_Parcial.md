@@ -35,7 +35,4 @@ Se propone agregar una clase para registrar efetcivamente la asignación y modif
 
  #### Clases a agregar: 
 
- 
-
-
-
+ I. Se propone agregar una clase controladora llamada "GestorTurnosXML", considerando la persistencia en formato XML en lugar de texto plano, debido a que se trata de una entidad con una estructura más compleja y con asociaciones directas con otras clases del modelo, como "Paciente", "Profesional" y "Agenda", y así se permite conservar una estructura jerárquica y más clara, facilitando la identificación de cada dato almacenado y manteniendo coherencia con la persistencia ya utilizada en la clase "Agenda".
