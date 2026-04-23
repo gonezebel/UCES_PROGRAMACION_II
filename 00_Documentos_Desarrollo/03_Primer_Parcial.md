@@ -31,7 +31,11 @@ V.   "Notificacion" y "Notificable" para modelar el envío de avisos.
 VI.  "GestorPacientesTexto", "GestorProfesionalesTexto" y "GestorAgendasXML" para persistencia.
 VII.  "Principal" como punto de entrada y clase de interacción por consola.
 ```
+Se propone agregar una clase para registrar efetcivamente la asignación y modificación de turnos concretos, dado que la clase "Turno" ya existe en el proyecto, pero todavía no forma parte del flujo principal del sistema.
 
+ #### Clases a agregar: 
+
+ 
 
 
 
