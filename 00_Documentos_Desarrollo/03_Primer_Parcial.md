@@ -23,13 +23,13 @@ En línea con los criterios mencionados, se realizan las siguientes propuestas d
 
 El sistema cuenta con las siguientes clases principales:
 ```
-- "Persona" como clase abstracta base.
-- "Paciente" y "Profesional" como especializaciones de “Persona”.
-- "Agenda" para representar la disponibilidad horaria de un profesional.
-- "Turno" para representar una reserva concreta entre paciente y profesional.
-- "Notificacion" y "Notificable" para modelar el envío de avisos.
-- "GestorPacientesTexto", "GestorProfesionalesTexto" y "GestorAgendasXML" para persistencia.
-- "Principal" como punto de entrada y clase de interacción por consola.
+I.   "Persona" como clase abstracta base.
+II.  "Paciente" y "Profesional" como especializaciones de “Persona”.
+III. "Agenda" para representar la disponibilidad horaria de un profesional.
+IV.  "Turno" para representar una reserva concreta entre paciente y profesional.
+V.   "Notificacion" y "Notificable" para modelar el envío de avisos.
+VI.  "GestorPacientesTexto", "GestorProfesionalesTexto" y "GestorAgendasXML" para persistencia.
+VII.  "Principal" como punto de entrada y clase de interacción por consola.
 ```
 
 
