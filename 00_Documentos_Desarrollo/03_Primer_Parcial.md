@@ -43,10 +43,10 @@ II.I.II Se propone reducir la responsabilidad de la clase Principal, separando d
 
 Se propone modificar las siguientes clases:
 ```
-I.  "Paciente" y "Profesional": para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia.
-II. "Agenda": para incorporar validaciones vinculadas a disponibilidad y consistencia horaria
-III.  "Turno": para integrarla al funcionamiento real del sistema y completar la lógica del dominio.
-IV.   "Notificacion": para vincularla con eventos del sistema, por ejemplo la confirmación o anulación de turnos.
+I.  "Paciente" y "Profesional": para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia;
+II. "Agenda": para incorporar validaciones vinculadas a disponibilidad y consistencia horaria;
+III.  "Turno": para integrarla al funcionamiento real del sistema y completar la lógica del dominio;
+IV.   "Notificacion": para vincularla con eventos del sistema, por ejemplo la confirmación o anulación de turnos;
 V.  "Principal": para reducir su nivel de responsabilidad y delegar tareas específicas..
 ```
 
@@ -57,4 +57,21 @@ No se considera necesario eliminar clases del modelo actual, dado que las existe
 ### III. Análisis de métodos en base a recursividad e iteración
 
 El proyecto actual resuelve las búsquedas y recorridos de listas mediante estructuras iterativas, por ejemplo en los métodos de búsqueda de pacientes, profesionales y agendas, así como en la obtención del siguiente identificador de agenda. Si bien técnicamente todos los métodos podrían reescribirse de forma recursiva, no se considera que esa decisión aporte una mejora real en este caso. La recursividad resulta más adecuada cuando el problema presenta una estructura naturalmente recursiva, como árboles, jerarquías o subdivisión del problema en partes equivalentes. En este sistema, los datos se almacenan en listas lineales obtenidas desde archivos, por lo que el recorrido secuencial es más simple, más legible y más coherente con el nivel de complejidad del proyecto.
+
+####. III.I Métdos a mejorar por incorporación de iteración
+
+```
+I.  Centralizar la búsqueda de pacientes y profesionales en métodos específicos;
+II. Encapsular en una sola operación el cálculo del próximo ID;
+III.  Recorrer agendas para verificar disponibilidad antes de crear un turno;
+IV.  Validar que no existan superposiciones horarias para un mismo profesional y día.
+```
+
+
+
+
+
+
+- 
+
 
