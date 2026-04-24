@@ -11,7 +11,7 @@
 
 **Fecha de engrega:** 2026/04/24
 
-## Primer exámen Parcial Propuesta de mejoras del sistema de turnos
+## Primer exámen parcial: Propuesta de mejoras del sistema de turnos
 
 
 
@@ -42,15 +42,12 @@ II.I.I Se propone agregar una clase controladora llamada GestorTurnosXML, optand
 ```
 public class GestorTurnosXML {
     private final String nombreArchivo;
-
     public GestorTurnosXML(String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
     }
-
     public void guardarTurnos(List<Turno> turnos) {
         // lógica de persistencia en XML
     }
-
     public List<Turno> leerTurnos() {
         return new ArrayList<>();
     }
@@ -61,17 +58,14 @@ II.I.II Se propone reducir la responsabilidad de la clase Principal, separando d
 ```
 public class VistaConsola {
     private final Scanner scanner;
-
     public VistaConsola(Scanner scanner) {
         this.scanner = scanner;
     }
-
     public void mostrarMenu() {
         System.out.println("1. Agregar paciente");
         System.out.println("2. Agregar profesional");
         System.out.println("3. Agregar agenda");
     }
-
     public String leerTexto(String mensaje) {
         System.out.print(mensaje);
         return scanner.nextLine();
