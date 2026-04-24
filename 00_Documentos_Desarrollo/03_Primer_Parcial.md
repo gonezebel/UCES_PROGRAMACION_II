@@ -13,8 +13,7 @@
 
 ## Primer exámen parcial: Propuesta de mejoras del sistema de turnos
 
-
-
+<br>
 
 ### I. Introducción
 
