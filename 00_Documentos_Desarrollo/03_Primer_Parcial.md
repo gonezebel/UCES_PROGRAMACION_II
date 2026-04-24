@@ -36,7 +36,8 @@ Se propone agregar una clase para registrar efetcivamente la asignación y modif
 
  #### II.I Clases a agregar
 
-I. GestorTurnosXML: Clase controladora, optando por la persistencia en formato XML en lugar de texto plano, ya que Turno es una entidad con una estructura más compleja y con asociaciones directas con otras clases del modelo, como Paciente, Profesional y Agenda. Este formato permite conservar una estructura jerárquica más clara y facilita la identificación de cada dato almacenado. La implementación realizada se basa en la siguiente estructura, con un atributo para el nombre del archivo y métodos específicos para guardar y leer turnos:
+I. GestorTurnosXML: Clase controladora, optando por la persistencia en formato XML en lugar de texto plano, ya que Turno es una entidad con una estructura más compleja y con asociaciones directas con otras clases del modelo, como Paciente, Profesional y Agenda. Este formato permite conservar una estructura jerárquica más clara y facilita la identificación de cada dato almacenado. La implementación realizada se basa en la siguiente estructura, con un atributo para el nombre del archivo y métodos específicos para guardar y leer turnos; siendo la lógica general de la clase la siguiente:
+
 ```
 public class GestorTurnosXML {
     private final String nombreArchivo;
@@ -44,15 +45,45 @@ public class GestorTurnosXML {
         this.nombreArchivo = nombreArchivo;
     }
     public void guardarTurnos(List<Turno> turnos) {
-        // lógica de persistencia en XML
+        try {
+            crearCarpetaDatos();
+            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document documento = builder.newDocument();
+            Element raiz = documento.createElement("turnos");
+            documento.appendChild(raiz);
+            for (Turno turno : turnos) {
+                raiz.appendChild(crearElementoTurno(documento, turno));
+            }
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.transform(new DOMSource(documento), new StreamResult(new File(this.nombreArchivo)));
+        } catch (ParserConfigurationException | TransformerException e) {
+            System.out.println("Error al guardar turnos XML: " + e.getMessage());
+        }
     }
-    public List<Turno> leerTurnos() {
-        return new ArrayList<>();
+    public List<Turno> leerTurnos(List<Paciente> pacientes, List<Profesional> profesionales,
+            List<Agenda> agendas) {
+        List<Turno> turnos = new ArrayList<>();
+        File archivo = new File(this.nombreArchivo);
+        if (!archivo.exists()) {
+            return turnos;
+        }
+        try {
+            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document documento = builder.parse(archivo);
+            NodeList nodosTurno = documento.getElementsByTagName("turno");
+            for (int i = 0; i < nodosTurno.getLength(); i++) {
+                Element elementoTurno = (Element) nodosTurno.item(i);
+                turnos.add(new Turno(/* reconstrucción del turno desde XML */));
+            }
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            System.out.println("Error al leer turnos XML: " + e.getMessage());
+        }
+        return turnos;
     }
 }
-```
 
-III. VistaConsola: Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal. La clase propuesta tendría como responsabilidad principal mostrar menús, solicitar datos al usuario y devolver los valores ingresados:
+III. VistaConsola: Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal. La clase propuesta tendría como responsabilidad principal mostrar menús, solicitar datos al usuario y devolver los valores ingresados. El funcionamiento general de la clase se representa de la siguiente manera:
+
 ```
 public class VistaConsola {
     private final Scanner scanner;
@@ -60,13 +91,24 @@ public class VistaConsola {
         this.scanner = scanner;
     }
     public void mostrarMenu() {
+        System.out.println("\n--- Sistema de turnos ---");
         System.out.println("1. Agregar paciente");
         System.out.println("2. Agregar profesional");
         System.out.println("3. Agregar agenda");
+        System.out.println("4. Buscar paciente");
+        System.out.println("5. Buscar profesional");
+        System.out.println("6. Buscar agenda por dia, especialidad y profesional");
+        System.out.println("7. Asignar turno");
+        System.out.println("8. Buscar y cancelar turnos por paciente");
+        System.out.println("9. Agregar especialidad");
+        System.out.println("0. Salir");
+    }
+    public void mostrarMensaje(String mensaje) {
+        System.out.println(mensaje);
     }
     public String leerTexto(String mensaje) {
         System.out.print(mensaje);
-        return scanner.nextLine();
+        return this.scanner.nextLine();
     }
 }
 ```
