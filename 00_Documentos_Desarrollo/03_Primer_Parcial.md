@@ -10,10 +10,9 @@
 **Nombre del/a estudiante:** Gonzalo Ezequiel Beloqui
 
 **Fecha de engrega:** 2026/04/24
+<br>
 
 ## Primer exámen parcial: Propuesta de mejoras del sistema de turnos
-
-<br>
 
 ### I. Introducción
 
