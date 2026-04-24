@@ -20,7 +20,7 @@ El desarrollo corresponde a un sistema de turnos médicos en Java, organizado en
 
 ### II. Análisis del desarrollo de versión base y propuesta de agregar, quitar o modificar clases
 
-El sistema cuenta con las siguientes clases principales:
+La versión base del sisetma cuenta con las siguientes clases principales:
 ```
 I.   "Persona" como clase abstracta base.
 II.  "Paciente" y "Profesional" como especializaciones de “Persona”.
