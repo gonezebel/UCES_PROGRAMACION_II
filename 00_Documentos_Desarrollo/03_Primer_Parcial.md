@@ -72,12 +72,7 @@ public class VistaConsola {
     }
 }
 ```
-#
-#
-#
-#
-#
-
+<br><br><br><br>
 #### II.II Clases a modificar
 
 I.  Paciente y Profesional: para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia. En particular, se propone validar que nombre y apellido no estén vacíos, que el DNI contenga solo números y una longitud válida, y que el correo electrónico tenga un formato básico correcto. 
