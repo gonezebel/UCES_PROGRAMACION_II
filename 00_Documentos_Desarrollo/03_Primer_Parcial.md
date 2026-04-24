@@ -43,11 +43,11 @@ II.I.II Se propone reducir la responsabilidad de la clase Principal, separando d
 
 Se propone modificar las siguientes clases:
 ```
-I.  "Paciente" y "Profesional": para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia;
-II. "Agenda": para incorporar validaciones vinculadas a disponibilidad y consistencia horaria;
-III.  "Turno": para integrarla al funcionamiento real del sistema y completar la lógica del dominio;
-IV.   "Notificacion": para vincularla con eventos del sistema, por ejemplo la confirmación o anulación de turnos;
-V.  "Principal": para reducir su nivel de responsabilidad y delegar tareas específicas..
+I.  "Paciente" y "Profesional": para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia
+II. "Agenda": para incorporar validaciones vinculadas a disponibilidad y consistencia horaria
+III.  "Turno": para integrarla al funcionamiento real del sistema y completar la lógica del dominio
+IV.   "Notificacion": para vincularla con eventos del sistema, por ejemplo la confirmación o anulación de turnos
+V.  "Principal": para reducir su nivel de responsabilidad y delegar tareas específicas
 ```
 
 #### II.III Clases a eliminar
@@ -61,10 +61,13 @@ El proyecto actual resuelve las búsquedas y recorridos de listas mediante estru
 #### III.I Métdos a ampliar por incorporación de iteración
 
 ```
-I.  Centralizar la búsqueda de pacientes y profesionales en métodos específicos;
-II. Encapsular en una sola operación el cálculo del próximo ID;
-III.  Recorrer agendas para verificar disponibilidad antes de crear un turno;
-IV.  Validar que no existan superposiciones horarias para un mismo profesional y día.
+I.  Centralizar la búsqueda de pacientes y profesionales en métodos específicos
+II. Encapsular en una sola operación el cálculo del próximo ID
+III. Validaciones de consistencia:
+     - Verificación de datos obligatorios;
+     - Control de formato básico para DNI, email y horarios;
+     - Comprobación de disponibilidad de agenda antes de asignar un turno;
+     - Validar que no existan superposiciones horarias para un mismo profesional y día.
 ```
 
 
