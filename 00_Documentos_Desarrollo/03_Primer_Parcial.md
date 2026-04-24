@@ -81,6 +81,7 @@ public class GestorTurnosXML {
         return turnos;
     }
 }
+```
 
 III. VistaConsola: Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal. La clase propuesta tendría como responsabilidad principal mostrar menús, solicitar datos al usuario y devolver los valores ingresados. El funcionamiento general de la clase se representa de la siguiente manera:
 
@@ -113,7 +114,44 @@ public class VistaConsola {
 }
 ```
 
-II. Especialidad: con el objetivo de representar este concepto como una entidad propia del dominio y evitar que las especialidades queden cargadas como texto libre dentro de otras clases. A través de la clase GestorEspecialidadesTexto, se permite mantener un listado reutilizable y ampliable con persistencia en soporte .txt sin necesidad de modificar el código fuente cada vez que se desee incorporar una nueva especialidad.
+II. Especialidad: con el objetivo de representar este concepto como una entidad propia del dominio y evitar que las especialidades queden cargadas como texto libre dentro de otras clases. A través de la clase GestorEspecialidadesTexto, se permite mantener un listado reutilizable y ampliable con persistencia en soporte .txt sin necesidad de modificar el código fuente cada vez que se desee incorporar una nueva especialidad. El funcionamiento general de la clase pudiera definirse de la siguiente manera: 
+
+```
+public class Especialidad {
+    private static final String SEPARADOR_ARCHIVO = ";";
+    private static int contadorEspecialidades = 1;
+    private int idEspecialidad;
+    private String nombre;
+    public Especialidad(String nombre) {
+        this.idEspecialidad = contadorEspecialidades++;
+        setNombre(nombre);
+    }
+    public Especialidad(int idEspecialidad, String nombre) {
+        setIdEspecialidad(idEspecialidad);
+        setNombre(nombre);
+    }
+    public int getIdEspecialidad() {
+        return this.idEspecialidad;
+    }
+    public String getNombre() {
+        return this.nombre.trim();
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre == null ? "" : nombre.trim();
+    }
+    public boolean validarNombre() {
+        return !getNombre().isEmpty();
+    }
+    @Override
+    public String toString() {
+        return this.idEspecialidad + SEPARADOR_ARCHIVO + getNombre();
+    }
+    public static Especialidad fromString(String linea) {
+        String[] datos = linea.split(SEPARADOR_ARCHIVO, -1);
+        return new Especialidad(Integer.parseInt(datos[0]), datos[1]);
+    }
+}
+```
 
 #### II.II Clases a modificar
 
