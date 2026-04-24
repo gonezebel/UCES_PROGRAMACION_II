@@ -13,9 +13,12 @@
 
 ## Primer exámen Parcial : Análisis y propuesta de mejoras del sistema de turnos
 
+
+
+
 ### I. Introducción
 
-El desarrollo actual corresponde a un sistema de turnos médicos implementado en Java, organizado en paquetes de "modelo", "controlador", "vista" y "principal", y bajo el paradigma de la programación orientada a objetos, ya que utiliza clases para representar entidades del dominio, encapsulamiento de atributos, herencia en la clase "Persona", una interfaz ("Notificable") y persistencia en archivos de texto y XML mediante clases gestoras.
+El desarrollo actual corresponde a un sistema de turnos médicos implementado en Java, organizado en paquetes de modelo, controlador y principal, con la propuesta de incorporar una clase en el paquete vista para separar la interacción por consola, y desarrollado bajo el paradigma de la programación orientada a objetos, ya que utiliza clases para representar entidades del dominio, encapsulamiento de atributos, herencia en la clase Persona, una interfaz (Notificable) y persistencia en archivos de texto y XML mediante clases gestoras.
 
 En línea con los criterios mencionados, se realizan las siguientes propuestas de mejora: 
 
