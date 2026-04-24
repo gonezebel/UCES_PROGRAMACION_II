@@ -91,7 +91,7 @@ public boolean validarDatos() {
 }
 ```
 
-II. Agenda: para incorporar validaciones vinculadas a disponibilidad y consistencia horaria. En este punto, se propone controlar que el día ingresado sea válido, que la hora de inicio sea anterior a la hora de fin y que no existan superposiciones horarias para un mismo profesional y día.
+II. Agenda: Agenda: para incorporar validaciones vinculadas a disponibilidad y consistencia horaria. En este punto, se propone controlar que el día ingresado corresponda a un día de atención válido (lunes a sábado), que la hora de inicio sea anterior a la hora de fin y que el rango horario se encuentre dentro de la franja definida entre 09:00 y las 18:00 hs. También se propone validar que no existan superposiciones horarias para un mismo profesional y día.
 
 ```
 public boolean validarDiaSemana() {
@@ -103,16 +103,9 @@ public boolean validarDiaSemana() {
             || this.diaSemana.equalsIgnoreCase("Sabado");
 }
 public boolean validarHorario() {
-    return this.horaInicio.compareTo(this.horaFin) < 0;
-}
-public boolean seSuperponeCon(Agenda otraAgenda) {
-    if (otraAgenda == null || this.profesional == null || otraAgenda.getProfesional() == null) {
-        return false;
-    }
-    return this.profesional.getIdProfesional() == otraAgenda.getProfesional().getIdProfesional()
-            && this.diaSemana.equalsIgnoreCase(otraAgenda.getDiaSemana())
-            && this.horaInicio.compareTo(otraAgenda.getHoraFin()) < 0
-            && this.horaFin.compareTo(otraAgenda.getHoraInicio()) > 0;
+    return this.horaInicio.compareTo(this.horaFin) < 0
+            && this.horaInicio.compareTo("09:00") >= 0
+            && this.horaFin.compareTo("18:00") <= 0;
 }
 ```
 
