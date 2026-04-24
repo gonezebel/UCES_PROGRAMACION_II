@@ -122,9 +122,70 @@ public boolean seSuperponeCon(Agenda otraAgenda) {
 
 III.  Turno: para integrarla al funcionamiento real del sistema y completar la lógica del dominio. También se propone validar que solo pueda asignarse un turno cuando exista una agenda activa y cuando los datos del paciente, profesional y horario sean consistentes.
 
+```
+public boolean validarDatosTurno() {
+    return this.paciente != null
+            && this.profesional != null
+            && this.agenda != null
+            && this.fecha != null && !this.fecha.trim().isEmpty()
+            && this.hora != null && !this.hora.trim().isEmpty();
+}
+public boolean puedeAsignarse() {
+    return validarDatosTurno() && this.agenda.estaActiva();
+}
+public boolean asignarTurno() {
+    if (puedeAsignarse()) {
+        this.estado = "Asignado";
+        return true;
+    }
+    return false;
+}
+```
+
 IV. Notificacion: para vincularla con eventos concretos del sistema, por ejemplo la confirmación o anulación de turnos, de modo que esta clase deje de formar parte solamente del modelo teórico e intervenga en el flujo real del sistema.
 
+```
+public void prepararConfirmacionTurno(Turno turno) {
+    this.tipo = "Confirmacion";
+    this.mensaje = "Turno confirmado para " + turno.getFecha() + " a las " + turno.getHora();
+    this.enviada = false;
+}
+public void prepararAnulacionTurno(Turno turno) {
+    this.tipo = "Anulacion";
+    this.mensaje = "Turno anulado para " + turno.getFecha() + " a las " + turno.getHora();
+    this.enviada = false;
+}
+```
+
 V. Principal: para reducir su nivel de responsabilidad y delegar tareas específicas. En esta clase se propone centralizar la búsqueda de pacientes y profesionales en métodos específicos y encapsular en una sola operación el cálculo del próximo identificador disponible, manteniendo una lógica más clara y reutilizable.
+
+```
+private static Paciente buscarPacientePorDni(List<Paciente> pacientes, String dni) {
+    for (Paciente paciente : pacientes) {
+        if (paciente.getDni().equals(dni)) {
+            return paciente;
+        }
+    }
+    return null;
+}
+private static Profesional buscarProfesionalPorDni(List<Profesional> profesionales, String dni) {
+    for (Profesional profesional : profesionales) {
+        if (profesional.getDni().equals(dni)) {
+            return profesional;
+        }
+    }
+    return null;
+}
+private static int obtenerSiguienteIdAgenda(List<Agenda> agendas) {
+    int mayorId = 0;
+    for (Agenda agenda : agendas) {
+        if (agenda.getIdAgenda() > mayorId) {
+            mayorId = agenda.getIdAgenda();
+        }
+    }
+    return mayorId + 1;
+}
+```
 
 
 #### II.III Clases a eliminar
