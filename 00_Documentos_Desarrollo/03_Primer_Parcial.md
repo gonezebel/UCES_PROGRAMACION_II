@@ -76,108 +76,17 @@ public class VistaConsola {
 
 #### II.II Clases a modificar
 
-I.  Paciente y Profesional: para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia. En particular, se propone validar que nombre y apellido no estén vacíos, que el DNI contenga solo números y una longitud válida (7 u 8 dígitos), y que el correo electrónico tenga un formato básico correcto. 
+I. Paciente: Se incorporaron los atributos "fechaNacimiento" y "sexo", junto con sus validaciones correspondientes. En particular, se controla que el DNI contenga solo números (7 u 8 dígitos), que el teléfono también sea numérico (entre 8 y 15 dígitos), que el email contenga al menos los caracteres "@" y ".", que la fecha de nacimiento respete el formato "dd/mm/aaaa" y represente una fecha válida de calendario, y que el sexo solo pueda tomar los valores "Femenino" o "Masculino" (restringiendo que los masculinos no puedan obtener turnos de especialidad ginecología. A partir de estos datos, el sistema determina que un paciente es pediátrico cuando, a la fecha del turno, su edad es menor a 18 años. Esta condición se utiliza luego para restringir la reserva de turnos en especialidades como pediatria.
 
-```
-public boolean validarNombreApellido() {
-    return !getNombre().isEmpty() && !getApellido().isEmpty();
-}
-public boolean validarDni() {
-    return getDni().matches("\\d{7,8}");
-}
-public boolean validarEmail() {
-    return getEmail().contains("@") && getEmail().contains(".");
-}
-public boolean validarDatos() {
-    return validarNombreApellido() && validarDni() && validarEmail();
-}
-```
+II. Profesional: Se modificó para validar la matrícula, la especialidad y el email institucional. En particular, la matrícula debe contener una parte numérica obligatoria de cuatro dígitos y se normaliza agregando el prefijo MP. Por su parte, el email institucional queda restringido al dominio fijo centrosalud.com. Además, el sistema controla que no existan dos profesionales con el mismo DNI, la misma matrícula o el mismo email institucional, garantizando unicidad en esos datos. La especialidad, como se mencionó en la descripción de dicha clase, a su vez, ya no se carga como texto libre, sino a partir de una lista persistida de especialidades disponibles.
 
-II. Agenda: Agenda: para incorporar validaciones vinculadas a disponibilidad y consistencia horaria. En este punto, se propone controlar que el día ingresado corresponda a un día de atención válido (lunes a sábado), que la hora de inicio sea anterior a la hora de fin y que el rango horario se encuentre dentro de la franja definida entre 09:00 y las 18:00 hs. También se propone validar que no existan superposiciones horarias para un mismo profesional y día.
+III. Agenda: Se amplió su estructura incorporando fechaDesde y fechaHasta, de modo de definir la vigencia temporal de cada agenda. También se reforzaron las validaciones vinculadas al día y al horario de atención. En particular, el día de la semana ya no se ingresa libremente, sino que debe seleccionarse de una lista fija de Lunes a Sábado, excluyendo el domingo. En cuanto al horario, se estableció que la agenda solo puede configurarse dentro de la franja de atención entre 09:00 y 18:00, utilizando únicamente intervalos de 15 minutos. De este modo, la hora de inicio debe ser una fracción válida entre 09:00 y 17:45, la hora de fin entre 09:15 y 18:00, y además la hora inicial debe ser estrictamente menor que la hora final. También se controla que fechaDesde y fechaHasta tengan formato dd/mm/aaaa, representen fechas válidas y que la fecha inicial no sea posterior a la fecha final. Finalmente, se incorporó el control de superposición, evitando que un mismo profesional tenga dos agendas para el mismo día con horarios solapados.
 
-```
-public boolean validarDiaSemana() {
-    return this.diaSemana.equalsIgnoreCase("Lunes")
-            || this.diaSemana.equalsIgnoreCase("Martes")
-            || this.diaSemana.equalsIgnoreCase("Miercoles")
-            || this.diaSemana.equalsIgnoreCase("Jueves")
-            || this.diaSemana.equalsIgnoreCase("Viernes")
-            || this.diaSemana.equalsIgnoreCase("Sabado");
-}
-public boolean validarHorario() {
-    return this.horaInicio.compareTo(this.horaFin) < 0
-            && this.horaInicio.compareTo("09:00") >= 0
-            && this.horaFin.compareTo("18:00") <= 0;
-}
-```
+IV.  Turno: Dejó de ser una clase solo modelada para pasar a formar parte del flujo real del sistema. Se incorporaron validaciones de consistencia entre paciente, profesional, agenda, fecha, hora y estado. En particular, el turno solo puede asignarse si la agenda está en estado Activa, si la fecha elegida respeta el formato dd/mm/aaaa, corresponde a una fecha válida de calendario y no es anterior a la fecha actual, si además coincide con el día de la semana definido en la agenda y se encuentra dentro del rango de vigencia establecido por fechaDesde y fechaHasta. La hora del turno no se ingresa manualmente como texto libre, sino que se selecciona a partir de la lista de horarios disponibles de la agenda, generada en intervalos de 15 minutos y excluyendo los ya ocupados. Además, se aplican restricciones de negocio según la especialidad: solo un paciente menor de 18 años al momento del turno puede acceder a pediatria; mientras que los turnos de ginecologia solo pueden asignarse a pacientes de sexo femenino; y no se permite reservar más de un turno vigente o futuro de la misma especialidad para un mismo paciente. También se implementó la posibilidad de cancelar turnos futuros, cambiando su estado a anulado y liberando nuevamente ese horario para una nueva reserva.
 
-III.  Turno: para integrarla al funcionamiento real del sistema y completar la lógica del dominio. También se propone validar que solo pueda asignarse un turno cuando exista una agenda activa y cuando los datos del paciente, profesional y horario sean consistentes.
+V. Notificacion: Se modificó para intervenir de forma concreta en el flujo del sistema mediante dos operaciones específicas: confirmación y anulación de turnos. En particular, se incorporaron métodos para preparar mensajes automáticos de confirmacion y anulacion, utilizando la fecha y la hora del turno como parte del contenido del mensaje En ambos casos, el mensaje se envía tanto al paciente como al profesional asociado.
 
-```
-public boolean validarDatosTurno() {
-    return this.paciente != null
-            && this.profesional != null
-            && this.agenda != null
-            && this.fecha != null && !this.fecha.trim().isEmpty()
-            && this.hora != null && !this.hora.trim().isEmpty();
-}
-public boolean puedeAsignarse() {
-    return validarDatosTurno() && this.agenda.estaActiva();
-}
-public boolean asignarTurno() {
-    if (puedeAsignarse()) {
-        this.estado = "Asignado";
-        return true;
-    }
-    return false;
-}
-```
-
-IV. Notificacion: para vincularla con eventos concretos del sistema, por ejemplo la confirmación o anulación de turnos, de modo que esta clase deje de formar parte solamente del modelo teórico e intervenga en el flujo real del sistema.
-
-```
-public void prepararConfirmacionTurno(Turno turno) {
-    this.tipo = "Confirmacion";
-    this.mensaje = "Turno confirmado para " + turno.getFecha() + " a las " + turno.getHora();
-    this.enviada = false;
-}
-public void prepararAnulacionTurno(Turno turno) {
-    this.tipo = "Anulacion";
-    this.mensaje = "Turno anulado para " + turno.getFecha() + " a las " + turno.getHora();
-    this.enviada = false;
-}
-```
-
-V. Principal: para reducir su nivel de responsabilidad y delegar tareas específicas. En esta clase se propone centralizar la búsqueda de pacientes y profesionales en métodos específicos y encapsular en una sola operación el cálculo del próximo identificador disponible, manteniendo una lógica más clara y reutilizable.
-
-```
-private static Paciente buscarPacientePorDni(List<Paciente> pacientes, String dni) {
-    for (Paciente paciente : pacientes) {
-        if (paciente.getDni().equals(dni)) {
-            return paciente;
-        }
-    }
-    return null;
-}
-private static Profesional buscarProfesionalPorDni(List<Profesional> profesionales, String dni) {
-    for (Profesional profesional : profesionales) {
-        if (profesional.getDni().equals(dni)) {
-            return profesional;
-        }
-    }
-    return null;
-}
-private static int obtenerSiguienteIdAgenda(List<Agenda> agendas) {
-    int mayorId = 0;
-    for (Agenda agenda : agendas) {
-        if (agenda.getIdAgenda() > mayorId) {
-            mayorId = agenda.getIdAgenda();
-        }
-    }
-    return mayorId + 1;
-}
-```
-
+VI. Principal: Fue la clase con mayor nivel de modificación. Se reorganizó la lógica general del sistema, delegando la interacción por consola a VistaConsola e incorporando nuevas operaciones para especialidades, turnos y cancelaciones. También se centralizaron búsquedas, se encapsuló el cálculo de IDs a partir de los datos persistidos y se implementaron validaciones de flujo antes de confirmar operaciones. En la asignación de turnos, el sistema ahora solicita primero el paciente, luego filtra las especialidades permitidas según sus características, muestra solo las agendas válidas y finalmente presenta únicamente los horarios disponibles para la fecha elegida, permitiendo seleccionar el turno por número.
 
 #### II.III Clases a eliminar
 
