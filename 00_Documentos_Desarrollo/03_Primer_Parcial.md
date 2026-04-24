@@ -40,7 +40,7 @@ Se propone agregar una clase para registrar efetcivamente la asignación y modif
 
 II.I.I Se propone agregar una clase controladora llamada GestorTurnosXML, optando por la persistencia en formato XML en lugar de texto plano, ya que Turno es una entidad con una estructura más compleja y con asociaciones directas con otras clases del modelo, como Paciente, Profesional y Agenda. Este formato permite conservar una estructura jerárquica más clara y facilita la identificación de cada dato almacenado.
 
-II.I.II Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia.
+II.I.II Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal.
 
 #### II.II Clases a modificar
 
