@@ -18,7 +18,7 @@
 
 ### I. Introducción
 
-El desarrollo actual corresponde a un sistema de turnos médicos implementado en Java, organizado en paquetes de modelo, controlador y principal, con la propuesta de incorporar una clase en el paquete vista para separar la interacción por consola, y desarrollado bajo el paradigma de la programación orientada a objetos, ya que utiliza clases para representar entidades del dominio, encapsulamiento de atributos, herencia en la clase Persona, una interfaz (Notificable) y persistencia en archivos de texto y XML mediante clases gestoras.
+El desarrollo corresponde a un sistema de turnos médicos en Java, organizado en paquetes de modelo, controlador y principal, con la propuesta de incorporar una clase en el paquete vista para separar la interacción por consola, y desarrollado bajo el paradigma de la programación orientada a objetos, ya que utiliza clases para representar entidades, encapsulamiento de atributos, herencia en la clase Persona, una interfaz (Notificable) y persistencia en archivos de texto y XML mediante clases gestoras.
 
 En línea con los criterios mencionados, se realizan las siguientes propuestas de mejora: 
 
@@ -58,7 +58,7 @@ public class GestorTurnosXML {
 }
 ```
 
-II.I.II Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal. La lógica de la implementación es la siguiente: 
+II.I.II Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal. 
 
 ```
 public class VistaConsola {
