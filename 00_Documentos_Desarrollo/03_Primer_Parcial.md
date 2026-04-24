@@ -73,13 +73,59 @@ public class VistaConsola {
 }
 ```
 
+
+
 #### II.II Clases a modificar
 
-- Paciente y Profesional: para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia. En particular, se propone validar que nombre y apellido no estén vacíos, que el DNI contenga solo números y una longitud válida, y que el correo electrónico tenga un formato básico correcto.
-- Agenda: para incorporar validaciones vinculadas a disponibilidad y consistencia horaria. En este punto, se propone controlar que el día ingresado sea válido, que la hora de inicio sea anterior a la hora de fin y que no existan superposiciones horarias para un mismo profesional y día.
-- Turno: para integrarla al funcionamiento real del sistema y completar la lógica del dominio. También se propone validar que solo pueda asignarse un turno cuando exista una agenda activa y cuando los datos del paciente, profesional y horario sean consistentes.
-- Notificacion: para vincularla con eventos concretos del sistema, por ejemplo la confirmación o anulación de turnos, de modo que esta clase deje de formar parte solamente del modelo teórico e intervenga en el flujo real del sistema.
-- Principal: para reducir su nivel de responsabilidad y delegar tareas específicas. En esta clase se propone centralizar la búsqueda de pacientes y profesionales en métodos específicos y encapsular en una sola operación el cálculo del próximo identificador disponible, manteniendo una lógica más clara y reutilizable.
+
+I.  Paciente y Profesional: para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia. En particular, se propone validar que nombre y apellido no estén vacíos, que el DNI contenga solo números y una longitud válida, y que el correo electrónico tenga un formato básico correcto. 
+
+```
+public boolean validarNombreApellido() {
+    return !getNombre().isEmpty() && !getApellido().isEmpty();
+}
+public boolean validarDni() {
+    return getDni().matches("\\d{7,8}");
+}
+public boolean validarEmail() {
+    return getEmail().contains("@") && getEmail().contains(".");
+}
+public boolean validarDatos() {
+    return validarNombreApellido() && validarDni() && validarEmail();
+}
+```
+
+II. Agenda: para incorporar validaciones vinculadas a disponibilidad y consistencia horaria. En este punto, se propone controlar que el día ingresado sea válido, que la hora de inicio sea anterior a la hora de fin y que no existan superposiciones horarias para un mismo profesional y día.
+
+```
+public boolean validarDiaSemana() {
+    return this.diaSemana.equalsIgnoreCase("Lunes")
+            || this.diaSemana.equalsIgnoreCase("Martes")
+            || this.diaSemana.equalsIgnoreCase("Miercoles")
+            || this.diaSemana.equalsIgnoreCase("Jueves")
+            || this.diaSemana.equalsIgnoreCase("Viernes")
+            || this.diaSemana.equalsIgnoreCase("Sabado");
+}
+public boolean validarHorario() {
+    return this.horaInicio.compareTo(this.horaFin) < 0;
+}
+public boolean seSuperponeCon(Agenda otraAgenda) {
+    if (otraAgenda == null || this.profesional == null || otraAgenda.getProfesional() == null) {
+        return false;
+    }
+    return this.profesional.getIdProfesional() == otraAgenda.getProfesional().getIdProfesional()
+            && this.diaSemana.equalsIgnoreCase(otraAgenda.getDiaSemana())
+            && this.horaInicio.compareTo(otraAgenda.getHoraFin()) < 0
+            && this.horaFin.compareTo(otraAgenda.getHoraInicio()) > 0;
+}
+```
+
+III.  Turno: para integrarla al funcionamiento real del sistema y completar la lógica del dominio. También se propone validar que solo pueda asignarse un turno cuando exista una agenda activa y cuando los datos del paciente, profesional y horario sean consistentes.
+
+IV. Notificacion: para vincularla con eventos concretos del sistema, por ejemplo la confirmación o anulación de turnos, de modo que esta clase deje de formar parte solamente del modelo teórico e intervenga en el flujo real del sistema.
+
+V. Principal: para reducir su nivel de responsabilidad y delegar tareas específicas. En esta clase se propone centralizar la búsqueda de pacientes y profesionales en métodos específicos y encapsular en una sola operación el cálculo del próximo identificador disponible, manteniendo una lógica más clara y reutilizable.
+
 
 #### II.III Clases a eliminar
 
