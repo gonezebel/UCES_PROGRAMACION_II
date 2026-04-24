@@ -58,7 +58,28 @@ public class GestorTurnosXML {
 }
 ```
 
-II.I.II Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal.
+II.I.II Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal. La lógica de la implementación es la siguiente: 
+
+```
+public class VistaConsola {
+    private final Scanner scanner;
+
+    public VistaConsola(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public void mostrarMenu() {
+        System.out.println("1. Agregar paciente");
+        System.out.println("2. Agregar profesional");
+        System.out.println("3. Agregar agenda");
+    }
+
+    public String leerTexto(String mensaje) {
+        System.out.print(mensaje);
+        return scanner.nextLine();
+    }
+}
+```
 
 #### II.II Clases a modificar
 
