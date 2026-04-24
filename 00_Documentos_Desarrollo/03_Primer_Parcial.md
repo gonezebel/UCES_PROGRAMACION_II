@@ -18,8 +18,6 @@
 
 El desarrollo corresponde a un sistema de turnos médicos en Java, organizado en paquetes de modelo, controlador y principal, con la propuesta de incorporar una clase en el paquete vista para separar la interacción por consola, y desarrollado bajo el paradigma de la programación orientada a objetos, ya que utiliza clases para representar entidades, encapsulamiento de atributos, herencia en la clase Persona, una interfaz (Notificable) y persistencia en archivos de texto y XML mediante clases gestoras.
 
-En línea con los criterios mencionados, se realizan las siguientes propuestas de mejora: 
-
 ### II. Análisis del desarrollo de versión base y propuesta de agregar, quitar o modificar clases
 
 El sistema cuenta con las siguientes clases principales:
