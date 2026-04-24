@@ -20,7 +20,7 @@ El desarrollo corresponde a un sistema de turnos médicos en Java, organizado en
 
 En línea con los criterios mencionados, se realizan las siguientes propuestas de mejora: 
 
-### II. Análisis del desarrollo actual y propuesta de agregar, quitar o modificar clases
+### II. Análisis del desarrollo de versión base y propuesta de agregar, quitar o modificar clases
 
 El sistema cuenta con las siguientes clases principales:
 ```
