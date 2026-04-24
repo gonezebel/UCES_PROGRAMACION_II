@@ -71,10 +71,3 @@ III. Validaciones de consistencia:
 ```
 
 
-
-
-
-
-- 
-
-
