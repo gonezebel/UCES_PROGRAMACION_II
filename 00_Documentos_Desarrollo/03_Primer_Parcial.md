@@ -38,7 +38,7 @@ Se propone agregar una clase para registrar efetcivamente la asignación y modif
 
  #### II.I Clases a agregar
 
-II.I.I Se propone agregar una clase controladora llamada GestorTurnosXML, optando por la persistencia en formato XML en lugar de texto plano, ya que Turno es una entidad con una estructura más compleja y con asociaciones directas con otras clases del modelo, como Paciente, Profesional y Agenda. Este formato permite conservar una estructura jerárquica más clara y facilita la identificación de cada dato almacenado. La implementación realizada se basa en la siguiente estructura:
+II.I.I Se propone agregar una clase controladora llamada GestorTurnosXML, optando por la persistencia en formato XML en lugar de texto plano, ya que Turno es una entidad con una estructura más compleja y con asociaciones directas con otras clases del modelo, como Paciente, Profesional y Agenda. Este formato permite conservar una estructura jerárquica más clara y facilita la identificación de cada dato almacenado. La implementación realizada se basa en la siguiente estructura, con un atributo para el nombre del archivo y métodos específicos para guardar y leer turnos:
 ```
 public class GestorTurnosXML {
     private final String nombreArchivo;
@@ -57,7 +57,7 @@ public class GestorTurnosXML {
 }
 ```
 
-II.I.II Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal. 
+II.I.II Se propone reducir la responsabilidad de la clase Principal, separando de ella la lógica de interacción por consola para ubicarla en una clase del paquete vista, de modo de lograr una mejor organización del sistema según el patrón vista-controlador trabajado en la materia. Esta organización permite distribuir responsabilidades de manera más clara entre las clases, favorece el mantenimiento del código y facilita futuras ampliaciones del sistema sin concentrar toda la lógica en la clase principal. La clase propuesta tendría como responsabilidad principal mostrar menús, solicitar datos al usuario y devolver los valores ingresados:
 ```
 public class VistaConsola {
     private final Scanner scanner;
@@ -81,14 +81,11 @@ public class VistaConsola {
 
 #### II.II Clases a modificar
 
-Se propone modificar las siguientes clases:
-```
-I.  "Paciente" y "Profesional": para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia
-II. "Agenda": para incorporar validaciones vinculadas a disponibilidad y consistencia horaria
-III.  "Turno": para integrarla al funcionamiento real del sistema y completar la lógica del dominio
-IV.   "Notificacion": para vincularla con eventos del sistema, por ejemplo la confirmación o anulación de turnos
-V.  "Principal": para reducir su nivel de responsabilidad y delegar tareas específicas
-```
+- Paciente y Profesional: para reforzar validaciones de datos de entrada y mantener uniformidad con la persistencia. En particular, se propone validar que nombre y apellido no estén vacíos, que el DNI contenga solo números y una longitud válida, y que el correo electrónico tenga un formato básico correcto.
+- Agenda: para incorporar validaciones vinculadas a disponibilidad y consistencia horaria. En este punto, se propone controlar que el día ingresado sea válido, que la hora de inicio sea anterior a la hora de fin y que no existan superposiciones horarias para un mismo profesional y día.
+- Turno: para integrarla al funcionamiento real del sistema y completar la lógica del dominio. También se propone validar que solo pueda asignarse un turno cuando exista una agenda activa y cuando los datos del paciente, profesional y horario sean consistentes.
+- Notificacion: para vincularla con eventos concretos del sistema, por ejemplo la confirmación o anulación de turnos, de modo que esta clase deje de formar parte solamente del modelo teórico e intervenga en el flujo real del sistema.
+- Principal: para reducir su nivel de responsabilidad y delegar tareas específicas. En esta clase se propone centralizar la búsqueda de pacientes y profesionales en métodos específicos y encapsular en una sola operación el cálculo del próximo identificador disponible, manteniendo una lógica más clara y reutilizable.
 
 #### II.III Clases a eliminar
 
@@ -97,16 +94,5 @@ No se considera necesario eliminar clases del modelo actual, dado que las existe
 ### III. Análisis de métodos en base a recursividad e iteración
 
 El proyecto actual resuelve las búsquedas y recorridos de listas mediante estructuras iterativas, por ejemplo en los métodos de búsqueda de pacientes, profesionales y agendas, así como en la obtención del siguiente identificador de agenda. Si bien técnicamente todos los métodos podrían reescribirse de forma recursiva, no se considera que esa decisión aporte una mejora real en este caso. La recursividad resulta más adecuada cuando el problema presenta una estructura naturalmente recursiva, como árboles, jerarquías o subdivisión del problema en partes equivalentes. En este sistema, los datos se almacenan en listas lineales obtenidas desde archivos, por lo que el recorrido secuencial es más simple, más legible y más coherente con el nivel de complejidad del proyecto. Asimismo, la iteración permite mantener un control más explícito del recorrido y de las condiciones de corte, lo que resulta conveniente en métodos que dependen de validaciones puntuales y de la lectura de datos persistidos en archivos.
-
-#### III.I Métdos a ampliar por incorporación de iteración
-```
-I.  Centralizar la búsqueda de pacientes y profesionales en métodos específicos
-II. Encapsular en una sola operación el cálculo del próximo ID
-III. Validaciones de consistencia:
-     - Verificación de datos obligatorios;
-     - Control de formato básico para DNI, email y horarios;
-     - Comprobación de disponibilidad de agenda antes de asignar un turno;
-     - Validar que no existan superposiciones horarias para un mismo profesional y día.
-```
 
 
