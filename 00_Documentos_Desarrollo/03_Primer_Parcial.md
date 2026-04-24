@@ -32,7 +32,7 @@ V.   "Notificacion" y "Notificable" para modelar el envío de avisos.
 VI.  "GestorPacientesTexto", "GestorProfesionalesTexto" y "GestorAgendasXML" para persistencia.
 VII.  "Principal" como punto de entrada y clase de interacción por consola.
 ```
-Se propone agregar una clase para registrar efetcivamente la asignación y modificación de turnos concretos, dado que la clase "Turno" ya existe en el proyecto, pero todavía no forma parte del flujo principal del sistema.
+La propuesta de mejora implementada amplía el sistema original mediante la incorporación de nuevas clases, validaciones y funcionalidades orientadas a completar el flujo real de gestión de turnos. En particular, se agregaron las clases Especialidad, GestorEspecialidadesTexto, GestorTurnosXML y VistaConsola, se reorganizó la lógica de Principal, se reforzaron las validaciones en Paciente, Profesional, Agenda, Turno, Persona y Notificacion, y se adecuó la persistencia de datos para acompañar estos cambios. A partir de estas modificaciones, el sistema ya no solo permite cargar pacientes, profesionales y agendas, sino también administrar especialidades, asignar turnos con restricciones concretas de edad, sexo, vigencia y disponibilidad horaria, impedir reservas inconsistentes o duplicadas, mostrar horarios libres y cancelar turnos futuros logrando una solución más completa.
 
  #### II.I Clases a agregar
 
