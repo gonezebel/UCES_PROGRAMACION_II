@@ -78,6 +78,18 @@ public class Notificacion {
         return destinatario.enviarNotificacion(this.mensaje);
     }
 
+    public void prepararConfirmacionTurno(Turno turno) {
+        this.tipo = "Confirmacion";
+        this.mensaje = "Turno confirmado para " + turno.getFecha() + " a las " + turno.getHora();
+        this.enviada = false;
+    }
+
+    public void prepararAnulacionTurno(Turno turno) {
+        this.tipo = "Anulacion";
+        this.mensaje = "Turno anulado para " + turno.getFecha() + " a las " + turno.getHora();
+        this.enviada = false;
+    }
+
     public String mostrarDetalle() {
         return "Notificacion " + this.idNotificacion + " - Tipo: " + this.tipo
                 + " - Fecha: " + this.fechaEnvio + " - Enviada: " + this.enviada;

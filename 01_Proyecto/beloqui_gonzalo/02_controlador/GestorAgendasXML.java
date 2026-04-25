@@ -80,6 +80,8 @@ public class GestorAgendasXML {
                         obtenerTexto(elementoAgenda, "diaSemana"),
                         obtenerTexto(elementoAgenda, "horaInicio"),
                         obtenerTexto(elementoAgenda, "horaFin"),
+                        obtenerTexto(elementoAgenda, "fechaDesde"),
+                        obtenerTexto(elementoAgenda, "fechaHasta"),
                         obtenerTexto(elementoAgenda, "estado")));
             }
         } catch (ParserConfigurationException | SAXException | IOException
@@ -99,6 +101,8 @@ public class GestorAgendasXML {
         agregarElemento(documento, elementoAgenda, "diaSemana", agenda.getDiaSemana());
         agregarElemento(documento, elementoAgenda, "horaInicio", agenda.getHoraInicio());
         agregarElemento(documento, elementoAgenda, "horaFin", agenda.getHoraFin());
+        agregarElemento(documento, elementoAgenda, "fechaDesde", agenda.getFechaDesde());
+        agregarElemento(documento, elementoAgenda, "fechaHasta", agenda.getFechaHasta());
         agregarElemento(documento, elementoAgenda, "estado", agenda.getEstado());
 
         return elementoAgenda;

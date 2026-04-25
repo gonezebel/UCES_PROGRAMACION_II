@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<turnos>
+    <turno>
+        <idTurno>1</idTurno>
+        <idPaciente>2</idPaciente>
+        <idProfesional>2</idProfesional>
+        <idAgenda>2</idAgenda>
+        <fecha>29/04/2026</fecha>
+        <hora>14:00</hora>
+        <estado>Anulado</estado>
+    </turno>
+    <turno>
+        <idTurno>2</idTurno>
+        <idPaciente>2</idPaciente>
+        <idProfesional>2</idProfesional>
+        <idAgenda>2</idAgenda>
+        <fecha>29/04/2026</fecha>
+        <hora>14:00</hora>
+        <estado>Asignado</estado>
+    </turno>
+</turnos>

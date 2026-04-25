@@ -63,11 +63,19 @@ public abstract class Persona implements Serializable {
 
     // Metodos
     public String getNombreCompleto() {
-        return this.nombre + " " + this.apellido;
+        return getNombre() + " " + getApellido();
+    }
+
+    public boolean validarNombreApellido() {
+        return !getNombre().isEmpty() && !getApellido().isEmpty();
     }
 
     public boolean validarDni() {
         return getDni().matches("\\d{7,8}");
+    }
+
+    public boolean validarTelefono() {
+        return getTelefono().matches("\\d{8,15}");
     }
 
     public abstract String mostrarDatos();

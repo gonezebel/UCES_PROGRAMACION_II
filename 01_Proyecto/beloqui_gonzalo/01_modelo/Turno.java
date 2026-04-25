@@ -18,9 +18,9 @@ public class Turno {
         this.paciente = null;
         this.profesional = null;
         this.agenda = null;
-        this.fecha = "";
-        this.hora = "";
-        this.estado = "";
+        setFecha("");
+        setHora("");
+        setEstado("");
     }
 
     public Turno(int idTurno, Paciente paciente, Profesional profesional, Agenda agenda,
@@ -29,9 +29,9 @@ public class Turno {
         this.paciente = paciente;
         this.profesional = profesional;
         this.agenda = agenda;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.estado = estado;
+        setFecha(fecha);
+        setHora(hora);
+        setEstado(estado);
     }
 
     // Getters y setters
@@ -71,32 +71,53 @@ public class Turno {
     }
 
     public String getFecha() {
-        return this.fecha;
+        return this.fecha == null ? "" : this.fecha.trim();
     }
 
     public void setFecha(String fecha) {
-        this.fecha = fecha;
+        this.fecha = normalizarTexto(fecha);
     }
 
     public String getHora() {
-        return this.hora;
+        return this.hora == null ? "" : this.hora.trim();
     }
 
     public void setHora(String hora) {
-        this.hora = hora;
+        this.hora = normalizarTexto(hora);
     }
 
     public String getEstado() {
-        return this.estado;
+        return this.estado == null ? "" : this.estado.trim();
     }
 
     public void setEstado(String estado) {
-        this.estado = estado;
+        this.estado = normalizarTexto(estado);
     }
 
     // Metodos
+    public boolean validarDatosTurno() {
+        return this.paciente != null
+                && this.profesional != null
+                && this.agenda != null
+                && !getFecha().isEmpty()
+                && esHorarioEnCuartos(getHora())
+                && getHora().compareTo("09:00") >= 0
+                && getHora().compareTo("17:45") <= 0
+                && this.paciente.validarDatos()
+                && this.profesional.validarDatos()
+                && this.agenda.getProfesional() != null
+                && this.profesional.getIdProfesional() == this.agenda.getProfesional().getIdProfesional()
+                && validarEspecialidadSegunEdad()
+                && this.agenda.contieneFecha(getFecha())
+                && this.agenda.contieneHorario(getHora());
+    }
+
+    public boolean puedeAsignarse() {
+        return validarDatosTurno() && this.agenda.estaActiva();
+    }
+
     public boolean asignarTurno() {
-        if (this.agenda != null && this.agenda.estaActiva()) {
+        if (puedeAsignarse()) {
             this.estado = "Asignado";
             return true;
         }
@@ -116,5 +137,31 @@ public class Turno {
     @Override
     public String toString() {
         return this.mostrarResumenTurno();
+    }
+
+    private String normalizarTexto(String valor) {
+        if (valor == null) {
+            return "";
+        }
+        return valor.trim();
+    }
+
+    private boolean validarEspecialidadSegunEdad() {
+        if (this.profesional.getEspecialidad().equalsIgnoreCase("Pediatria")) {
+            return this.paciente.esPediatricoEnFecha(getFecha());
+        }
+        if (this.profesional.getEspecialidad().equalsIgnoreCase("Ginecologia")) {
+            return this.paciente.esSexoFemenino();
+        }
+        return true;
+    }
+
+    private boolean esHorarioEnCuartos(String hora) {
+        if (!hora.matches("\\d{2}:\\d{2}")) {
+            return false;
+        }
+
+        int minutos = Integer.parseInt(hora.substring(3, 5));
+        return minutos == 0 || minutos == 15 || minutos == 30 || minutos == 45;
     }
 }

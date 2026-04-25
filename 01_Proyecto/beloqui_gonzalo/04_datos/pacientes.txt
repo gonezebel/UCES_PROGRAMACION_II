@@ -1,2 +1,2 @@
-1;Gonzalo;Beloqui;32882290;1155551234;1025;Swiss Medical;gonzalo.beloqui@mail.com
-2;Ana;Gomez;40111222;1166667788;1026;OSDE;ana.gomez@mail.com
+1;Gonzalo;Beloqui;32882290;1155551234;1025;Swiss Medical;gonzalo.beloqui@mail.com;15/03/1990;Masculino
+2;Ana;Gomez;40111222;1166667788;1026;OSDE;ana.gomez@mail.com;20/08/2015;Femenino

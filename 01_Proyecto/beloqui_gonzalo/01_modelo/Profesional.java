@@ -3,6 +3,7 @@ package com.beloqui.modelo;
 public class Profesional extends Persona implements Notificable {
     private static final long serialVersionUID = 1L;
     private static int contadorProfesionales = 1;
+    private static final String DOMINIO_INSTITUCIONAL = "@centrosalud.com";
 
     // Atributos
     private int idProfesional;
@@ -54,7 +55,7 @@ public class Profesional extends Persona implements Notificable {
     }
 
     public void setMatricula(String matricula) {
-        this.matricula = normalizarTexto(matricula);
+        this.matricula = normalizarMatricula(matricula);
     }
 
     public String getEspecialidad() {
@@ -76,6 +77,19 @@ public class Profesional extends Persona implements Notificable {
     // Metodos
     public boolean estaDisponible(String estadoAgenda) {
         return estadoAgenda != null && estadoAgenda.equalsIgnoreCase("Activa");
+    }
+
+    public boolean validarEmailInstitucional() {
+        return getEmailInstitucional().matches("[a-zA-Z0-9._%+-]+@centrosalud\\.com");
+    }
+
+    public boolean validarMatricula() {
+        return getMatricula().matches("MP\\d+");
+    }
+
+    public boolean validarDatos() {
+        return validarNombreApellido() && validarDni() && validarTelefono() && validarMatricula()
+                && validarEmailInstitucional();
     }
 
     @Override
@@ -134,5 +148,20 @@ public class Profesional extends Persona implements Notificable {
                 datos[5],
                 datos[6],
                 datos[7]);
+    }
+
+    private String normalizarMatricula(String matricula) {
+        String valor = normalizarTexto(matricula).replace(" ", "");
+        if (valor.isEmpty()) {
+            return "";
+        }
+        if (valor.toUpperCase().startsWith("MP")) {
+            return "MP" + valor.substring(2);
+        }
+        return "MP" + valor;
+    }
+
+    public static String getDominioInstitucional() {
+        return DOMINIO_INSTITUCIONAL;
     }
 }
