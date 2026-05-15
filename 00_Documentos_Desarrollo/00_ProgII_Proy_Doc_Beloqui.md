@@ -39,16 +39,23 @@ beloqui_gonzalo
 |  |- Profesional.java
 |  |- Agenda.java
 |  |- Turno.java
+|  |- Especialidad.java
 |  |- Notificacion.java
 |  \- Notificable.java
 |- 02_controlador
 |  |- GestorPacientesTexto.java
 |  |- GestorProfesionalesTexto.java
-|  \- GestorAgendasXML.java
+|  |- GestorAgendasXML.java
+|  |- GestorEspecialidadesTexto.java
+|  \- GestorTurnosXML.java
+|- 03_vista
+|  \- VistaConsola.java
 |- 04_datos
 |  |- pacientes.txt
 |  |- profesionales.txt
-|  \- agendas.xml
+|  |- agendas.xml
+|  |- especialidades.txt
+|  \- turnos.xml
 ```
 
 ## Actividades de entrega
