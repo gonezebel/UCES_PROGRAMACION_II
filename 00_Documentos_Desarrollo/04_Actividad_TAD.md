@@ -33,7 +33,7 @@ La implementacion se realizo en la clase Principal, donde se concentra el flujo 
 
 ### 1. TAD Map - HashMap
 
-Se eligio el TAD Map porque permite asociar una clave con un valor. En este sistema las entidades principales tienen claves naturales o identificadores que se usan constantemente para buscarlas:
+Se eligio el TAD Map porque permite asociar una clave con un valor, con la finalidad de localizar objetos por una clave. En este sistema las entidades principales tienen claves naturales o identificadores que se usan constantemente para buscarlas:
 
 ```
 - DNI -> Paciente
@@ -78,7 +78,7 @@ La eleccion mejora la claridad del codigo porque la intencion queda expresada co
 
 ### 2. TAD Set - HashSet
 
-Se eligio el TAD Set porque representa una coleccion de elementos sin duplicados. En el sistema hay dos situaciones donde esta propiedad resulta adecuada:
+Se eligio el TAD Set porque representa una coleccion de elementos sin duplicados, con el objeto de controlar pertenencia y evitar repetidos. En el sistema hay dos situaciones donde esta propiedad resulta adecuada:
 
 ```
 - Controlar los horarios ya ocupados de una agenda en una fecha.
@@ -97,14 +97,3 @@ Los metodos incorporados son:
 El metodo obtenerHorariosOcupados construye un conjunto con las horas ocupadas de una agenda para una fecha determinada. Luego obtenerHorariosDisponibles consulta ese conjunto con contains para decidir que horarios puede ofrecer al usuario.
 
 El metodo existeEspecialidad arma un conjunto con los nombres normalizados de las especialidades ya cargadas. De esta forma se evita cargar dos veces la misma especialidad aunque el usuario cambie mayusculas, minusculas o espacios.
-
-### Justificacion general
-
-La incorporacion de Map y Set resulta coherente con el dominio del sistema:
-
-```
-- Map se usa cuando el problema necesita localizar objetos por una clave.
-- Set se usa cuando el problema necesita controlar pertenencia y evitar repetidos.
-```
-
-Ambos TAD se implementaron usando clases provistas por Java dentro del paquete java.util, siguiendo el estilo de los ejemplos teoricos de la unidad donde se trabajan colecciones como HashSet, TreeMap, ArrayList y operaciones de busqueda sobre colecciones.
