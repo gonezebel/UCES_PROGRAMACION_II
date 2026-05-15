@@ -57,3 +57,7 @@ beloqui_gonzalo
 
 + [II:Act2_Técnicas de entrada/salida y manejo de archivos_20260421](../00_Documentos_Desarrollo/02_Actividad_Archivos.md)
 
++ [Parcial Nro.1](../00_Documentos_Desarrollo/02_Actividad_Archivos.md)
+
++ [III:Act3_TAD_20260421](../00_Documentos_Desarrollo/02_Actividad_Archivos.md)
+
