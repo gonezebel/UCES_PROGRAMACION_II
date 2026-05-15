@@ -39,16 +39,23 @@ beloqui_gonzalo
 |  |- Profesional.java
 |  |- Agenda.java
 |  |- Turno.java
+|  |- Especialidad.java
 |  |- Notificacion.java
 |  \- Notificable.java
 |- 02_controlador
 |  |- GestorPacientesTexto.java
 |  |- GestorProfesionalesTexto.java
-|  \- GestorAgendasXML.java
+|  |- GestorAgendasXML.java
+|  |- GestorEspecialidadesTexto.java
+|  \- GestorTurnosXML.java
+|- 03_vista
+|  \- VistaConsola.java
 |- 04_datos
 |  |- pacientes.txt
 |  |- profesionales.txt
-|  \- agendas.xml
+|  |- agendas.xml
+|  |- especialidades.txt
+|  \- turnos.xml
 ```
 
 ## Actividades de entrega
@@ -56,4 +63,8 @@ beloqui_gonzalo
 + [I.Act1_Clases principales del proyecto_20260328](../00_Documentos_Desarrollo/01_Actividad_ClasesPrincipales.md)
 
 + [II:Act2_Técnicas de entrada/salida y manejo de archivos_20260421](../00_Documentos_Desarrollo/02_Actividad_Archivos.md)
+
++ [Parcial Nro.1](../00_Documentos_Desarrollo/03_Primer_Parcial.md)
+
++ [III:Act3_TAD_20260421](../00_Documentos_Desarrollo/04_Actividad_TAD.md)
 
