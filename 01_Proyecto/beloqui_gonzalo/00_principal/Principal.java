@@ -19,8 +19,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Principal {
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -568,7 +572,7 @@ public class Principal {
             return;
         }
 
-        if (buscarEspecialidadPorNombre(especialidades, nombre) != null) {
+        if (existeEspecialidad(especialidades, nombre)) {
             vista.mostrarMensaje("La especialidad ya existe.");
             return;
         }
@@ -598,68 +602,33 @@ public class Principal {
     }
 
     private static Paciente buscarPacientePorDni(List<Paciente> pacientes, String dni) {
-        for (Paciente paciente : pacientes) {
-            if (paciente.getDni().equals(dni)) {
-                return paciente;
-            }
-        }
-        return null;
+        return indexarPacientesPorDni(pacientes).get(normalizarClave(dni));
     }
 
     private static Profesional buscarProfesionalPorDni(List<Profesional> profesionales, String dni) {
-        for (Profesional profesional : profesionales) {
-            if (profesional.getDni().equals(dni)) {
-                return profesional;
-            }
-        }
-        return null;
+        return indexarProfesionalesPorDni(profesionales).get(normalizarClave(dni));
     }
 
     private static Profesional buscarProfesionalPorId(List<Profesional> profesionales, int idProfesional) {
-        for (Profesional profesional : profesionales) {
-            if (profesional.getIdProfesional() == idProfesional) {
-                return profesional;
-            }
-        }
-        return null;
+        return indexarProfesionalesPorId(profesionales).get(idProfesional);
     }
 
     private static Profesional buscarProfesionalPorMatricula(List<Profesional> profesionales,
             String matricula) {
-        for (Profesional profesional : profesionales) {
-            if (profesional.getMatricula().equalsIgnoreCase(matricula.trim())) {
-                return profesional;
-            }
-        }
-        return null;
+        return indexarProfesionalesPorMatricula(profesionales).get(normalizarClave(matricula));
     }
 
     private static Profesional buscarProfesionalPorEmailInstitucional(
             List<Profesional> profesionales, String emailInstitucional) {
-        for (Profesional profesional : profesionales) {
-            if (profesional.getEmailInstitucional().equalsIgnoreCase(emailInstitucional.trim())) {
-                return profesional;
-            }
-        }
-        return null;
+        return indexarProfesionalesPorEmail(profesionales).get(normalizarClave(emailInstitucional));
     }
 
     private static Agenda buscarAgendaPorId(List<Agenda> agendas, int idAgenda) {
-        for (Agenda agenda : agendas) {
-            if (agenda.getIdAgenda() == idAgenda) {
-                return agenda;
-            }
-        }
-        return null;
+        return indexarAgendasPorId(agendas).get(idAgenda);
     }
 
     private static Turno buscarTurnoPorId(List<Turno> turnos, int idTurno) {
-        for (Turno turno : turnos) {
-            if (turno.getIdTurno() == idTurno) {
-                return turno;
-            }
-        }
-        return null;
+        return indexarTurnosPorId(turnos).get(idTurno);
     }
 
     private static Agenda buscarAgendaPorProfesionalYDia(List<Agenda> agendas, String dniProfesional,
@@ -720,25 +689,11 @@ public class Principal {
 
     private static Especialidad buscarEspecialidadPorNombre(List<Especialidad> especialidades,
             String nombre) {
-        for (Especialidad especialidad : especialidades) {
-            if (especialidad.getNombre().equalsIgnoreCase(nombre.trim())) {
-                return especialidad;
-            }
-        }
-        return null;
+        return indexarEspecialidadesPorNombre(especialidades).get(normalizarClave(nombre));
     }
 
     private static boolean existeTurnoEnHorario(List<Turno> turnos, int idAgenda, String fecha, String hora) {
-        for (Turno turno : turnos) {
-            if (turno.getAgenda() != null
-                    && turno.getAgenda().getIdAgenda() == idAgenda
-                    && turno.getFecha().equalsIgnoreCase(fecha)
-                    && turno.getHora().equals(hora)
-                    && !turno.getEstado().equalsIgnoreCase("Anulado")) {
-                return true;
-            }
-        }
-        return false;
+        return obtenerHorariosOcupados(turnos, idAgenda, fecha).contains(hora);
     }
 
     private static boolean existeTurnoDeEspecialidadParaPaciente(List<Turno> turnos, Paciente paciente,
@@ -783,18 +738,110 @@ public class Principal {
 
     private static List<String> obtenerHorariosDisponibles(Agenda agenda, List<Turno> turnos, String fecha) {
         List<String> horariosDisponibles = new ArrayList<>();
+        Set<String> horariosOcupados = obtenerHorariosOcupados(turnos, agenda.getIdAgenda(), fecha);
         LocalTime horaActual = LocalTime.parse(agenda.getHoraInicio(), FORMATO_HORA);
         LocalTime horaFin = LocalTime.parse(agenda.getHoraFin(), FORMATO_HORA);
 
         while (horaActual.isBefore(horaFin)) {
             String hora = horaActual.format(FORMATO_HORA);
-            if (!existeTurnoEnHorario(turnos, agenda.getIdAgenda(), fecha, hora)) {
+            if (!horariosOcupados.contains(hora)) {
                 horariosDisponibles.add(hora);
             }
             horaActual = horaActual.plusMinutes(15);
         }
 
         return horariosDisponibles;
+    }
+
+    private static Map<String, Paciente> indexarPacientesPorDni(List<Paciente> pacientes) {
+        Map<String, Paciente> indicePacientes = new HashMap<>();
+        for (Paciente paciente : pacientes) {
+            indicePacientes.put(normalizarClave(paciente.getDni()), paciente);
+        }
+        return indicePacientes;
+    }
+
+    private static Map<String, Profesional> indexarProfesionalesPorDni(List<Profesional> profesionales) {
+        Map<String, Profesional> indiceProfesionales = new HashMap<>();
+        for (Profesional profesional : profesionales) {
+            indiceProfesionales.put(normalizarClave(profesional.getDni()), profesional);
+        }
+        return indiceProfesionales;
+    }
+
+    private static Map<Integer, Profesional> indexarProfesionalesPorId(List<Profesional> profesionales) {
+        Map<Integer, Profesional> indiceProfesionales = new HashMap<>();
+        for (Profesional profesional : profesionales) {
+            indiceProfesionales.put(profesional.getIdProfesional(), profesional);
+        }
+        return indiceProfesionales;
+    }
+
+    private static Map<String, Profesional> indexarProfesionalesPorMatricula(
+            List<Profesional> profesionales) {
+        Map<String, Profesional> indiceProfesionales = new HashMap<>();
+        for (Profesional profesional : profesionales) {
+            indiceProfesionales.put(normalizarClave(profesional.getMatricula()), profesional);
+        }
+        return indiceProfesionales;
+    }
+
+    private static Map<String, Profesional> indexarProfesionalesPorEmail(List<Profesional> profesionales) {
+        Map<String, Profesional> indiceProfesionales = new HashMap<>();
+        for (Profesional profesional : profesionales) {
+            indiceProfesionales.put(normalizarClave(profesional.getEmailInstitucional()), profesional);
+        }
+        return indiceProfesionales;
+    }
+
+    private static Map<Integer, Agenda> indexarAgendasPorId(List<Agenda> agendas) {
+        Map<Integer, Agenda> indiceAgendas = new HashMap<>();
+        for (Agenda agenda : agendas) {
+            indiceAgendas.put(agenda.getIdAgenda(), agenda);
+        }
+        return indiceAgendas;
+    }
+
+    private static Map<Integer, Turno> indexarTurnosPorId(List<Turno> turnos) {
+        Map<Integer, Turno> indiceTurnos = new HashMap<>();
+        for (Turno turno : turnos) {
+            indiceTurnos.put(turno.getIdTurno(), turno);
+        }
+        return indiceTurnos;
+    }
+
+    private static Map<String, Especialidad> indexarEspecialidadesPorNombre(
+            List<Especialidad> especialidades) {
+        Map<String, Especialidad> indiceEspecialidades = new HashMap<>();
+        for (Especialidad especialidad : especialidades) {
+            indiceEspecialidades.put(normalizarClave(especialidad.getNombre()), especialidad);
+        }
+        return indiceEspecialidades;
+    }
+
+    private static Set<String> obtenerHorariosOcupados(List<Turno> turnos, int idAgenda, String fecha) {
+        Set<String> horariosOcupados = new HashSet<>();
+        for (Turno turno : turnos) {
+            if (turno.getAgenda() != null
+                    && turno.getAgenda().getIdAgenda() == idAgenda
+                    && turno.getFecha().equalsIgnoreCase(fecha)
+                    && !turno.getEstado().equalsIgnoreCase("Anulado")) {
+                horariosOcupados.add(turno.getHora());
+            }
+        }
+        return horariosOcupados;
+    }
+
+    private static boolean existeEspecialidad(List<Especialidad> especialidades, String nombre) {
+        Set<String> nombresEspecialidades = new HashSet<>();
+        for (Especialidad especialidad : especialidades) {
+            nombresEspecialidades.add(normalizarClave(especialidad.getNombre()));
+        }
+        return nombresEspecialidades.contains(normalizarClave(nombre));
+    }
+
+    private static String normalizarClave(String valor) {
+        return valor == null ? "" : valor.trim().toLowerCase();
     }
 
     private static int obtenerSiguienteIdAgenda(List<Agenda> agendas) {
