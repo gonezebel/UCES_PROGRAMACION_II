@@ -9,7 +9,7 @@
 
 **Nombre del/a estudiante:** Gonzalo Ezequiel Beloqui
 
-**Fecha de entrega:** 2026/05/15
+**Fecha de entrega:** 2026/05/18
 
 
 ## Actividad Numero 3 - Tipos abstractos de Datos
