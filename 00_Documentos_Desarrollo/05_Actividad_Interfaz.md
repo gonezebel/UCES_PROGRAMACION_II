@@ -16,15 +16,13 @@
 
 ### Introducción
 
-En esta actividad se amplió el sistema de turnos médicos incorporando una interfaz gráfica desarrollada con Java Swing. El objetivo fue reemplazar la interacción a través consola por una pantalla destinada a empleados administrativos del centro de salud, manteniendo las funcionalidades principales ya implementadas en el proyecto: carga de pacientes, carga de profesionales, carga de especialidades, creación de agendas, búsqueda de información, asignación de turnos y anulación de turnos.
-
-La interfaz no esta pensada para que el paciente gestione directamente sus turnos, sino para que un usuario empleado opere el sistema.
+En esta actividad se amplió el sistema de turnos médicos incorporando una interfaz gráfica desarrollada con Java Swing. El objetivo fue reemplazar la interacción a través consola por una pantalla destinada a empleados administrativos del centro de salud, manteniendo las funcionalidades principales ya implementadas en el proyecto: carga de pacientes, carga de profesionales, carga de especialidades, creación de agendas, búsqueda de información, asignación y anulación de turnos. La interfaz no esta pensada para que el paciente gestione directamente sus turnos, sino para que un usuario empleado opere el sistema.
 
 ### Clases incorporadas
 
 + [PrincipalApp](../01_Proyecto/beloqui_gonzalo/00_principal/PrincipalApp.java)
 
-La clase PrincipalApp se ubica dentro del paquete `com.beloqui.main`, tal como solicita la consigna de la actividad. Esta clase contiene el metodo `main` y construye la ventana principal del sistema mediante un `JFrame`.
+La clase PrincipalApp se ubica dentro del paquete `com.beloqui.main`, contiene el metodo `main` y construye la ventana principal del sistema mediante un `JFrame`.
 
 Sus responsabilidades principales son:
 
