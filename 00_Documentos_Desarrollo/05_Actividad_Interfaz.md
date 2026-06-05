@@ -26,6 +26,7 @@ La clase PrincipalApp se ubica dentro del paquete `com.beloqui.main`, contiene e
 
 Sus responsabilidades principales son:
 
+```
 - Crear la ventana principal del sistema.
 - Construir una interfaz por secciones navegables desde la barra superior.
 - Incorporar formularios para cada operacion del sistema.
@@ -33,6 +34,7 @@ Sus responsabilidades principales son:
 - Capturar eventos de botones y menus.
 - Mostrar mensajes de exito o error mediante `JOptionPane`.
 - Delegar la logica de negocio en el controlador del sistema.
+```
 
 + [SistemaTurnos](../01_Proyecto/beloqui_gonzalo/02_controlador/SistemaTurnos.java)
 
