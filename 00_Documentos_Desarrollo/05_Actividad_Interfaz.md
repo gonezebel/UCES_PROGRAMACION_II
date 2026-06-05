@@ -170,25 +170,25 @@ La interfaz utiliza `JOptionPane` para mostrar confirmaciones, errores y mensaje
 
 La pantalla Pacientes permite registrar nuevos pacientes y buscar pacientes existentes por DNI. El formulario incluye nombre, apellido, DNI, teléfono, historia clínica, obra social, email, fecha de nacimiento y sexo.
 
-![Pantalla Pacientes](../02_imagenes/U4_Actividad1_Pacientes.png)
+![Pantalla Pacientes](../02_imagenes/aa_pacientes.jpg)
 
 ### Pantalla Profesionales
 
 La pantalla Profesionales permite registrar médicos o profesionales de salud. Incluye nombre, apellido, DNI, teléfono, matrícula, especialidad y email institucional.
 
-![Pantalla Profesionales](../02_imagenes/U4_Actividad1_Profesionales.png)
+![Pantalla Profesionales](../02_imagenes/bb_profesionales.jpg)
 
 ### Pantalla Especialidades
 
 La pantalla Especialidades permite cargar nuevas especialidades y consultar las especialidades ya disponibles en el sistema.
 
-![Pantalla Especialidades](../02_imagenes/U4_Actividad1_Especialidades.png)
+![Pantalla Especialidades](../02_imagenes/cc_especialidades.jpg)
 
 ### Pantalla Agendas
 
 La pantalla Agendas permite crear agendas de atención para cada profesional, indicando día de la semana, hora de inicio, hora de fin y fechas de vigencia. También permite consultar agendas filtrando por día y especialidad.
 
-![Pantalla Agendas](../02_imagenes/U4_Actividad1_Agendas.png)
+![Pantalla Agendas](../02_imagenes/dd_agendas.jpg)
 
 ### Pantalla Turnos
 
@@ -196,7 +196,7 @@ La pantalla Turnos esta orientada al trabajo del empleado administrativo. Primer
 
 La misma pantalla incluye una busqueda por DNI de paciente para visualizar turnos registrados y anular el turno seleccionado cuando corresponda.
 
-![Pantalla Turnos](../02_imagenes/U4_Actividad1_Turnos.png)
+![Pantalla Turnos](../02_imagenes/ee_turnos.jpg)
 
 ### Recarga de datos
 
