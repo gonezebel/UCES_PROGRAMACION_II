@@ -9,16 +9,16 @@
 
 **Nombre del/a estudiante:** Gonzalo Ezequiel Beloqui
 
-**Fecha de entrega:** 2026/06/04
+**Fecha de entrega:** 2026/06/09
 
 
 ## Actividad Numero 4 - Interfaz grafica
 
-### Introduccion
+### Introducción
 
-En esta actividad se amplio el sistema de turnos medicos incorporando una interfaz grafica desarrollada con Java Swing. El objetivo fue reemplazar la interaccion por consola por una pantalla interna destinada a empleados administrativos del centro de salud, manteniendo las funcionalidades principales ya implementadas en el proyecto: carga de pacientes, carga de profesionales, carga de especialidades, creacion de agendas, busqueda de informacion, asignacion de turnos y anulacion de turnos.
+En esta actividad se amplió el sistema de turnos médicos incorporando una interfaz gráfica desarrollada con Java Swing. El objetivo fue reemplazar la interacción a través consola por una pantalla destinada a empleados administrativos del centro de salud, manteniendo las funcionalidades principales ya implementadas en el proyecto: carga de pacientes, carga de profesionales, carga de especialidades, creación de agendas, búsqueda de información, asignación de turnos y anulación de turnos.
 
-La interfaz no esta pensada para que el paciente gestione directamente sus turnos, sino para que un usuario empleado opere el sistema desde una ventana grafica con secciones internas.
+La interfaz no esta pensada para que el paciente gestione directamente sus turnos, sino para que un usuario empleado opere el sistema.
 
 ### Clases incorporadas
 
