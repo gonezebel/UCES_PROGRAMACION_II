@@ -1,9 +1,9 @@
 ![Logo UCES](../02_imagenes/logo_uces.svg)
 
 
-**Carrera:** Tecnicatura Universitaria en Programacion
+**Carrera:** Tecnicatura Universitaria en Programación
 
-**Asignatura:** Programacion II
+**Asignatura:** Programación II
 
 **Nombre del/a docente:** Mario Daniel Detke
 
@@ -12,7 +12,7 @@
 **Fecha de entrega:** 2026/06/09
 
 
-## Actividad Numero 4 - Interfaz grafica
+## Actividad Número 4 - Interfaz gráfica
 
 ### Introducción
 
