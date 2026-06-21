@@ -1,4 +1,4 @@
-package com.beloqui.main;
+package com.beloqui.vista;
 
 import com.beloqui.controlador.OperacionInvalidaException;
 import com.beloqui.controlador.SistemaTurnos;
@@ -16,6 +16,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -120,6 +122,7 @@ public class PrincipalApp extends JFrame {
             crearModelo("ID", "Paciente", "Profesional", "Especialidad", "Fecha", "Hora", "Estado");
     private final JTable tablaTurnos = new JTable(modeloTurnos);
     private Paciente turnoPacienteActual;
+    private boolean cambiosPendientes;
 
     public PrincipalApp() {
         configurarVentana();
@@ -129,11 +132,18 @@ public class PrincipalApp extends JFrame {
 
     private void configurarVentana() {
         setTitle("Centro de Salud - Sistema interno de turnos");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new Dimension(980, 650));
         setSize(1120, 760);
         setLocationRelativeTo(null);
+        setIconImage(IconoHospital.crearImagen(64));
         getContentPane().setBackground(COLOR_FONDO);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evento) {
+                salirConControlDeFormularios();
+            }
+        });
     }
 
     private void agregarComponentes() {
@@ -170,11 +180,16 @@ public class PrincipalApp extends JFrame {
         recargar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_DOWN_MASK));
         recargar.addActionListener(evento -> recargarDatos());
         archivo.add(recargar);
+
+        JMenuItem guardar = new JMenuItem("Guardar datos");
+        guardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_DOWN_MASK));
+        guardar.addActionListener(evento -> guardarDatos());
+        archivo.add(guardar);
         archivo.addSeparator();
 
         JMenuItem salir = new JMenuItem("Salir");
         salir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK));
-        salir.addActionListener(evento -> salir());
+        salir.addActionListener(evento -> salirConControlDeFormularios());
         archivo.add(salir);
 
         JMenu navegar = new JMenu("Navegar");
@@ -210,6 +225,9 @@ public class PrincipalApp extends JFrame {
         JButton recargar = new JButton("Recargar");
         recargar.addActionListener(evento -> recargarDatos());
         barra.add(recargar);
+        JButton guardar = new JButton("Guardar");
+        guardar.addActionListener(evento -> guardarDatos());
+        barra.add(guardar);
         return barra;
     }
 
@@ -787,9 +805,22 @@ public class PrincipalApp extends JFrame {
     }
 
     private void recargarDatos() {
+        if (hayFormulariosConDatos() && !confirmarDescarteFormularios("recargar los datos desde archivos")) {
+            return;
+        }
         sistema.recargarDatos();
         recargarInterfaz();
         informar("Datos recargados desde los archivos.");
+    }
+
+    private void guardarDatos() {
+        sistema.guardarDatos();
+        informar("Datos guardados en los archivos del proyecto.");
+        JOptionPane.showMessageDialog(
+                this,
+                "Los datos actuales fueron guardados correctamente.",
+                "Guardado de datos",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void recargarInterfaz() {
@@ -983,6 +1014,110 @@ public class PrincipalApp extends JFrame {
         return "";
     }
 
+    private void salirConControlDeFormularios() {
+        if (!hayFormulariosConDatos()) {
+            confirmarSalida();
+            return;
+        }
+
+        if (confirmarDescarteFormularios("salir del sistema")) {
+            dispose();
+        }
+    }
+
+    private void confirmarSalida() {
+        int respuesta = JOptionPane.showConfirmDialog(
+                this,
+                "¿Desea salir del sistema?",
+                "Confirmar salida",
+                JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }
+
+    private boolean confirmarDescarteFormularios(String accion) {
+        int respuesta = JOptionPane.showConfirmDialog(
+                this,
+                "Hay datos cargados en formularios que todavia no fueron registrados. "
+                        + "Si continua, se perderan al " + accion + ". ¿Desea continuar?",
+                "Formularios sin registrar",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+        return respuesta == JOptionPane.YES_OPTION;
+    }
+
+    private boolean hayFormulariosConDatos() {
+        return hayTexto(pacienteNombre, pacienteApellido, pacienteDni, pacienteTelefono,
+                pacienteHistoria, pacienteObraSocial, pacienteEmail, pacienteNacimiento)
+                || pacienteFemenino.isSelected()
+                || pacienteMasculino.isSelected()
+                || hayTexto(profesionalNombre, profesionalApellido, profesionalDni,
+                profesionalTelefono, profesionalMatricula, profesionalEmail)
+                || hayTexto(especialidadNombre, agendaFechaDesde, agendaFechaHasta);
+    }
+
+    private boolean hayTexto(JTextField... campos) {
+        for (JTextField campo : campos) {
+            if (campo != null && !campo.getText().trim().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void salirConControl() {
+        if (!this.cambiosPendientes) {
+            confirmarSalidaSinCambios();
+            return;
+        }
+
+        Object[] opciones = {"Guardar y salir", "Salir sin guardar", "Cancelar"};
+        int respuesta = JOptionPane.showOptionDialog(
+                this,
+                "Hay cambios no guardados. ¿Desea guardarlos antes de salir?",
+                "Cambios pendientes",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                opciones,
+                opciones[0]);
+        if (respuesta == 0) {
+            sistema.guardarDatos();
+            this.cambiosPendientes = false;
+            dispose();
+        } else if (respuesta == 1) {
+            dispose();
+        }
+    }
+
+    private void confirmarSalidaSinCambios() {
+        int respuesta = JOptionPane.showConfirmDialog(
+                this,
+                "¿Desea salir del sistema?",
+                "Confirmar salida",
+                JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }
+
+    private boolean confirmarDescarteCambios(String accion) {
+        int respuesta = JOptionPane.showConfirmDialog(
+                this,
+                "Hay cambios no guardados. Si continua, se perderan al "
+                        + accion + ". ¿Desea continuar?",
+                "Cambios pendientes",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+        return respuesta == JOptionPane.YES_OPTION;
+    }
+
+    private void marcarCambiosPendientes() {
+        this.cambiosPendientes = true;
+        informar("Hay cambios pendientes de guardar.");
+    }
+
     private void salir() {
         int respuesta = JOptionPane.showConfirmDialog(
                 this,
@@ -1050,6 +1185,9 @@ public class PrincipalApp extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             configurarApariencia();
+            if (!LoginDialog.mostrar(null)) {
+                return;
+            }
             PrincipalApp app = new PrincipalApp();
             if (args.length > 0) {
                 app.mostrarPanel(obtenerIndiceInicial(args[0]));

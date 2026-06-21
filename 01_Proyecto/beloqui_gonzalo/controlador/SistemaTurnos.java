@@ -56,6 +56,14 @@ public class SistemaTurnos {
         }
     }
 
+    public void guardarDatos() {
+        gestorPacientes.guardarPacientes(this.pacientes);
+        gestorProfesionales.guardarProfesionales(this.profesionales);
+        gestorEspecialidades.guardarEspecialidades(this.especialidades);
+        gestorAgendas.guardarAgendas(this.agendas);
+        gestorTurnos.guardarTurnos(this.turnos);
+    }
+
     public List<Paciente> getPacientes() {
         return new ArrayList<>(this.pacientes);
     }
