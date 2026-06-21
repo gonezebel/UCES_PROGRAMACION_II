@@ -64,23 +64,33 @@ Antes de mostrar la ventana principal, la aplicación solicita usuario y clave. 
 - Clave: admin123
 ```
 
+![Pantalla Pacientes](../02_imagenes/ff_cuadro_diálogo_login.jpg)
+
 **Cajas de diálogo**
 
 Se utiliza `JOptionPane` para informar operaciones exitosas, mostrar errores de validación y confirmar acciones sensibles, como la anulación de un turno o la
 salida del sistema. Esto evita que el usuario administrativo dependa de mensajes por consola.
+
+![Pantalla Pacientes](../02_imagenes/gg_cuadro_confirmación_anulación_turno.jpg)
 
 **Casillas de verificación**
 
 Se utiliza `JCheckBox` en la consulta de agendas con la opción "Mostrar solo agendas activas". Esta casilla permite cambiar el filtro visual sin modificar
 los datos persistidos.
 
+![Pantalla Pacientes](../02_imagenes/hh_checkbox_agendas_activas.jpg)
+
 **Botones de opción**
 
 Se utilizan `JRadioButton` y `ButtonGroup` en el alta de pacientes para elegir el sexo. Esta decisión evita cargar textos libres y permite aplicar correctamente las reglas de especialidades, por ejemplo Ginecología y Pediatría.
 
+![Pantalla Pacientes](../02_imagenes/ii_opciones_masc_fem.jpg)
+
 **Listas**
 
 Se utiliza `JList` en la asignación de turnos para mostrar los horarios disponibles de una agenda en una fecha determinada. El empleado selecciona un horario libre y luego confirma la asignación.
+
+![Pantalla Pacientes](../02_imagenes/jj_listas_horarios.jpg)
 
 ### Carga y guardado de datos
 
