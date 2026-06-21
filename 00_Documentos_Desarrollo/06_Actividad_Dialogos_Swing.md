@@ -108,26 +108,3 @@ Aunque algunos archivos utilizan formato XML, siguen siendo archivos de texto y 
 
 La interfaz también detecta cuando existen formularios con datos cargados que todavía no fueron registrados. Si el usuario intenta cerrar el sistema o
 recargar datos en esa situación, se muestra un cuadro de diálogo advirtiendo que esos datos escritos en pantalla se perderán si continua.
-
-### Funcionalidades disponibles
-
-La ventana principal permite:
-
-```
-- Registrar pacientes.
-- Buscar pacientes por DNI.
-- Registrar profesionales.
-- Buscar profesionales por DNI.
-- Registrar especialidades.
-- Registrar agendas de atención.
-- Consultar agendas por día y especialidad.
-- Buscar paciente para asignar turno.
-- Seleccionar especialidad, profesional, agenda, fecha y horario disponible.
-- Asignar turnos.
-- Buscar turnos por paciente.
-- Anular turnos vigentes.
-- Recargar datos desde archivos.
-- Guardar datos en archivos.
-- Ingresar mediante pantalla de login.
-- Advertir formularios incompletos al cerrar o recargar.
-```
