@@ -1,4 +1,4 @@
-package com.beloqui.main;
+package com.beloqui.principal;
 
 import com.beloqui.controlador.GestorAgendasXML;
 import com.beloqui.controlador.GestorEspecialidadesTexto;

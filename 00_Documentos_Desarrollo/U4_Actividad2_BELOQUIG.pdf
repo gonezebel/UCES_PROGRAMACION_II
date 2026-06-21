@@ -1,0 +1,253 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 1811 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 790 Td
+() Tj T*
+() Tj T*
+(Carrera: Tecnicatura Universitaria en Programacion) Tj T*
+() Tj T*
+(Asignatura: Programacion II) Tj T*
+() Tj T*
+(Nombre del/a docente: Mario Daniel Detke) Tj T*
+() Tj T*
+(Nombre del/a estudiante: Gonzalo Ezequiel Beloqui) Tj T*
+() Tj T*
+(Fecha de entrega: 2026/06/25) Tj T*
+() Tj T*
+() Tj T*
+(Unidad 4 - Actividad 2) Tj T*
+() Tj T*
+(Introduccion) Tj T*
+() Tj T*
+(En esta actividad se amplio el sistema de turnos medicos desarrollado en la) Tj T*
+(actividad anterior, incorporando componentes avanzados de Swing y reforzando la) Tj T*
+(separacion por patron Modelo-Vista-Controlador.) Tj T*
+() Tj T*
+(El proyecto quedo agrupado en cuatro paquetes principales:) Tj T*
+() Tj T*
+() Tj T*
+(- modelo) Tj T*
+(- controlador) Tj T*
+(- vista) Tj T*
+(- principal) Tj T*
+() Tj T*
+() Tj T*
+(La clase de inicio de la aplicacion grafica se encuentra en) Tj T*
+(PrincipalApp y) Tj T*
+(delega la ejecucion en la ventana Swing ubicada en) Tj T*
+(vista/PrincipalApp.) Tj T*
+() Tj T*
+(Aplicacion del patron MVC) Tj T*
+() Tj T*
+(Modelo) Tj T*
+() Tj T*
+(El paquete modelo contiene las clases) Tj T*
+(propias del dominio: pacientes, profesionales, especialidades, agendas, turnos,) Tj T*
+(notificaciones y personas. Estas clases concentran datos y reglas propias de) Tj T*
+(cada entidad, como validacion de DNI, telefono, fecha de nacimiento, matricula,) Tj T*
+(vigencia de agenda y restricciones de turnos.) Tj T*
+() Tj T*
+(Vista) Tj T*
+() Tj T*
+(El paquete vista contiene la interfaz) Tj T*
+(grafica de Swing y la vista de consola. La clase PrincipalApp arma la ventana,) Tj T*
+(los formularios, tablas, listas, menus, botones y cuadros de dialogo. Su) Tj T*
+(responsabilidad es mostrar informacion, capturar datos del usuario y delegar la) Tj T*
+(operacion al controlador.) Tj T*
+ET
+endstream
+endobj
+3 0 obj
+<< /Length 2164 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 790 Td
+() Tj T*
+(Tambien se agrego LoginDialog como pantalla inicial de acceso al sistema.) Tj T*
+() Tj T*
+(Controlador) Tj T*
+() Tj T*
+(El paquete controlador contiene) Tj T*
+(SistemaTurnos y los gestores de persistencia. SistemaTurnos concentra las) Tj T*
+(operaciones del sistema: alta de pacientes, alta de profesionales, gestion de) Tj T*
+(especialidades, creacion de agendas, asignacion de turnos, anulacion de turnos,) Tj T*
+(busquedas y persistencia.) Tj T*
+() Tj T*
+(Tambien se incorporo Autenticador, que valida las credenciales de ingreso sin) Tj T*
+(mezclar esa regla con la construccion visual de Swing.) Tj T*
+() Tj T*
+(Principal) Tj T*
+() Tj T*
+(El paquete principal contiene los) Tj T*
+(puntos de entrada del sistema. De esta forma, el arranque de la aplicacion no) Tj T*
+(queda mezclado con la construccion visual ni con la logica de negocio.) Tj T*
+() Tj T*
+(Componentes Swing incorporados) Tj T*
+() Tj T*
+(La interfaz incorpora cajas de dialogo, casillas de verificacion, botones de) Tj T*
+(opcion y listas para resolver operaciones concretas del sistema.) Tj T*
+() Tj T*
+(Pantalla de login) Tj T*
+() Tj T*
+(Antes de mostrar la ventana principal, la aplicacion solicita usuario y clave.) Tj T*
+(La validacion se realiza mediante el controlador Autenticador. Para esta) Tj T*
+(entrega academica se configuraron credenciales locales:) Tj T*
+() Tj T*
+() Tj T*
+(- Usuario: admin) Tj T*
+(- Clave: admin123) Tj T*
+() Tj T*
+() Tj T*
+(Cajas de dialogo) Tj T*
+() Tj T*
+(Se utiliza JOptionPane para informar operaciones exitosas, mostrar errores de) Tj T*
+(validacion y confirmar acciones sensibles, como la anulacion de un turno o la) Tj T*
+(salida del sistema. Esto evita que el usuario administrativo dependa de mensajes) Tj T*
+(por consola.) Tj T*
+() Tj T*
+(Casillas de verificacion) Tj T*
+() Tj T*
+(Se utiliza JCheckBox en la consulta de agendas con la opcion "Mostrar solo) Tj T*
+(agendas activas". Esta casilla permite cambiar el filtro visual sin modificar) Tj T*
+(los datos persistidos.) Tj T*
+() Tj T*
+(Botones de opcion) Tj T*
+() Tj T*
+(Se utilizan JRadioButton y ButtonGroup en el alta de pacientes para elegir) Tj T*
+ET
+endstream
+endobj
+4 0 obj
+<< /Length 2170 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 790 Td
+(el sexo. Esta decision evita cargar textos libres y permite aplicar correctamente) Tj T*
+(las reglas de especialidades, por ejemplo Ginecologia y Pediatria.) Tj T*
+() Tj T*
+(Listas) Tj T*
+() Tj T*
+(Se utiliza JList en la asignacion de turnos para mostrar los horarios) Tj T*
+(disponibles de una agenda en una fecha determinada. El empleado selecciona un) Tj T*
+(horario libre y luego confirma la asignacion.) Tj T*
+() Tj T*
+(Carga y guardado de datos) Tj T*
+() Tj T*
+(La aplicacion carga los datos desde los archivos ubicados en) Tj T*
+(04_datos al iniciar y tambien permite) Tj T*
+(recargarlos desde el menu y la barra de herramientas.) Tj T*
+() Tj T*
+(Las acciones principales de registro y modificacion guardan automaticamente los) Tj T*
+(datos en los archivos del proyecto. Esto evita que el usuario administrativo) Tj T*
+(olvide persistir una operacion confirmada.) Tj T*
+() Tj T*
+(Tambien se conserva una opcion explicita Guardar datos en la interfaz. Esta) Tj T*
+(opcion delega en SistemaTurnos.guardarDatos\(\) y persiste el estado completo) Tj T*
+(actual de:) Tj T*
+() Tj T*
+() Tj T*
+(- pacientes.txt) Tj T*
+(- profesionales.txt) Tj T*
+(- especialidades.txt) Tj T*
+(- agendas.xml) Tj T*
+(- turnos.xml) Tj T*
+() Tj T*
+() Tj T*
+(Aunque algunos archivos utilizan formato XML, siguen siendo archivos de texto y) Tj T*
+(pueden inspeccionarse sin herramientas binarias.) Tj T*
+() Tj T*
+(La interfaz tambien detecta cuando existen formularios con datos cargados que) Tj T*
+(todavia no fueron registrados. Si el usuario intenta cerrar el sistema o) Tj T*
+(recargar datos en esa situacion, se muestra un cuadro de dialogo advirtiendo que) Tj T*
+(esos datos escritos en pantalla se perderan si continua.) Tj T*
+() Tj T*
+(Funcionalidades disponibles) Tj T*
+() Tj T*
+(La ventana principal permite:) Tj T*
+() Tj T*
+() Tj T*
+(- Registrar pacientes.) Tj T*
+(- Buscar pacientes por DNI.) Tj T*
+(- Registrar profesionales.) Tj T*
+(- Buscar profesionales por DNI.) Tj T*
+(- Registrar especialidades.) Tj T*
+(- Registrar agendas de atencion.) Tj T*
+(- Consultar agendas por dia y especialidad.) Tj T*
+(- Buscar paciente para asignar turno.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 795 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+50 790 Td
+(- Seleccionar especialidad, profesional, agenda, fecha y horario disponible.) Tj T*
+(- Asignar turnos.) Tj T*
+(- Buscar turnos por paciente.) Tj T*
+(- Anular turnos vigentes.) Tj T*
+(- Recargar datos desde archivos.) Tj T*
+(- Guardar datos en archivos.) Tj T*
+(- Ingresar mediante pantalla de login.) Tj T*
+(- Advertir formularios incompletos al cerrar o recargar.) Tj T*
+() Tj T*
+() Tj T*
+(Conclusion) Tj T*
+() Tj T*
+(La actividad incorpora los componentes avanzados solicitados por la consigna y) Tj T*
+(mantiene la separacion entre modelo, vista, controlador y principal. La vista) Tj T*
+(Swing no guarda datos directamente ni decide reglas de negocio: esas tareas se) Tj T*
+(resuelven mediante el controlador SistemaTurnos y los gestores de archivos.) Tj T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+endobj
+8 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 4 0 R >>
+endobj
+9 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 5 0 R >>
+endobj
+10 0 obj
+<< /Type /Pages /Kids [6 0 R 7 0 R 8 0 R 9 0 R] /Count 4 >>
+endobj
+11 0 obj
+<< /Type /Catalog /Pages 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000001941 00000 n 
+0000004156 00000 n 
+0000006377 00000 n 
+0000007222 00000 n 
+0000007349 00000 n 
+0000007476 00000 n 
+0000007603 00000 n 
+0000007730 00000 n 
+0000007806 00000 n 
+trailer
+<< /Size 12 /Root 11 0 R >>
+startxref
+7857
+%%EOF
