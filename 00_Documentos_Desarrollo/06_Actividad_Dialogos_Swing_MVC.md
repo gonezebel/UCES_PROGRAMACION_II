@@ -13,7 +13,7 @@
 
 ## Unidad 4 - Actividad 2
 
-### Introduccion
+### Introducción
 
 En esta actividad se amplió el sistema de turnos medicos desarrollado en la actividad anterior, incorporando componentes avanzados de Swing y reforzando la
 separacion por patron Modelo-Vista-Controlador.
