@@ -56,7 +56,7 @@ public class Especialidad {
             return new Especialidad(datos[0]);
         }
         if (datos.length != 2) {
-            throw new IllegalArgumentException("La linea no representa una especialidad valida.");
+            throw new IllegalArgumentException("La línea no representa una especialidad válida.");
         }
         return new Especialidad(Integer.parseInt(datos[0]), datos[1]);
     }

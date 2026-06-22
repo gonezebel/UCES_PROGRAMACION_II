@@ -16,13 +16,13 @@
 
 ### Introducción
 
-En esta actividad se amplió el sistema de turnos médicos incorporando una interfaz gráfica desarrollada con Java Swing. El objetivo fue reemplazar la interacción a través consola por una pantalla destinada a empleados administrativos del centro de salud, manteniendo las funcionalidades principales ya implementadas en el proyecto: carga de pacientes, carga de profesionales, carga de especialidades, creación de agendas, búsqueda de información, asignación y anulación de turnos. La interfaz no esta pensada para que el paciente gestione directamente sus turnos, sino para que un usuario empleado opere el sistema.
+En esta actividad se amplió el sistema de turnos médicos incorporando una interfaz gráfica desarrollada con Java Swing. El objetivo fue reemplazar la interacción a través consola por una pantalla destinada a empleados administrativos del centro de salud, manteniendo las funcionalidades principales ya implementadas en el proyecto: carga de pacientes, carga de profesionales, carga de especialidades, creación de agendas, búsqueda de información, asignación y anulación de turnos. La interfaz no está pensada para que el paciente gestione directamente sus turnos, sino para que un usuario empleado opere el sistema.
 
 ### Clases incorporadas
 
 + [PrincipalApp](../01_Proyecto/beloqui_gonzalo/00_principal/PrincipalApp.java)
 
-La clase PrincipalApp se ubica dentro del paquete `com.beloqui.main`, contiene el metodo `main` y construye la ventana principal del sistema mediante un `JFrame`.
+La clase PrincipalApp se ubica dentro del paquete `com.beloqui.main`, contiene el método `main` y construye la ventana principal del sistema mediante un `JFrame`.
 
 Sus responsabilidades principales son:
 
@@ -42,7 +42,7 @@ La clase SistemaTurnos se incorporó dentro del paquete `controlador` para separ
 
 + [OperacionInvalidaException](../01_Proyecto/beloqui_gonzalo/02_controlador/OperacionInvalidaException.java)
 
-Se agregó una excepción personalizada para comunicar a la interfaz las operaciones que no pueden completarse. De esta forma, `PrincipalApp` puede mostrar el mensaje correspondiente mediante cuadros de diálogo sin mezclar la logica visual con la lógica del sistema.
+Se agregó una excepción personalizada para comunicar a la interfaz las operaciones que no pueden completarse. De esta forma, `PrincipalApp` puede mostrar el mensaje correspondiente mediante cuadros de diálogo sin mezclar la lógica visual con la lógica del sistema.
 
 ### Planificación de la interfaz gráfica
 
@@ -88,7 +88,7 @@ Se utiliza para distribuir las zonas generales de la ventana:
 
 ```
 - Norte: barra de herramientas y encabezado.
-- Centro: panel de contenido de la seccion seleccionada.
+- Centro: panel de contenido de la sección seleccionada.
 - Sur: barra de estado.
 ```
 
@@ -192,13 +192,13 @@ La pantalla Agendas permite crear agendas de atención para cada profesional, in
 
 ### Pantalla Turnos
 
-La pantalla Turnos esta orientada al trabajo del empleado administrativo. Primero se busca al paciente por DNI. A partir de ese paciente, el sistema carga solamente las especialidades habilitadas según sus restricciones de edad y sexo, y también evita ofrecer una especialidad si el paciente ya posee un turno vigente para ella. Luego se selecciona el profesional de la especialidad elegida, una agenda activa, una fecha disponible y finalmente un horario libre para confirmar la reserva.
+La pantalla Turnos está orientada al trabajo del empleado administrativo. Primero se busca al paciente por DNI. A partir de ese paciente, el sistema carga solamente las especialidades habilitadas según sus restricciones de edad y sexo, y también evita ofrecer una especialidad si el paciente ya posee un turno vigente para ella. Luego se selecciona el profesional de la especialidad elegida, una agenda activa, una fecha disponible y finalmente un horario libre para confirmar la reserva.
 
-La misma pantalla incluye una busqueda por DNI de paciente para visualizar turnos registrados y anular el turno seleccionado cuando corresponda.
+La misma pantalla incluye una búsqueda por DNI de paciente para visualizar turnos registrados y anular el turno seleccionado cuando corresponda.
 
 ![Pantalla Turnos](../02_imagenes/ee_turnos.jpg)
 
 ### Recarga de datos
 
-La barra superior incluye el botón `Recargar`, que vuelve a leer los datos persistidos por los gestores existentes y actualiza tablas y listas desplegables. Esta acción se incorporo como recurso de interfaz para refrescar la informacion visible sin cerrar la aplicacion.
+La barra superior incluye el botón `Recargar`, que vuelve a leer los datos persistidos por los gestores existentes y actualiza tablas y listas desplegables. Esta acción se incorporó como recurso de interfaz para refrescar la información visible sin cerrar la aplicación.
 

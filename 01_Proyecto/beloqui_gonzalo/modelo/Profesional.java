@@ -99,7 +99,7 @@ public class Profesional extends Persona implements Notificable {
 
     @Override
     public String enviarNotificacion(String mensaje) {
-        return "Notificacion enviada al profesional " + getNombreCompleto() + " a "
+        return "Notificación enviada al profesional " + getNombreCompleto() + " a "
                 + getEmailInstitucional() + ": " + mensaje;
     }
 
@@ -107,7 +107,7 @@ public class Profesional extends Persona implements Notificable {
     public String mostrarDatos() {
         return "Profesional ID " + this.idProfesional + ": " + getNombreCompleto()
                 + " - Especialidad: " + getEspecialidad()
-                + " - Matricula: " + getMatricula();
+                + " - Matrícula: " + getMatricula();
     }
 
     @Override
@@ -136,7 +136,7 @@ public class Profesional extends Persona implements Notificable {
         }
 
         if (datos.length != 8) {
-            throw new IllegalArgumentException("La linea no representa un profesional valido.");
+            throw new IllegalArgumentException("La línea no representa un profesional válido.");
         }
 
         return new Profesional(

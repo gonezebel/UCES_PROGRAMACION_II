@@ -152,7 +152,7 @@ public class Paciente extends Persona implements Notificable {
 
     @Override
     public String enviarNotificacion(String mensaje) {
-        return "Notificacion enviada al paciente " + getNombreCompleto() + " a " + getEmail()
+        return "Notificación enviada al paciente " + getNombreCompleto() + " a " + getEmail()
                 + ": " + mensaje;
     }
 
@@ -209,7 +209,7 @@ public class Paciente extends Persona implements Notificable {
                         "");
             }
             if (datos.length != 10) {
-                throw new IllegalArgumentException("La linea no representa un paciente valido.");
+                throw new IllegalArgumentException("La línea no representa un paciente válido.");
             }
 
             return new Paciente(

@@ -13,9 +13,19 @@
     <agenda>
         <idAgenda>2</idAgenda>
         <idProfesional>2</idProfesional>
-        <diaSemana>Miercoles</diaSemana>
+        <diaSemana>Miércoles</diaSemana>
         <horaInicio>14:00</horaInicio>
         <horaFin>18:00</horaFin>
+        <fechaDesde>01/01/2026</fechaDesde>
+        <fechaHasta>31/12/2026</fechaHasta>
+        <estado>Activa</estado>
+    </agenda>
+    <agenda>
+        <idAgenda>3</idAgenda>
+        <idProfesional>3</idProfesional>
+        <diaSemana>Lunes</diaSemana>
+        <horaInicio>09:00</horaInicio>
+        <horaFin>09:15</horaFin>
         <fechaDesde>01/01/2026</fechaDesde>
         <fechaHasta>31/12/2026</fechaHasta>
         <estado>Activa</estado>

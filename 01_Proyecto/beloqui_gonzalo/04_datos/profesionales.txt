@@ -1,2 +1,3 @@
-1;Juan;Perez;28765432;1144449876;MP12345;Cardiologia;jperez@centrosalud.com
-2;Laura;Martinez;30999888;1133332222;MP54321;Pediatria;lmartinez@centrosalud.com
+1;Juan;Pérez;28765432;1144449876;MP12345;Cardiología;jperez@centrosalud.com
+2;Laura;Martínez;30999888;1133332222;MP54321;Pediatría;lmartinez@centrosalud.com
+3;Roberto;Gómez;55555555;1177777777;MP9999;Clínica médica;rgomez@centrosalud.com
