@@ -1,7 +1,6 @@
 package com.beloqui.vista;
 
-import com.beloqui.controlador.OperacionInvalidaException;
-import com.beloqui.controlador.SistemaTurnos;
+import com.beloqui.controlador.ControladorPrincipalApp;
 import com.beloqui.modelo.Agenda;
 import com.beloqui.modelo.Especialidad;
 import com.beloqui.modelo.Paciente;
@@ -16,9 +15,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -52,81 +48,81 @@ public class PrincipalApp extends JFrame {
     private static final long serialVersionUID = 1L;
     private static final Color COLOR_PRINCIPAL = new Color(32, 89, 138);
     private static final Color COLOR_FONDO = new Color(245, 248, 250);
-    private static final String[] DIAS = {
+    public static final String[] DIAS = {
         "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
     };
 
-    private final SistemaTurnos sistema = new SistemaTurnos();
-    private final JPanel panelContenido = new JPanel(new BorderLayout());
-    private final JLabel estado = new JLabel("Sistema listo.");
+    private final ControladorPrincipalApp controlador;
+    public final JPanel panelContenido = new JPanel(new BorderLayout());
+    public final JLabel estado = new JLabel("Sistema listo.");
     private JPanel panelPacientes;
     private JPanel panelProfesionales;
     private JPanel panelEspecialidades;
     private JPanel panelAgendas;
     private JPanel panelTurnos;
 
-    private final JTextField pacienteNombre = new JTextField(18);
-    private final JTextField pacienteApellido = new JTextField(18);
-    private final JTextField pacienteDni = new JTextField(12);
-    private final JTextField pacienteTelefono = new JTextField(14);
-    private final JTextField pacienteHistoria = new JTextField(10);
-    private final JTextField pacienteObraSocial = new JTextField(18);
-    private final JTextField pacienteEmail = new JTextField(22);
-    private final JTextField pacienteNacimiento = new JTextField(12);
-    private final JRadioButton pacienteFemenino = new JRadioButton("Femenino");
-    private final JRadioButton pacienteMasculino = new JRadioButton("Masculino");
-    private final ButtonGroup grupoSexoPaciente = new ButtonGroup();
-    private final JTextField pacienteBuscarDni = new JTextField(12);
-    private final DefaultTableModel modeloPacientes =
+    public final JTextField pacienteNombre = new JTextField(18);
+    public final JTextField pacienteApellido = new JTextField(18);
+    public final JTextField pacienteDni = new JTextField(12);
+    public final JTextField pacienteTelefono = new JTextField(14);
+    public final JTextField pacienteHistoria = new JTextField(10);
+    public final JTextField pacienteObraSocial = new JTextField(18);
+    public final JTextField pacienteEmail = new JTextField(22);
+    public final JTextField pacienteNacimiento = new JTextField(12);
+    public final JRadioButton pacienteFemenino = new JRadioButton("Femenino");
+    public final JRadioButton pacienteMasculino = new JRadioButton("Masculino");
+    public final ButtonGroup grupoSexoPaciente = new ButtonGroup();
+    public final JTextField pacienteBuscarDni = new JTextField(12);
+    public final DefaultTableModel modeloPacientes =
             crearModelo("ID", "Nombre", "DNI", "Teléfono", "Historia clínica", "Obra social");
-    private final JTable tablaPacientes = new JTable(modeloPacientes);
+    public final JTable tablaPacientes = new JTable(modeloPacientes);
 
-    private final JTextField profesionalNombre = new JTextField(18);
-    private final JTextField profesionalApellido = new JTextField(18);
-    private final JTextField profesionalDni = new JTextField(12);
-    private final JTextField profesionalTelefono = new JTextField(14);
-    private final JTextField profesionalMatricula = new JTextField(12);
-    private final JTextField profesionalEmail = new JTextField(22);
-    private final JComboBox<String> profesionalEspecialidad = new JComboBox<>();
-    private final JTextField profesionalBuscarDni = new JTextField(12);
-    private final DefaultTableModel modeloProfesionales =
+    public final JTextField profesionalNombre = new JTextField(18);
+    public final JTextField profesionalApellido = new JTextField(18);
+    public final JTextField profesionalDni = new JTextField(12);
+    public final JTextField profesionalTelefono = new JTextField(14);
+    public final JTextField profesionalMatricula = new JTextField(12);
+    public final JTextField profesionalEmail = new JTextField(22);
+    public final JComboBox<String> profesionalEspecialidad = new JComboBox<>();
+    public final JTextField profesionalBuscarDni = new JTextField(12);
+    public final DefaultTableModel modeloProfesionales =
             crearModelo("ID", "Nombre", "DNI", "Matrícula", "Especialidad", "Email");
-    private final JTable tablaProfesionales = new JTable(modeloProfesionales);
+    public final JTable tablaProfesionales = new JTable(modeloProfesionales);
 
-    private final JTextField especialidadNombre = new JTextField(22);
-    private final DefaultTableModel modeloEspecialidades = crearModelo("ID", "Especialidad");
-    private final JTable tablaEspecialidades = new JTable(modeloEspecialidades);
+    public final JTextField especialidadNombre = new JTextField(22);
+    public final DefaultTableModel modeloEspecialidades = crearModelo("ID", "Especialidad");
+    public final JTable tablaEspecialidades = new JTable(modeloEspecialidades);
 
-    private final JComboBox<ElementoCombo<Profesional>> agendaProfesional = new JComboBox<>();
-    private final JComboBox<String> agendaDia = new JComboBox<>(DIAS);
-    private final JComboBox<String> agendaHoraInicio = new JComboBox<>(crearHorarios("09:00", "17:45"));
-    private final JComboBox<String> agendaHoraFin = new JComboBox<>(crearHorarios("09:15", "18:00"));
-    private final JTextField agendaFechaDesde = new JTextField(12);
-    private final JTextField agendaFechaHasta = new JTextField(12);
-    private final JComboBox<String> agendaBuscarDia = new JComboBox<>();
-    private final JComboBox<String> agendaBuscarEspecialidad = new JComboBox<>();
-    private final JCheckBox agendaSoloActivas = new JCheckBox("Mostrar solo agendas activas", true);
-    private final DefaultTableModel modeloAgendas =
+    public final JComboBox<ElementoCombo<Profesional>> agendaProfesional = new JComboBox<>();
+    public final JComboBox<String> agendaDia = new JComboBox<>(DIAS);
+    public final JComboBox<String> agendaHoraInicio = new JComboBox<>(crearHorarios("09:00", "17:45"));
+    public final JComboBox<String> agendaHoraFin = new JComboBox<>(crearHorarios("09:15", "18:00"));
+    public final JTextField agendaFechaDesde = new JTextField(12);
+    public final JTextField agendaFechaHasta = new JTextField(12);
+    public final JComboBox<String> agendaBuscarDia = new JComboBox<>();
+    public final JComboBox<String> agendaBuscarEspecialidad = new JComboBox<>();
+    public final JCheckBox agendaSoloActivas = new JCheckBox("Mostrar solo agendas activas", true);
+    public final DefaultTableModel modeloAgendas =
             crearModelo("ID", "Profesional", "Especialidad", "Día", "Horario", "Vigencia", "Estado");
-    private final JTable tablaAgendas = new JTable(modeloAgendas);
+    public final JTable tablaAgendas = new JTable(modeloAgendas);
 
-    private final JTextField turnoPacienteDniAsignacion = new JTextField(12);
-    private final JLabel turnoPacienteSeleccionado = new JLabel("Sin paciente seleccionado");
-    private final JComboBox<String> turnoEspecialidad = new JComboBox<>();
-    private final JComboBox<ElementoCombo<Profesional>> turnoProfesional = new JComboBox<>();
-    private final JComboBox<ElementoCombo<Agenda>> turnoAgenda = new JComboBox<>();
-    private final JComboBox<String> turnoFecha = new JComboBox<>();
-    private final JList<String> turnoHorarios = new JList<>();
-    private final JTextField turnoBuscarDni = new JTextField(12);
-    private final DefaultTableModel modeloTurnos =
+    public final JTextField turnoPacienteDniAsignacion = new JTextField(12);
+    public final JLabel turnoPacienteSeleccionado = new JLabel("Sin paciente seleccionado");
+    public final JComboBox<String> turnoEspecialidad = new JComboBox<>();
+    public final JComboBox<ElementoCombo<Profesional>> turnoProfesional = new JComboBox<>();
+    public final JComboBox<ElementoCombo<Agenda>> turnoAgenda = new JComboBox<>();
+    public final JComboBox<String> turnoFecha = new JComboBox<>();
+    public final JList<String> turnoHorarios = new JList<>();
+    public final JTextField turnoBuscarDni = new JTextField(12);
+    public final DefaultTableModel modeloTurnos =
             crearModelo("ID", "Paciente", "Profesional", "Especialidad", "Fecha", "Hora", "Estado");
-    private final JTable tablaTurnos = new JTable(modeloTurnos);
-    private Paciente turnoPacienteActual;
+    public final JTable tablaTurnos = new JTable(modeloTurnos);
 
     public PrincipalApp() {
+        this.controlador = new ControladorPrincipalApp(this);
         configurarVentana();
         agregarComponentes();
-        recargarInterfaz();
+        controlador.recargarInterfaz();
     }
 
     private void configurarVentana() {
@@ -137,12 +133,7 @@ public class PrincipalApp extends JFrame {
         setLocationRelativeTo(null);
         setIconImage(IconoHospital.crearImagen(64));
         getContentPane().setBackground(COLOR_FONDO);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent evento) {
-                salirConControlDeFormularios();
-            }
-        });
+        controlador.registrarCierreVentana();
     }
 
     private void agregarComponentes() {
@@ -177,18 +168,18 @@ public class PrincipalApp extends JFrame {
 
         JMenuItem recargar = new JMenuItem("Recargar datos");
         recargar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_DOWN_MASK));
-        recargar.addActionListener(evento -> recargarDatos());
+        controlador.registrarRecargar(recargar);
         archivo.add(recargar);
 
         JMenuItem guardar = new JMenuItem("Guardar datos");
         guardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_DOWN_MASK));
-        guardar.addActionListener(evento -> guardarDatos());
+        controlador.registrarGuardar(guardar);
         archivo.add(guardar);
         archivo.addSeparator();
 
         JMenuItem salir = new JMenuItem("Salir");
         salir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK));
-        salir.addActionListener(evento -> salirConControlDeFormularios());
+        controlador.registrarSalir(salir);
         archivo.add(salir);
 
         JMenu navegar = new JMenu("Navegar");
@@ -208,7 +199,7 @@ public class PrincipalApp extends JFrame {
         JMenuItem opcion = new JMenuItem(nombre);
         opcion.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_1 + indice, KeyEvent.CTRL_DOWN_MASK));
-        opcion.addActionListener(evento -> mostrarPanel(indice));
+        controlador.registrarMostrarPanel(opcion, indice);
         menu.add(opcion);
     }
 
@@ -222,21 +213,21 @@ public class PrincipalApp extends JFrame {
         barra.add(crearBotonPestana("Turnos", 4));
         barra.addSeparator();
         JButton recargar = new JButton("Recargar");
-        recargar.addActionListener(evento -> recargarDatos());
+        controlador.registrarRecargar(recargar);
         barra.add(recargar);
         JButton guardar = new JButton("Guardar");
-        guardar.addActionListener(evento -> guardarDatos());
+        controlador.registrarGuardar(guardar);
         barra.add(guardar);
         return barra;
     }
 
     private JButton crearBotonPestana(String texto, int indice) {
         JButton boton = new JButton(texto);
-        boton.addActionListener(evento -> mostrarPanel(indice));
+        controlador.registrarMostrarPanel(boton, indice);
         return boton;
     }
 
-    private void mostrarPanel(int indice) {
+    public void mostrarPanel(int indice) {
         switch (indice) {
             case 0:
                 mostrarPanel(panelPacientes);
@@ -306,9 +297,9 @@ public class PrincipalApp extends JFrame {
         agregarFila(formulario, c, 8, "Sexo:", sexo);
 
         JButton guardar = new JButton("Registrar paciente");
-        guardar.addActionListener(evento -> registrarPaciente());
+        controlador.registrarAltaPaciente(guardar);
         JButton limpiar = new JButton("Limpiar");
-        limpiar.addActionListener(evento -> limpiarPaciente());
+        controlador.registrarLimpiarPaciente(limpiar);
         agregarBotones(formulario, c, 9, guardar, limpiar);
 
         JPanel listado = crearPanelListado("Pacientes registrados");
@@ -316,10 +307,10 @@ public class PrincipalApp extends JFrame {
         busqueda.add(new JLabel("Buscar por DNI:"));
         busqueda.add(pacienteBuscarDni);
         JButton buscar = new JButton("Buscar");
-        buscar.addActionListener(evento -> buscarPaciente());
+        controlador.registrarBuscarPaciente(buscar);
         busqueda.add(buscar);
         JButton todos = new JButton("Mostrar todos");
-        todos.addActionListener(evento -> actualizarTablaPacientes(sistema.getPacientes()));
+        controlador.registrarMostrarTodosPacientes(todos);
         busqueda.add(todos);
         listado.add(busqueda, BorderLayout.NORTH);
         listado.add(new JScrollPane(tablaPacientes), BorderLayout.CENTER);
@@ -342,9 +333,9 @@ public class PrincipalApp extends JFrame {
         agregarFila(formulario, c, 6, "Email institucional:", profesionalEmail);
 
         JButton guardar = new JButton("Registrar profesional");
-        guardar.addActionListener(evento -> registrarProfesional());
+        controlador.registrarAltaProfesional(guardar);
         JButton limpiar = new JButton("Limpiar");
-        limpiar.addActionListener(evento -> limpiarProfesional());
+        controlador.registrarLimpiarProfesional(limpiar);
         agregarBotones(formulario, c, 7, guardar, limpiar);
 
         JPanel listado = crearPanelListado("Profesionales registrados");
@@ -352,10 +343,10 @@ public class PrincipalApp extends JFrame {
         busqueda.add(new JLabel("Buscar por DNI:"));
         busqueda.add(profesionalBuscarDni);
         JButton buscar = new JButton("Buscar");
-        buscar.addActionListener(evento -> buscarProfesional());
+        controlador.registrarBuscarProfesional(buscar);
         busqueda.add(buscar);
         JButton todos = new JButton("Mostrar todos");
-        todos.addActionListener(evento -> actualizarTablaProfesionales(sistema.getProfesionales()));
+        controlador.registrarMostrarTodosProfesionales(todos);
         busqueda.add(todos);
         listado.add(busqueda, BorderLayout.NORTH);
         listado.add(new JScrollPane(tablaProfesionales), BorderLayout.CENTER);
@@ -371,7 +362,7 @@ public class PrincipalApp extends JFrame {
         GridBagConstraints c = restricciones();
         agregarFila(formulario, c, 0, "Nombre:", especialidadNombre);
         JButton guardar = new JButton("Registrar especialidad");
-        guardar.addActionListener(evento -> registrarEspecialidad());
+        controlador.registrarAltaEspecialidad(guardar);
         agregarBotones(formulario, c, 1, guardar);
 
         JPanel listado = crearPanelListado("Especialidades disponibles");
@@ -392,9 +383,9 @@ public class PrincipalApp extends JFrame {
         agregarFila(formulario, c, 4, "Fecha desde:", agendaFechaDesde);
         agregarFila(formulario, c, 5, "Fecha hasta:", agendaFechaHasta);
         JButton guardar = new JButton("Registrar agenda");
-        guardar.addActionListener(evento -> registrarAgenda());
+        controlador.registrarAltaAgenda(guardar);
         JButton limpiar = new JButton("Limpiar");
-        limpiar.addActionListener(evento -> limpiarAgenda());
+        controlador.registrarLimpiarAgenda(limpiar);
         agregarBotones(formulario, c, 6, guardar, limpiar);
 
         JPanel listado = crearPanelListado("Consulta de agendas");
@@ -405,7 +396,7 @@ public class PrincipalApp extends JFrame {
         filtros.add(agendaBuscarEspecialidad);
         filtros.add(agendaSoloActivas);
         JButton buscar = new JButton("Buscar");
-        buscar.addActionListener(evento -> buscarAgendas());
+        controlador.registrarBuscarAgendas(buscar);
         filtros.add(buscar);
         listado.add(filtros, BorderLayout.NORTH);
         listado.add(new JScrollPane(tablaAgendas), BorderLayout.CENTER);
@@ -422,16 +413,16 @@ public class PrincipalApp extends JFrame {
         JPanel buscarPaciente = new JPanel(new BorderLayout(5, 0));
         buscarPaciente.setOpaque(false);
         JButton botonBuscarPaciente = new JButton("Buscar");
-        botonBuscarPaciente.addActionListener(evento -> buscarPacienteParaTurno());
+        controlador.registrarBuscarPacienteParaTurno(botonBuscarPaciente);
         buscarPaciente.add(turnoPacienteDniAsignacion, BorderLayout.CENTER);
         buscarPaciente.add(botonBuscarPaciente, BorderLayout.EAST);
         agregarFila(formulario, c, 0, "DNI paciente:", buscarPaciente);
         agregarFila(formulario, c, 1, "Paciente:", turnoPacienteSeleccionado);
 
-        turnoEspecialidad.addActionListener(evento -> cargarProfesionalesParaTurno());
-        turnoProfesional.addActionListener(evento -> cargarAgendasParaTurno());
-        turnoAgenda.addActionListener(evento -> cargarFechasParaTurno());
-        turnoFecha.addActionListener(evento -> cargarHorariosParaTurno());
+        controlador.registrarCambioEspecialidadTurno(turnoEspecialidad);
+        controlador.registrarCambioProfesionalTurno(turnoProfesional);
+        controlador.registrarCambioAgendaTurno(turnoAgenda);
+        controlador.registrarCambioFechaTurno(turnoFecha);
 
         agregarFila(formulario, c, 2, "Especialidad:", turnoEspecialidad);
         agregarFila(formulario, c, 3, "Profesional:", turnoProfesional);
@@ -445,9 +436,9 @@ public class PrincipalApp extends JFrame {
         agregarFila(formulario, c, 6, "Horarios:", horarios);
 
         JButton consultar = new JButton("Actualizar horarios");
-        consultar.addActionListener(evento -> cargarHorariosParaTurno());
+        controlador.registrarConsultarHorarios(consultar);
         JButton asignar = new JButton("Asignar turno");
-        asignar.addActionListener(evento -> asignarTurno());
+        controlador.registrarAsignarTurno(asignar);
         agregarBotones(formulario, c, 7, consultar, asignar);
 
         JPanel listado = crearPanelListado("Búsqueda y anulación de turnos");
@@ -455,10 +446,10 @@ public class PrincipalApp extends JFrame {
         busqueda.add(new JLabel("DNI del paciente:"));
         busqueda.add(turnoBuscarDni);
         JButton buscar = new JButton("Buscar turnos");
-        buscar.addActionListener(evento -> buscarTurnos());
+        controlador.registrarBuscarTurnos(buscar);
         busqueda.add(buscar);
         JButton anular = new JButton("Anular turno seleccionado");
-        anular.addActionListener(evento -> anularTurno());
+        controlador.registrarAnularTurno(anular);
         busqueda.add(anular);
         listado.add(busqueda, BorderLayout.NORTH);
         listado.add(new JScrollPane(tablaTurnos), BorderLayout.CENTER);
@@ -527,556 +518,6 @@ public class PrincipalApp extends JFrame {
         c.fill = GridBagConstraints.HORIZONTAL;
         panel.add(acciones, c);
         c.gridwidth = 1;
-    }
-
-    private void registrarPaciente() {
-        try {
-            int historia = Integer.parseInt(pacienteHistoria.getText().trim());
-            Paciente paciente = sistema.agregarPaciente(
-                    pacienteNombre.getText(),
-                    pacienteApellido.getText(),
-                    pacienteDni.getText(),
-                    pacienteTelefono.getText(),
-                    historia,
-                    pacienteObraSocial.getText(),
-                    pacienteEmail.getText(),
-                    pacienteNacimiento.getText(),
-                    obtenerSexoPaciente());
-            mostrarExito("Paciente registrado: " + paciente.getNombreCompleto());
-            limpiarPaciente();
-            recargarInterfaz();
-        } catch (NumberFormatException e) {
-            mostrarError("La historia clínica debe ser un número entero.");
-        } catch (OperacionInvalidaException e) {
-            mostrarError(e.getMessage());
-        }
-    }
-
-    private void buscarPaciente() {
-        Paciente paciente = sistema.buscarPacientePorDni(pacienteBuscarDni.getText());
-        if (paciente == null) {
-            mostrarError("No se encontró un paciente con ese DNI.");
-            return;
-        }
-        actualizarTablaPacientes(java.util.Arrays.asList(paciente));
-        informar("Paciente encontrado.");
-    }
-
-    private void registrarProfesional() {
-        try {
-            Profesional profesional = sistema.agregarProfesional(
-                    profesionalNombre.getText(),
-                    profesionalApellido.getText(),
-                    profesionalDni.getText(),
-                    profesionalTelefono.getText(),
-                    profesionalMatricula.getText(),
-                    (String) profesionalEspecialidad.getSelectedItem(),
-                    profesionalEmail.getText());
-            mostrarExito("Profesional registrado: " + profesional.getNombreCompleto());
-            limpiarProfesional();
-            recargarInterfaz();
-        } catch (OperacionInvalidaException e) {
-            mostrarError(e.getMessage());
-        }
-    }
-
-    private void buscarProfesional() {
-        Profesional profesional = sistema.buscarProfesionalPorDni(profesionalBuscarDni.getText());
-        if (profesional == null) {
-            mostrarError("No se encontró un profesional con ese DNI.");
-            return;
-        }
-        actualizarTablaProfesionales(java.util.Arrays.asList(profesional));
-        informar("Profesional encontrado.");
-    }
-
-    private void registrarEspecialidad() {
-        try {
-            Especialidad especialidad = sistema.agregarEspecialidad(especialidadNombre.getText());
-            mostrarExito("Especialidad registrada: " + especialidad.getNombre());
-            especialidadNombre.setText("");
-            recargarInterfaz();
-        } catch (OperacionInvalidaException e) {
-            mostrarError(e.getMessage());
-        }
-    }
-
-    private void registrarAgenda() {
-        ElementoCombo<Profesional> opcion = obtenerSeleccion(agendaProfesional);
-        if (opcion == null) {
-            mostrarError("Seleccione un profesional.");
-            return;
-        }
-        try {
-            Agenda agenda = sistema.agregarAgenda(
-                    opcion.getValor().getIdProfesional(),
-                    (String) agendaDia.getSelectedItem(),
-                    (String) agendaHoraInicio.getSelectedItem(),
-                    (String) agendaHoraFin.getSelectedItem(),
-                    agendaFechaDesde.getText(),
-                    agendaFechaHasta.getText());
-            mostrarExito("Agenda registrada con ID " + agenda.getIdAgenda() + ".");
-            limpiarAgenda();
-            recargarInterfaz();
-        } catch (OperacionInvalidaException e) {
-            mostrarError(e.getMessage());
-        }
-    }
-
-    private void buscarAgendas() {
-        String dia = (String) agendaBuscarDia.getSelectedItem();
-        String especialidad = (String) agendaBuscarEspecialidad.getSelectedItem();
-        List<Agenda> agendas = sistema.buscarAgendas(
-                "Todos".equals(dia) ? "" : dia,
-                "Todas".equals(especialidad) ? "" : especialidad);
-        actualizarTablaAgendas(agendas);
-        informar("Consulta de agendas actualizada.");
-    }
-
-    private void buscarPacienteParaTurno() {
-        Paciente paciente = sistema.buscarPacientePorDni(turnoPacienteDniAsignacion.getText());
-        if (paciente == null) {
-            limpiarAsignacionTurno();
-            mostrarError("No se encontro un paciente con ese DNI.");
-            return;
-        }
-
-        this.turnoPacienteActual = paciente;
-        mostrarPacienteTurno(paciente);
-        turnoBuscarDni.setText(paciente.getDni());
-        cargarEspecialidadesParaTurno();
-        buscarTurnos();
-        informar("Paciente seleccionado. Elija una especialidad habilitada.");
-    }
-
-    private void cargarEspecialidadesParaTurno() {
-        turnoEspecialidad.removeAllItems();
-        limpiarProfesionalesAgendasFechasYHorarios();
-        if (turnoPacienteActual == null) {
-            return;
-        }
-
-        List<String> especialidades =
-                sistema.obtenerEspecialidadesPermitidas(turnoPacienteActual.getIdPaciente());
-        for (String especialidad : especialidades) {
-            turnoEspecialidad.addItem(especialidad);
-        }
-        if (especialidades.isEmpty()) {
-            informar("El paciente no tiene especialidades disponibles según sus restricciones o turnos vigentes.");
-        }
-    }
-
-    private void cargarProfesionalesParaTurno() {
-        turnoProfesional.removeAllItems();
-        limpiarAgendasFechasYHorarios();
-        if (turnoPacienteActual == null || turnoEspecialidad.getSelectedItem() == null) {
-            return;
-        }
-
-        String especialidad = turnoEspecialidad.getSelectedItem().toString();
-        List<Profesional> profesionales = sistema.obtenerProfesionalesParaTurno(
-                turnoPacienteActual.getIdPaciente(), especialidad);
-        for (Profesional profesional : profesionales) {
-            turnoProfesional.addItem(new ElementoCombo<>(
-                    profesional,
-                    profesional.getNombreCompleto() + " - " + profesional.getMatricula()));
-        }
-        if (profesionales.isEmpty()) {
-            informar("No hay profesionales con agenda disponible para esa especialidad.");
-        }
-    }
-
-    private void cargarAgendasParaTurno() {
-        turnoAgenda.removeAllItems();
-        limpiarFechasYHorarios();
-        ElementoCombo<Profesional> profesional = obtenerSeleccion(turnoProfesional);
-        if (profesional == null || turnoEspecialidad.getSelectedItem() == null) {
-            return;
-        }
-
-        String especialidad = turnoEspecialidad.getSelectedItem().toString();
-        List<Agenda> agendas = sistema.obtenerAgendasParaTurno(
-                profesional.getValor().getIdProfesional(), especialidad);
-        for (Agenda agenda : agendas) {
-            turnoAgenda.addItem(new ElementoCombo<>(
-                    agenda,
-                    agenda.getDiaSemana() + " "
-                            + agenda.getHoraInicio() + " a " + agenda.getHoraFin()
-                            + " - Vigencia " + agenda.getFechaDesde()
-                            + " a " + agenda.getFechaHasta()));
-        }
-        if (agendas.isEmpty()) {
-            informar("El profesional no tiene agendas activas con fechas disponibles.");
-        }
-    }
-
-    private void cargarFechasParaTurno() {
-        turnoFecha.removeAllItems();
-        turnoHorarios.setListData(new String[0]);
-        ElementoCombo<Agenda> agenda = obtenerSeleccion(turnoAgenda);
-        if (agenda == null) {
-            return;
-        }
-
-        List<String> fechas = sistema.obtenerFechasDisponibles(agenda.getValor().getIdAgenda());
-        for (String fecha : fechas) {
-            turnoFecha.addItem(fecha);
-        }
-        if (fechas.isEmpty()) {
-            informar("No hay fechas disponibles para la agenda seleccionada.");
-        }
-    }
-
-    private void cargarHorariosParaTurno() {
-        turnoHorarios.setListData(new String[0]);
-        ElementoCombo<Agenda> agenda = obtenerSeleccion(turnoAgenda);
-        Object fecha = turnoFecha.getSelectedItem();
-        if (agenda == null || fecha == null) {
-            return;
-        }
-
-        List<String> horarios = sistema.obtenerHorariosDisponibles(
-                agenda.getValor().getIdAgenda(), fecha.toString());
-        turnoHorarios.setListData(horarios.toArray(new String[0]));
-        if (horarios.isEmpty()) {
-            informar("No hay horarios disponibles para la fecha seleccionada.");
-        } else {
-            informar("Seleccione un horario y confirme la asignación.");
-        }
-    }
-
-    private void asignarTurno() {
-        ElementoCombo<Agenda> agenda = obtenerSeleccion(turnoAgenda);
-        Object fecha = turnoFecha.getSelectedItem();
-        String hora = turnoHorarios.getSelectedValue();
-        if (turnoPacienteActual == null || agenda == null || fecha == null || hora == null) {
-            mostrarError("Seleccione paciente, especialidad, profesional, agenda, fecha y horario.");
-            return;
-        }
-        try {
-            Turno turno = sistema.asignarTurno(
-                    turnoPacienteActual.getIdPaciente(),
-                    agenda.getValor().getIdAgenda(),
-                    fecha.toString(),
-                    hora);
-            mostrarExito("Turno asignado con ID " + turno.getIdTurno() + ".");
-            turnoBuscarDni.setText(turnoPacienteActual.getDni());
-            recargarInterfaz();
-            buscarTurnos();
-        } catch (OperacionInvalidaException e) {
-            mostrarError(e.getMessage());
-        }
-    }
-
-    private void buscarTurnos() {
-        List<Turno> turnos = sistema.buscarTurnosPorPaciente(turnoBuscarDni.getText());
-        actualizarTablaTurnos(turnos);
-        if (turnos.isEmpty()) {
-            mostrarError("No se encontraron turnos para ese DNI.");
-        } else {
-            informar("Turnos del paciente cargados.");
-        }
-    }
-
-    private void anularTurno() {
-        int fila = tablaTurnos.getSelectedRow();
-        if (fila < 0) {
-            mostrarError("Seleccione un turno de la tabla.");
-            return;
-        }
-        int idTurno = Integer.parseInt(tablaTurnos.getValueAt(fila, 0).toString());
-        int respuesta = JOptionPane.showConfirmDialog(
-                this,
-                "¿Desea anular el turno " + idTurno + "?",
-                "Confirmar anulación",
-                JOptionPane.YES_NO_OPTION);
-        if (respuesta != JOptionPane.YES_OPTION) {
-            return;
-        }
-        try {
-            sistema.anularTurno(idTurno);
-            mostrarExito("Turno anulado.");
-            recargarInterfaz();
-            buscarTurnos();
-        } catch (OperacionInvalidaException e) {
-            mostrarError(e.getMessage());
-        }
-    }
-
-    private void recargarDatos() {
-        if (hayFormulariosConDatos() && !confirmarDescarteFormularios("recargar los datos desde archivos")) {
-            return;
-        }
-        sistema.recargarDatos();
-        recargarInterfaz();
-        informar("Datos recargados desde los archivos.");
-    }
-
-    private void guardarDatos() {
-        sistema.guardarDatos();
-        informar("Datos guardados en los archivos del proyecto.");
-        JOptionPane.showMessageDialog(
-                this,
-                "Los datos actuales fueron guardados correctamente.",
-                "Guardado de datos",
-                JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    private void recargarInterfaz() {
-        actualizarEspecialidades();
-        actualizarCombosEntidades();
-        actualizarTablaPacientes(sistema.getPacientes());
-        actualizarTablaProfesionales(sistema.getProfesionales());
-        actualizarTablaEspecialidades(sistema.getEspecialidades());
-        actualizarTablaAgendas(sistema.getAgendas());
-        actualizarTablaTurnos(sistema.getTurnos());
-    }
-
-    private void actualizarEspecialidades() {
-        String seleccionProfesional = (String) profesionalEspecialidad.getSelectedItem();
-        String seleccionFiltro = (String) agendaBuscarEspecialidad.getSelectedItem();
-        profesionalEspecialidad.removeAllItems();
-        agendaBuscarEspecialidad.removeAllItems();
-        agendaBuscarEspecialidad.addItem("Todas");
-        for (Especialidad especialidad : sistema.getEspecialidades()) {
-            profesionalEspecialidad.addItem(especialidad.getNombre());
-            agendaBuscarEspecialidad.addItem(especialidad.getNombre());
-        }
-        profesionalEspecialidad.setSelectedItem(seleccionProfesional);
-        agendaBuscarEspecialidad.setSelectedItem(seleccionFiltro == null ? "Todas" : seleccionFiltro);
-
-        String seleccionDia = (String) agendaBuscarDia.getSelectedItem();
-        agendaBuscarDia.removeAllItems();
-        agendaBuscarDia.addItem("Todos");
-        for (String dia : DIAS) {
-            agendaBuscarDia.addItem(dia);
-        }
-        agendaBuscarDia.setSelectedItem(seleccionDia == null ? "Todos" : seleccionDia);
-    }
-
-    private void actualizarCombosEntidades() {
-        agendaProfesional.removeAllItems();
-        for (Profesional profesional : sistema.getProfesionales()) {
-            agendaProfesional.addItem(new ElementoCombo<>(
-                    profesional,
-                    profesional.getNombreCompleto() + " - " + profesional.getEspecialidad()));
-        }
-
-        if (turnoPacienteActual != null) {
-            Paciente pacienteActualizado = sistema.buscarPacientePorDni(turnoPacienteActual.getDni());
-            if (pacienteActualizado == null) {
-                limpiarAsignacionTurno();
-            } else {
-                turnoPacienteActual = pacienteActualizado;
-                mostrarPacienteTurno(pacienteActualizado);
-                cargarEspecialidadesParaTurno();
-            }
-        }
-    }
-
-    private void actualizarTablaPacientes(List<Paciente> pacientes) {
-        limpiarModelo(modeloPacientes);
-        for (Paciente paciente : pacientes) {
-            modeloPacientes.addRow(new Object[] {
-                paciente.getIdPaciente(),
-                paciente.getNombreCompleto(),
-                paciente.getDni(),
-                paciente.getTelefono(),
-                paciente.getNumeroHistoriaClinica(),
-                paciente.getObraSocial()
-            });
-        }
-    }
-
-    private void actualizarTablaProfesionales(List<Profesional> profesionales) {
-        limpiarModelo(modeloProfesionales);
-        for (Profesional profesional : profesionales) {
-            modeloProfesionales.addRow(new Object[] {
-                profesional.getIdProfesional(),
-                profesional.getNombreCompleto(),
-                profesional.getDni(),
-                profesional.getMatricula(),
-                profesional.getEspecialidad(),
-                profesional.getEmailInstitucional()
-            });
-        }
-    }
-
-    private void actualizarTablaEspecialidades(List<Especialidad> especialidades) {
-        limpiarModelo(modeloEspecialidades);
-        for (Especialidad especialidad : especialidades) {
-            modeloEspecialidades.addRow(new Object[] {
-                especialidad.getIdEspecialidad(), especialidad.getNombre()
-            });
-        }
-    }
-
-    private void actualizarTablaAgendas(List<Agenda> agendas) {
-        limpiarModelo(modeloAgendas);
-        for (Agenda agenda : agendas) {
-            if (agendaSoloActivas.isSelected() && !agenda.estaActiva()) {
-                continue;
-            }
-            Profesional profesional = agenda.getProfesional();
-            modeloAgendas.addRow(new Object[] {
-                agenda.getIdAgenda(),
-                profesional == null ? "" : profesional.getNombreCompleto(),
-                profesional == null ? "" : profesional.getEspecialidad(),
-                agenda.getDiaSemana(),
-                agenda.getHoraInicio() + " a " + agenda.getHoraFin(),
-                agenda.getFechaDesde() + " a " + agenda.getFechaHasta(),
-                agenda.getEstado()
-            });
-        }
-    }
-
-    private void actualizarTablaTurnos(List<Turno> turnos) {
-        limpiarModelo(modeloTurnos);
-        for (Turno turno : turnos) {
-            modeloTurnos.addRow(new Object[] {
-                turno.getIdTurno(),
-                turno.getPaciente() == null ? "" : turno.getPaciente().getNombreCompleto(),
-                turno.getProfesional() == null ? "" : turno.getProfesional().getNombreCompleto(),
-                turno.getProfesional() == null ? "" : turno.getProfesional().getEspecialidad(),
-                turno.getFecha(),
-                turno.getHora(),
-                turno.getEstado()
-            });
-        }
-    }
-
-    private void limpiarPaciente() {
-        pacienteNombre.setText("");
-        pacienteApellido.setText("");
-        pacienteDni.setText("");
-        pacienteTelefono.setText("");
-        pacienteHistoria.setText("");
-        pacienteObraSocial.setText("");
-        pacienteEmail.setText("");
-        pacienteNacimiento.setText("");
-        grupoSexoPaciente.clearSelection();
-    }
-
-    private void limpiarProfesional() {
-        profesionalNombre.setText("");
-        profesionalApellido.setText("");
-        profesionalDni.setText("");
-        profesionalTelefono.setText("");
-        profesionalMatricula.setText("");
-        profesionalEmail.setText("");
-    }
-
-    private void limpiarAgenda() {
-        agendaFechaDesde.setText("");
-        agendaFechaHasta.setText("");
-        agendaDia.setSelectedIndex(0);
-        agendaHoraInicio.setSelectedIndex(0);
-        agendaHoraFin.setSelectedIndex(0);
-    }
-
-    private void limpiarAsignacionTurno() {
-        turnoPacienteActual = null;
-        turnoPacienteSeleccionado.setText("Sin paciente seleccionado");
-        turnoEspecialidad.removeAllItems();
-        limpiarProfesionalesAgendasFechasYHorarios();
-    }
-
-    private void limpiarProfesionalesAgendasFechasYHorarios() {
-        turnoProfesional.removeAllItems();
-        limpiarAgendasFechasYHorarios();
-    }
-
-    private void limpiarAgendasFechasYHorarios() {
-        turnoAgenda.removeAllItems();
-        limpiarFechasYHorarios();
-    }
-
-    private void limpiarFechasYHorarios() {
-        turnoFecha.removeAllItems();
-        turnoHorarios.setListData(new String[0]);
-    }
-
-    private void mostrarPacienteTurno(Paciente paciente) {
-        turnoPacienteSeleccionado.setText(
-                paciente.getNombreCompleto() + " - DNI " + paciente.getDni()
-                        + " - " + paciente.getSexo()
-                        + " - Nac. " + paciente.getFechaNacimiento());
-    }
-
-    private String obtenerSexoPaciente() {
-        if (pacienteFemenino.isSelected()) {
-            return "Femenino";
-        }
-        if (pacienteMasculino.isSelected()) {
-            return "Masculino";
-        }
-        return "";
-    }
-
-    private void salirConControlDeFormularios() {
-        if (!hayFormulariosConDatos()) {
-            confirmarSalida();
-            return;
-        }
-
-        if (confirmarDescarteFormularios("salir del sistema")) {
-            dispose();
-        }
-    }
-
-    private void confirmarSalida() {
-        int respuesta = JOptionPane.showConfirmDialog(
-                this,
-                "¿Desea salir del sistema?",
-                "Confirmar salida",
-                JOptionPane.YES_NO_OPTION);
-        if (respuesta == JOptionPane.YES_OPTION) {
-            dispose();
-        }
-    }
-
-    private boolean confirmarDescarteFormularios(String accion) {
-        int respuesta = JOptionPane.showConfirmDialog(
-                this,
-                "Hay datos cargados en formularios que todavía no fueron registrados. "
-                        + "Si continúa, se perderán al " + accion + ". ¿Desea continuar?",
-                "Formularios sin registrar",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE);
-        return respuesta == JOptionPane.YES_OPTION;
-    }
-
-    private boolean hayFormulariosConDatos() {
-        return hayTexto(pacienteNombre, pacienteApellido, pacienteDni, pacienteTelefono,
-                pacienteHistoria, pacienteObraSocial, pacienteEmail, pacienteNacimiento)
-                || pacienteFemenino.isSelected()
-                || pacienteMasculino.isSelected()
-                || hayTexto(profesionalNombre, profesionalApellido, profesionalDni,
-                profesionalTelefono, profesionalMatricula, profesionalEmail)
-                || hayTexto(especialidadNombre, agendaFechaDesde, agendaFechaHasta);
-    }
-
-    private boolean hayTexto(JTextField... campos) {
-        for (JTextField campo : campos) {
-            if (campo != null && !campo.getText().trim().isEmpty()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void mostrarExito(String mensaje) {
-        informar(mensaje);
-        JOptionPane.showMessageDialog(this, mensaje, "Operación completada", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    private void mostrarError(String mensaje) {
-        informar("Revise la operación.");
-        JOptionPane.showMessageDialog(this, mensaje, "Operación no válida", JOptionPane.ERROR_MESSAGE);
-    }
-
-    private void informar(String mensaje) {
-        estado.setText(mensaje);
     }
 
     private static DefaultTableModel crearModelo(String... columnas) {
@@ -1148,16 +589,16 @@ public class PrincipalApp extends JFrame {
         return 0;
     }
 
-    private static class ElementoCombo<T> {
+    public static class ElementoCombo<T> {
         private final T valor;
         private final String etiqueta;
 
-        ElementoCombo(T valor, String etiqueta) {
+        public ElementoCombo(T valor, String etiqueta) {
             this.valor = valor;
             this.etiqueta = etiqueta;
         }
 
-        T getValor() {
+        public T getValor() {
             return this.valor;
         }
 

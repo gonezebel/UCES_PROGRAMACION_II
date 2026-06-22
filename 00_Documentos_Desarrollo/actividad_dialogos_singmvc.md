@@ -64,6 +64,13 @@ búsquedas y persistencia.
 También se incorporó `Autenticador`, que valida las credenciales de ingreso sin
 mezclar esa regla con la construcción visual de Swing.
 
+También se incorporaron `ControladorPrincipalApp` y `ControladorLogin`. Estas
+clases registran los listeners de Swing y agrupan las acciones que responden a
+los eventos de botones, menús, combos y cierre de ventana. De esta forma,
+`vista/PrincipalApp` y `LoginDialog` quedan orientadas al dibujado de la
+interfaz, mientras que la reacción a los eventos queda ubicada en el paquete
+controlador.
+
 **Principal**
 
 El paquete [principal](../01_Proyecto/beloqui_gonzalo/principal) contiene los

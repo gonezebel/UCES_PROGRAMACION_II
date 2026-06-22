@@ -32,6 +32,12 @@ principal de este paquete es SistemaTurnos, que administra altas, búsquedas,
 asignación de turnos, anulación de turnos, carga de datos y guardado de datos.
 También se agregó Autenticador para validar el ingreso al sistema.
 
+Para reforzar la separación Vista-Controlador se agregaron ControladorPrincipalApp
+y ControladorLogin. Estas clases registran los listeners de Swing y agrupan las
+acciones disparadas por botones, menús, combos y cierre de ventana. La vista queda
+encargada del armado visual de formularios, tablas y diálogos, y el controlador
+queda encargado de responder a los eventos.
+
 El paquete vista contiene las interfaces de usuario. Ahí se ubican la ventana
 Swing PrincipalApp, el diálogo LoginDialog, la vista de consola y la clase
 IconoHospital.
@@ -169,6 +175,8 @@ La aplicación permite realizar las siguientes operaciones:
 Archivos agregados:
 
 - 01_Proyecto/beloqui_gonzalo/controlador/Autenticador.java
+- 01_Proyecto/beloqui_gonzalo/controlador/ControladorPrincipalApp.java
+- 01_Proyecto/beloqui_gonzalo/controlador/ControladorLogin.java
 - 01_Proyecto/beloqui_gonzalo/vista/LoginDialog.java
 - 01_Proyecto/beloqui_gonzalo/vista/IconoHospital.java
 - 01_Proyecto/beloqui_gonzalo/05_recursos/icono_hospital.png

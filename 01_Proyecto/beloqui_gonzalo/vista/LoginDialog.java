@@ -1,6 +1,6 @@
 package com.beloqui.vista;
 
-import com.beloqui.controlador.Autenticador;
+import com.beloqui.controlador.ControladorLogin;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -9,7 +9,6 @@ import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -21,10 +20,10 @@ import javax.swing.JTextField;
 public class LoginDialog extends JDialog {
     private static final long serialVersionUID = 1L;
 
-    private final Autenticador autenticador = new Autenticador();
-    private final JTextField usuario = new JTextField(16);
-    private final JPasswordField clave = new JPasswordField(16);
-    private final JLabel mensaje = new JLabel("Ingrese sus credenciales.");
+    private final ControladorLogin controlador = new ControladorLogin(this);
+    public final JTextField usuario = new JTextField(16);
+    public final JPasswordField clave = new JPasswordField(16);
+    public final JLabel mensaje = new JLabel("Ingrese sus credenciales.");
     private boolean autenticado;
 
     private LoginDialog(Frame owner) {
@@ -72,10 +71,8 @@ public class LoginDialog extends JDialog {
         formulario.add(mensaje, c);
 
         JButton ingresar = new JButton("Ingresar");
-        ingresar.addActionListener(evento -> ingresar());
         JButton cancelar = new JButton("Cancelar");
-        cancelar.addActionListener(evento -> dispose());
-        clave.addActionListener(evento -> ingresar());
+        controlador.registrarEventos(ingresar, cancelar);
 
         JPanel botones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         botones.add(cancelar);
@@ -114,19 +111,13 @@ public class LoginDialog extends JDialog {
         return encabezado;
     }
 
-    private void ingresar() {
-        char[] claveIngresada = clave.getPassword();
-        try {
-            if (autenticador.validarCredenciales(usuario.getText(), claveIngresada)) {
-                this.autenticado = true;
-                dispose();
-                return;
-            }
-            mensaje.setText("Usuario o clave incorrectos.");
-            clave.setText("");
-            clave.requestFocusInWindow();
-        } finally {
-            Arrays.fill(claveIngresada, '\0');
-        }
+    public void marcarAutenticado() {
+        this.autenticado = true;
+    }
+
+    public void mostrarCredencialesInvalidas() {
+        mensaje.setText("Usuario o clave incorrectos.");
+        clave.setText("");
+        clave.requestFocusInWindow();
     }
 }
