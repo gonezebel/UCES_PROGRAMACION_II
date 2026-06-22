@@ -108,3 +108,5 @@ Aunque algunos archivos utilizan formato XML, siguen siendo archivos de texto y 
 
 La interfaz también detecta cuando existen formularios con datos cargados que todavía no fueron registrados. Si el usuario intenta cerrar el sistema o
 recargar datos en esa situación, se muestra un cuadro de diálogo advirtiendo que esos datos escritos en pantalla se perderán si continua.
+
+![Pantalla Pacientes](../02_imagenes/kk_confirmación_de_guardado.jpg)
