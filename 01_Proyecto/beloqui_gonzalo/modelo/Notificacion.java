@@ -79,19 +79,19 @@ public class Notificacion {
     }
 
     public void prepararConfirmacionTurno(Turno turno) {
-        this.tipo = "Confirmacion";
+        this.tipo = "Confirmación";
         this.mensaje = "Turno confirmado para " + turno.getFecha() + " a las " + turno.getHora();
         this.enviada = false;
     }
 
     public void prepararAnulacionTurno(Turno turno) {
-        this.tipo = "Anulacion";
+        this.tipo = "Anulación";
         this.mensaje = "Turno anulado para " + turno.getFecha() + " a las " + turno.getHora();
         this.enviada = false;
     }
 
     public String mostrarDetalle() {
-        return "Notificacion " + this.idNotificacion + " - Tipo: " + this.tipo
+        return "Notificación " + this.idNotificacion + " - Tipo: " + this.tipo
                 + " - Fecha: " + this.fechaEnvio + " - Enviada: " + this.enviada;
     }
 

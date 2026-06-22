@@ -13,6 +13,7 @@ import com.beloqui.modelo.Profesional;
 import com.beloqui.modelo.Turno;
 import com.beloqui.vista.VistaConsola;
 import java.io.PrintStream;
+import java.text.Normalizer;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -34,10 +35,10 @@ public class Principal {
     private static final String[] DIAS_SEMANA_DISPONIBLES = {
         "Lunes",
         "Martes",
-        "Miercoles",
+        "Miércoles",
         "Jueves",
         "Viernes",
-        "Sabado"
+        "Sábado"
     };
     private static final String[] SEXOS_DISPONIBLES = {
         "Femenino",
@@ -63,7 +64,7 @@ public class Principal {
         int opcion;
         do {
             vista.mostrarMenu();
-            opcion = leerEntero(vista, "Seleccione una opcion: ");
+            opcion = leerEntero(vista, "Seleccione una opción: ");
 
             switch (opcion) {
                 case 1:
@@ -97,7 +98,7 @@ public class Principal {
                     vista.mostrarMensaje("Saliendo del sistema.");
                     break;
                 default:
-                    vista.mostrarMensaje("Opcion invalida.");
+                    vista.mostrarMensaje("Opción inválida.");
             }
         } while (opcion != 0);
 
@@ -116,19 +117,19 @@ public class Principal {
     private static List<Profesional> crearProfesionalesIniciales() {
         List<Profesional> profesionales = new ArrayList<>();
         profesionales.add(new Profesional("Juan", "Perez", "28765432", "1144449876",
-                "MN12345", "Cardiologia", "jperez@hospital.com"));
+                "MN12345", "Cardiología", "jperez@hospital.com"));
         profesionales.add(new Profesional("Laura", "Martinez", "30999888", "1133332222",
-                "MN54321", "Pediatria", "lmartinez@hospital.com"));
+                "MN54321", "Pediatría", "lmartinez@hospital.com"));
         return profesionales;
     }
 
     private static List<Especialidad> crearEspecialidadesIniciales() {
         List<Especialidad> especialidades = new ArrayList<>();
-        especialidades.add(new Especialidad("Clinica medica"));
-        especialidades.add(new Especialidad("Pediatria"));
-        especialidades.add(new Especialidad("Cardiologia"));
-        especialidades.add(new Especialidad("Ginecologia"));
-        especialidades.add(new Especialidad("Gastroenterologia"));
+        especialidades.add(new Especialidad("Clínica médica"));
+        especialidades.add(new Especialidad("Pediatría"));
+        especialidades.add(new Especialidad("Cardiología"));
+        especialidades.add(new Especialidad("Ginecología"));
+        especialidades.add(new Especialidad("Gastroenterología"));
         return especialidades;
     }
 
@@ -136,7 +137,7 @@ public class Principal {
         List<Agenda> agendas = new ArrayList<>();
         agendas.add(new Agenda(1, profesionales.get(0), "Lunes", "09:00", "13:00",
                 "01/01/2026", "31/12/2026", "Activa"));
-        agendas.add(new Agenda(2, profesionales.get(1), "Miercoles", "14:00", "18:00",
+        agendas.add(new Agenda(2, profesionales.get(1), "Miércoles", "14:00", "18:00",
                 "01/01/2026", "31/12/2026", "Activa"));
         return agendas;
     }
@@ -191,16 +192,16 @@ public class Principal {
             return;
         }
         String dni = leerTextoConFormato(vista, "DNI: ", "\\d{7,8}",
-                "El DNI debe contener solo numeros y tener entre 7 y 8 digitos.");
+                "El DNI debe contener solo números y tener entre 7 y 8 dígitos.");
         if (dni == null) {
             return;
         }
-        String telefono = leerTextoConFormato(vista, "Telefono: ", "\\d{8,15}",
-                "El telefono debe contener solo numeros y tener entre 8 y 15 digitos.");
+        String telefono = leerTextoConFormato(vista, "Teléfono: ", "\\d{8,15}",
+                "El teléfono debe contener solo números y tener entre 8 y 15 dígitos.");
         if (telefono == null) {
             return;
         }
-        Integer historiaClinica = leerEnteroCancelable(vista, "Numero de historia clinica: ");
+        Integer historiaClinica = leerEnteroCancelable(vista, "Número de historia clínica: ");
         if (historiaClinica == null) {
             cancelarOperacion(vista);
             return;
@@ -230,7 +231,7 @@ public class Principal {
         Paciente paciente = new Paciente(obtenerSiguienteIdPaciente(pacientes), nombre, apellido,
                 dni, telefono, historiaClinica, obraSocial, email, fechaNacimiento, sexo);
         if (!paciente.validarDatos()) {
-            vista.mostrarMensaje("Los datos del paciente no son validos.");
+            vista.mostrarMensaje("Los datos del paciente no son válidos.");
             return;
         }
 
@@ -250,16 +251,16 @@ public class Principal {
             return;
         }
         String dni = leerTextoConFormato(vista, "DNI: ", "\\d{7,8}",
-                "El DNI debe contener solo numeros y tener entre 7 y 8 digitos.");
+                "El DNI debe contener solo números y tener entre 7 y 8 dígitos.");
         if (dni == null) {
             return;
         }
-        String telefono = leerTextoConFormato(vista, "Telefono: ", "\\d{8,15}",
-                "El telefono debe contener solo numeros y tener entre 8 y 15 digitos.");
+        String telefono = leerTextoConFormato(vista, "Teléfono: ", "\\d{8,15}",
+                "El teléfono debe contener solo números y tener entre 8 y 15 dígitos.");
         if (telefono == null) {
             return;
         }
-        String matricula = leerMatriculaProfesional(vista, "Matricula (numero, se guardara como MP): ");
+        String matricula = leerMatriculaProfesional(vista, "Matrícula (número, se guardará como MP): ");
         if (matricula == null) {
             return;
         }
@@ -277,7 +278,7 @@ public class Principal {
             return;
         }
         if (buscarProfesionalPorMatricula(profesionales, matricula) != null) {
-            vista.mostrarMensaje("Ya existe un profesional con esa matricula.");
+            vista.mostrarMensaje("Ya existe un profesional con esa matrícula.");
             return;
         }
         if (buscarProfesionalPorEmailInstitucional(profesionales, emailInstitucional) != null) {
@@ -288,7 +289,7 @@ public class Principal {
         Profesional profesional = new Profesional(obtenerSiguienteIdProfesional(profesionales),
                 nombre, apellido, dni, telefono, matricula, especialidad, emailInstitucional);
         if (!profesional.validarDatos()) {
-            vista.mostrarMensaje("Los datos del profesional no son validos.");
+            vista.mostrarMensaje("Los datos del profesional no son válidos.");
             return;
         }
 
@@ -347,7 +348,7 @@ public class Principal {
         Agenda agenda = new Agenda(obtenerSiguienteIdAgenda(agendas), profesionalSeleccionado,
                 diaSemana, horaInicio, horaFin, fechaDesde, fechaHasta, "Activa");
         if (!agenda.validarDisponibilidad(agendas)) {
-            vista.mostrarMensaje("La agenda ingresada no es valida, no respeta la vigencia o se superpone con otra existente.");
+            vista.mostrarMensaje("La agenda ingresada no es válida, no respeta la vigencia o se superpone con otra existente.");
             return;
         }
 
@@ -400,7 +401,7 @@ public class Principal {
 
         List<Agenda> agendasDisponibles = filtrarAgendasPorDiaYEspecialidad(agendas, diaSemana, especialidad);
         if (agendasDisponibles.isEmpty()) {
-            vista.mostrarMensaje("No se encontraron agendas para esa especialidad en ese dia.");
+            vista.mostrarMensaje("No se encontraron agendas para esa especialidad en ese día.");
             return;
         }
 
@@ -473,14 +474,14 @@ public class Principal {
         if (fecha == null) {
             return;
         }
-        if (agenda.getProfesional().getEspecialidad().equalsIgnoreCase("Pediatria")
+        if (normalizarClave(agenda.getProfesional().getEspecialidad()).equals("pediatria")
                 && !paciente.esPediatricoEnFecha(fecha)) {
-            vista.mostrarMensaje("El paciente no cumple con la edad requerida para turnos de Pediatria.");
+            vista.mostrarMensaje("El paciente no cumple con la edad requerida para turnos de Pediatría.");
             return;
         }
-        if (agenda.getProfesional().getEspecialidad().equalsIgnoreCase("Ginecologia")
+        if (normalizarClave(agenda.getProfesional().getEspecialidad()).equals("ginecologia")
                 && !paciente.esSexoFemenino()) {
-            vista.mostrarMensaje("Los turnos de Ginecologia solo pueden asignarse a pacientes femeninos.");
+            vista.mostrarMensaje("Los turnos de Ginecología solo pueden asignarse a pacientes femeninos.");
             return;
         }
         String hora = leerHorarioDisponibleTurno(vista, agenda, turnos, fecha);
@@ -579,7 +580,7 @@ public class Principal {
 
         Especialidad especialidad = new Especialidad(obtenerSiguienteIdEspecialidad(especialidades), nombre);
         if (!especialidad.validarNombre()) {
-            vista.mostrarMensaje("La especialidad ingresada no es valida.");
+            vista.mostrarMensaje("La especialidad ingresada no es válida.");
             return;
         }
 
@@ -637,7 +638,7 @@ public class Principal {
             Profesional profesional = agenda.getProfesional();
             if (profesional != null
                     && profesional.getDni().equals(dniProfesional)
-                    && agenda.getDiaSemana().equalsIgnoreCase(diaSemana)) {
+                    && normalizarClave(agenda.getDiaSemana()).equals(normalizarClave(diaSemana))) {
                 return agenda;
             }
         }
@@ -650,8 +651,8 @@ public class Principal {
         for (Agenda agenda : agendas) {
             Profesional profesional = agenda.getProfesional();
             if (profesional != null
-                    && agenda.getDiaSemana().equalsIgnoreCase(diaSemana)
-                    && profesional.getEspecialidad().equalsIgnoreCase(especialidad)) {
+                    && normalizarClave(agenda.getDiaSemana()).equals(normalizarClave(diaSemana))
+                    && normalizarClave(profesional.getEspecialidad()).equals(normalizarClave(especialidad))) {
                 agendasFiltradas.add(agenda);
             }
         }
@@ -663,7 +664,7 @@ public class Principal {
         for (Agenda agenda : agendas) {
             Profesional profesional = agenda.getProfesional();
             if (profesional != null
-                    && profesional.getEspecialidad().equalsIgnoreCase(especialidad)
+                    && normalizarClave(profesional.getEspecialidad()).equals(normalizarClave(especialidad))
                     && agenda.estaActiva()) {
                 agendasFiltradas.add(agenda);
             }
@@ -676,10 +677,10 @@ public class Principal {
         List<Especialidad> especialidadesFiltradas = new ArrayList<>();
         for (Especialidad especialidad : especialidades) {
             String nombre = especialidad.getNombre();
-            if (nombre.equalsIgnoreCase("Pediatria") && !paciente.esPediatricoActual()) {
+            if (normalizarClave(nombre).equals("pediatria") && !paciente.esPediatricoActual()) {
                 continue;
             }
-            if (nombre.equalsIgnoreCase("Ginecologia") && !paciente.esSexoFemenino()) {
+            if (normalizarClave(nombre).equals("ginecologia") && !paciente.esSexoFemenino()) {
                 continue;
             }
             especialidadesFiltradas.add(especialidad);
@@ -708,7 +709,7 @@ public class Principal {
 
             Profesional profesional = turno.getProfesional();
             if (profesional != null
-                    && profesional.getEspecialidad().equalsIgnoreCase(especialidad)) {
+                    && normalizarClave(profesional.getEspecialidad()).equals(normalizarClave(especialidad))) {
                 return true;
             }
         }
@@ -841,7 +842,8 @@ public class Principal {
     }
 
     private static String normalizarClave(String valor) {
-        return valor == null ? "" : valor.trim().toLowerCase();
+        String texto = valor == null ? "" : valor.trim().toLowerCase();
+        return Normalizer.normalize(texto, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
     }
 
     private static int obtenerSiguienteIdAgenda(List<Agenda> agendas) {
@@ -944,7 +946,7 @@ public class Principal {
             if (valor.contains("@") && valor.contains(".")) {
                 return valor;
             }
-            vista.mostrarMensaje("Ingrese un email valido.");
+            vista.mostrarMensaje("Ingrese un email válido.");
         }
     }
 
@@ -958,7 +960,7 @@ public class Principal {
             if (alias.matches("[a-zA-Z0-9._%+-]+")) {
                 return alias + Profesional.getDominioInstitucional();
             }
-            vista.mostrarMensaje("El alias solo puede contener letras, numeros y . _ % + -");
+            vista.mostrarMensaje("El alias solo puede contener letras, números y . _ % + -");
         }
     }
 
@@ -975,7 +977,7 @@ public class Principal {
             if (soloNumero.matches("\\d+")) {
                 return "MP" + soloNumero;
             }
-            vista.mostrarMensaje("La matricula debe ser numerica. Se guardara con el prefijo MP.");
+            vista.mostrarMensaje("La matrícula debe ser numérica. Se guardará con el prefijo MP.");
         }
     }
 
@@ -997,7 +999,7 @@ public class Principal {
                 return especialidades.get(opcion - 1).getNombre();
             }
 
-            vista.mostrarMensaje("Seleccione una opcion valida de especialidad.");
+            vista.mostrarMensaje("Seleccione una opción válida de especialidad.");
         }
     }
 
@@ -1013,12 +1015,12 @@ public class Principal {
 
     private static String leerDiaSemanaAgenda(VistaConsola vista) {
         while (true) {
-            vista.mostrarMensaje("Dias disponibles para agenda:");
+            vista.mostrarMensaje("Días disponibles para agenda:");
             for (int i = 0; i < DIAS_SEMANA_DISPONIBLES.length; i++) {
                 vista.mostrarMensaje((i + 1) + ". " + DIAS_SEMANA_DISPONIBLES[i]);
             }
 
-            Integer opcion = leerEnteroCancelable(vista, "Seleccione un dia: ");
+            Integer opcion = leerEnteroCancelable(vista, "Seleccione un día: ");
             if (opcion == null) {
                 cancelarOperacion(vista);
                 return null;
@@ -1028,7 +1030,7 @@ public class Principal {
                 return DIAS_SEMANA_DISPONIBLES[opcion - 1];
             }
 
-            vista.mostrarMensaje("Seleccione una opcion valida de dia.");
+            vista.mostrarMensaje("Seleccione una opción válida de día.");
         }
     }
 
@@ -1049,7 +1051,7 @@ public class Principal {
                 return SEXOS_DISPONIBLES[opcion - 1];
             }
 
-            vista.mostrarMensaje("Seleccione una opcion valida de sexo.");
+            vista.mostrarMensaje("Seleccione una opción válida de sexo.");
         }
     }
 
@@ -1094,7 +1096,7 @@ public class Principal {
                 return horariosDisponibles.get(opcion - 1);
             }
 
-            vista.mostrarMensaje("Seleccione una opcion valida de la lista.");
+            vista.mostrarMensaje("Seleccione una opción válida de la lista.");
         }
     }
 
@@ -1107,7 +1109,7 @@ public class Principal {
             if (fecha.matches("\\d{2}/\\d{2}/\\d{4}") && esFechaCalendarioValida(fecha)) {
                 return fecha;
             }
-            vista.mostrarMensaje("La fecha debe tener formato dd/mm/aaaa y ser una fecha valida.");
+            vista.mostrarMensaje("La fecha debe tener formato dd/mm/aaaa y ser una fecha válida.");
         }
     }
 
@@ -1124,7 +1126,7 @@ public class Principal {
             if (agenda.contieneFecha(fecha)) {
                 return fecha;
             }
-            vista.mostrarMensaje("La fecha debe coincidir con el dia "
+            vista.mostrarMensaje("La fecha debe coincidir con el día "
                     + agenda.getDiaSemana() + " y estar dentro de la vigencia de la agenda ("
                     + agenda.getFechaDesde() + " a " + agenda.getFechaHasta() + ").");
         }
@@ -1178,7 +1180,7 @@ public class Principal {
             try {
                 return Integer.parseInt(valor);
             } catch (NumberFormatException e) {
-                vista.mostrarMensaje("Ingrese un numero valido o escriba \"" + COMANDO_CANCELAR + "\".");
+                vista.mostrarMensaje("Ingrese un número válido o escriba \"" + COMANDO_CANCELAR + "\".");
             }
         }
     }
@@ -1189,7 +1191,7 @@ public class Principal {
             try {
                 return Integer.parseInt(valor);
             } catch (NumberFormatException e) {
-                vista.mostrarMensaje("Ingrese un numero valido.");
+                vista.mostrarMensaje("Ingrese un número válido.");
             }
         }
     }
@@ -1199,6 +1201,6 @@ public class Principal {
     }
 
     private static void cancelarOperacion(VistaConsola vista) {
-        vista.mostrarMensaje("Operacion cancelada.");
+        vista.mostrarMensaje("Operación cancelada.");
     }
 }

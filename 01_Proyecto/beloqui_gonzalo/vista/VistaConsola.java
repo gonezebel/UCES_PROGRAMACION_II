@@ -16,12 +16,12 @@ public class VistaConsola {
         System.out.println("3. Agregar agenda");
         System.out.println("4. Buscar paciente");
         System.out.println("5. Buscar profesional");
-        System.out.println("6. Buscar agenda por dia, especialidad y profesional");
+        System.out.println("6. Buscar agenda por día, especialidad y profesional");
         System.out.println("7. Asignar turno");
         System.out.println("8. Buscar y cancelar turnos por paciente");
         System.out.println("9. Agregar especialidad");
         System.out.println("0. Salir");
-        System.out.println("Escriba \"cancelar\" dentro de una opcion para volver al menu.");
+        System.out.println("Escriba \"cancelar\" dentro de una opción para volver al menú.");
     }
 
     public void mostrarMensaje(String mensaje) {

@@ -1,23 +1,23 @@
 UNIDAD 4 - ACTIVIDAD 2
 Resumen general de cambios del proyecto
 
-Carrera: Tecnicatura Universitaria en Programacion
-Asignatura: Programacion II
+Carrera: Tecnicatura Universitaria en Programación
+Asignatura: Programación II
 Estudiante: Gonzalo Ezequiel Beloqui
 Docente: Mario Daniel Detke
 
 
-1. Objetivo de la modificacion
+1. Objetivo de la modificación
 
-Se amplio el sistema de turnos medicos desarrollado en Java Swing para cumplir
+Se amplió el sistema de turnos médicos desarrollado en Java Swing para cumplir
 con la consigna de la Unidad 4 Actividad 2. El foco principal fue incorporar
-componentes avanzados de interfaz grafica, reforzar el patron
-Modelo-Vista-Controlador y agregar mejoras de uso en la aplicacion.
+componentes avanzados de interfaz gráfica, reforzar el patrón
+Modelo-Vista-Controlador y agregar mejoras de uso en la aplicación.
 
 
-2. Organizacion del proyecto segun MVC
+2. Organización del proyecto según MVC
 
-El proyecto quedo organizado en cuatro paquetes principales:
+El proyecto quedó organizado en cuatro paquetes principales:
 
 - modelo
 - controlador
@@ -25,24 +25,24 @@ El proyecto quedo organizado en cuatro paquetes principales:
 - principal
 
 El paquete modelo contiene las clases del dominio del sistema, como Paciente,
-Profesional, Especialidad, Agenda, Turno, Persona y Notificacion.
+Profesional, Especialidad, Agenda, Turno, Persona y Notificación.
 
-El paquete controlador contiene la logica de negocio y persistencia. La clase
-principal de este paquete es SistemaTurnos, que administra altas, busquedas,
-asignacion de turnos, anulacion de turnos, carga de datos y guardado de datos.
-Tambien se agrego Autenticador para validar el ingreso al sistema.
+El paquete controlador contiene la lógica de negocio y persistencia. La clase
+principal de este paquete es SistemaTurnos, que administra altas, búsquedas,
+asignación de turnos, anulación de turnos, carga de datos y guardado de datos.
+También se agregó Autenticador para validar el ingreso al sistema.
 
-El paquete vista contiene las interfaces de usuario. Ahi se ubican la ventana
-Swing PrincipalApp, el dialogo LoginDialog, la vista de consola y la clase
+El paquete vista contiene las interfaces de usuario. Ahí se ubican la ventana
+Swing PrincipalApp, el diálogo LoginDialog, la vista de consola y la clase
 IconoHospital.
 
-El paquete principal contiene los puntos de entrada de la aplicacion. Desde ahi
-se inicia la version grafica del sistema.
+El paquete principal contiene los puntos de entrada de la aplicación. Desde ahí
+se inicia la versión gráfica del sistema.
 
 
 3. Pantalla de login
 
-Se agrego una pantalla de login antes de mostrar la ventana principal. El
+Se agregó una pantalla de login antes de mostrar la ventana principal. El
 objetivo es simular un ingreso administrativo al sistema de turnos.
 
 Credenciales configuradas para la entrega:
@@ -50,33 +50,33 @@ Credenciales configuradas para la entrega:
 - Usuario: admin
 - Clave: admin123
 
-La pantalla de login utiliza campos de texto y contrasenia, botones de ingreso y
-cancelacion, y un mensaje de estado cuando las credenciales no son correctas.
-La validacion no queda en la vista, sino en el controlador Autenticador.
+La pantalla de login utiliza campos de texto y contraseña, botones de ingreso y
+cancelación, y un mensaje de estado cuando las credenciales no son correctas.
+La validación no queda en la vista, sino en el controlador Autenticador.
 
 
-4. Icono y logo del sistema
+4. Ícono y logo del sistema
 
-Se incorporo el archivo icono_hospital.png como imagen institucional del
-sistema. Este recurso reemplaza el icono generico de Java y le da a la
-aplicacion una identidad visual relacionada con el sistema de salud.
+Se incorporó el archivo icono_hospital.png como imagen institucional del
+sistema. Este recurso reemplaza el ícono genérico de Java y le da a la
+aplicación una identidad visual relacionada con el sistema de salud.
 
-El icono se encuentra en:
+El ícono se encuentra en:
 
 - 02_imagenes/icono_hospital.png
 - 01_Proyecto/beloqui_gonzalo/05_recursos/icono_hospital.png
 
-El segundo archivo se copio dentro del proyecto para que tambien quede incluido
+El segundo archivo se copió dentro del proyecto para que también quede incluido
 en el comprimido de entrega.
 
-El icono se utiliza en:
+El ícono se utiliza en:
 
 - El encabezado de la pantalla de login.
-- El icono de la ventana principal.
+- El ícono de la ventana principal.
 
 La clase IconoHospital se encarga de cargar la imagen desde el archivo PNG. Si
-la aplicacion se ejecuta desde el workspace, toma el archivo de 02_imagenes. Si
-se ejecuta desde el proyecto comprimido, tambien puede tomarlo desde
+la aplicación se ejecuta desde el workspace, toma el archivo de 02_imagenes. Si
+se ejecuta desde el proyecto comprimido, también puede tomarlo desde
 05_recursos, porque esa carpeta queda incluida dentro de la entrega.
 
 
@@ -93,18 +93,18 @@ usuario administrativo:
 - JList para seleccionar horarios disponibles.
 - JTable para mostrar pacientes, profesionales, especialidades, agendas y
   turnos.
-- JMenuBar, JMenu y JMenuItem para opciones de archivo y navegacion.
-- JToolBar para accesos rapidos.
+- JMenuBar, JMenu y JMenuItem para opciones de archivo y navegación.
+- JToolBar para accesos rápidos.
 - JComboBox para seleccionar especialidades, profesionales, agendas y fechas.
 
 
 6. Autoguardado y formularios pendientes
 
-Las acciones principales del sistema guardan automaticamente los datos en los
+Las acciones principales del sistema guardan automáticamente los datos en los
 archivos correspondientes. Esto evita que el usuario administrativo olvide
-guardar luego de registrar una operacion. Por este motivo, cuando el usuario
-presiona un boton de accion como Registrar, Asignar turno o Anular turno, la
-operacion no queda solamente en memoria: se confirma y se persiste en el archivo
+guardar luego de registrar una operación. Por este motivo, cuando el usuario
+presiona un botón de acción como Registrar, Asignar turno o Anular turno, la
+operación no queda solamente en memoria: se confirma y se persiste en el archivo
 correspondiente.
 
 Las acciones que autoguardan son:
@@ -125,34 +125,34 @@ resultado en los archivos:
 - agendas.xml
 - turnos.xml
 
-Tambien se conserva una opcion manual Guardar datos en el menu Archivo y en la
-barra superior. Esta opcion permite forzar el guardado completo del estado
+También se conserva una opción manual Guardar datos en el menú Archivo y en la
+barra superior. Esta opción permite forzar el guardado completo del estado
 actual del sistema, aunque las operaciones principales ya se guardan
-automaticamente.
+automáticamente.
 
 La consulta al cerrar ya no se usa para datos registrados, porque esos datos se
-guardan automaticamente. La advertencia aparece solamente si hay formularios con
-campos cargados que todavia no fueron registrados. En ese caso, al cerrar o
+guardan automáticamente. La advertencia aparece solamente si hay formularios con
+campos cargados que todavía no fueron registrados. En ese caso, al cerrar o
 recargar datos, el sistema informa que esos datos escritos en el formulario se
-perderan si el usuario continua.
+perderán si el usuario continúa.
 
-Ejemplo: si el usuario empezo a cargar un paciente pero no presiono Registrar
-paciente, al intentar cerrar la aplicacion se muestra una advertencia. En cambio,
-si el usuario ya presiono Registrar paciente, ese paciente ya fue guardado en el
+Ejemplo: si el usuario empezó a cargar un paciente pero no presionó Registrar
+paciente, al intentar cerrar la aplicación se muestra una advertencia. En cambio,
+si el usuario ya presionó Registrar paciente, ese paciente ya fue guardado en el
 archivo correspondiente.
 
 
 7. Funcionalidades disponibles
 
-La aplicacion permite realizar las siguientes operaciones:
+La aplicación permite realizar las siguientes operaciones:
 
 - Registrar pacientes.
 - Buscar pacientes por DNI.
 - Registrar profesionales.
 - Buscar profesionales por DNI.
 - Registrar especialidades.
-- Registrar agendas de atencion.
-- Consultar agendas por dia y especialidad.
+- Registrar agendas de atención.
+- Consultar agendas por día y especialidad.
 - Buscar paciente para asignar turno.
 - Seleccionar especialidad, profesional, agenda, fecha y horario disponible.
 - Asignar turnos.
@@ -177,25 +177,25 @@ Archivos modificados:
 
 - 01_Proyecto/beloqui_gonzalo/vista/PrincipalApp.java
 - 01_Proyecto/beloqui_gonzalo/controlador/SistemaTurnos.java
-- 00_Documentos_Desarrollo/06_Actividad_Dialogos_Swing_MVC.md
+- 00_Documentos_Desarrollo/06_Actividad_Dialogos_Swing.md
 
-Tambien se actualizo el comprimido:
+También se actualizó el comprimido:
 
 - 01_Proyecto/beloqui_gonzalo_U4_Act2.zip
 
 
-9. Compilacion
+9. Compilación
 
-El proyecto fue compilado correctamente con javac usando codificacion UTF-8. La
-salida compilada se genero en:
+El proyecto fue compilado correctamente con javac usando codificación UTF-8. La
+salida compilada se generó en:
 
 - 01_Proyecto/beloqui_gonzalo/out
 
 
-10. Conclusion
+10. Conclusión
 
-Con estos cambios, el sistema incorpora una interfaz mas completa y clara para
-un empleado administrativo. Se agregaron login, iconografia institucional,
-autoguardado en cada accion confirmada, advertencia por formularios incompletos
-y componentes Swing avanzados, manteniendo la separacion entre modelo, vista,
+Con estos cambios, el sistema incorpora una interfaz más completa y clara para
+un empleado administrativo. Se agregaron login, iconografía institucional,
+autoguardado en cada acción confirmada, advertencia por formularios incompletos
+y componentes Swing avanzados, manteniendo la separación entre modelo, vista,
 controlador y principal.

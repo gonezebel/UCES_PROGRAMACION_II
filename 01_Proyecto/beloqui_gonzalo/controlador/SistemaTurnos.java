@@ -5,6 +5,7 @@ import com.beloqui.modelo.Especialidad;
 import com.beloqui.modelo.Paciente;
 import com.beloqui.modelo.Profesional;
 import com.beloqui.modelo.Turno;
+import java.text.Normalizer;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Controlador de aplicacion que concentra las operaciones del sistema de turnos.
+ * Controlador de aplicación que concentra las operaciones del sistema de turnos.
  */
 public class SistemaTurnos {
     private static final String CARPETA_DATOS = "01_Proyecto/beloqui_gonzalo/04_datos/";
@@ -111,7 +112,7 @@ public class SistemaTurnos {
                 sexo);
         if (!paciente.validarDatos()) {
             throw new OperacionInvalidaException(
-                    "Los datos del paciente no son validos. Revise DNI, telefono, email, fecha y sexo.");
+                    "Los datos del paciente no son válidos. Revise DNI, teléfono, email, fecha y sexo.");
         }
 
         this.pacientes.add(paciente);
@@ -131,7 +132,7 @@ public class SistemaTurnos {
             throw new OperacionInvalidaException("Ya existe un profesional con ese DNI.");
         }
         if (buscarProfesionalPorMatricula(matricula) != null) {
-            throw new OperacionInvalidaException("Ya existe un profesional con esa matricula.");
+            throw new OperacionInvalidaException("Ya existe un profesional con esa matrícula.");
         }
         if (buscarProfesionalPorEmail(emailInstitucional) != null) {
             throw new OperacionInvalidaException("Ya existe un profesional con ese email institucional.");
@@ -151,7 +152,7 @@ public class SistemaTurnos {
                 emailInstitucional);
         if (!profesional.validarDatos()) {
             throw new OperacionInvalidaException(
-                    "Los datos del profesional no son validos. La matricula debe ser numerica y el email debe usar @centrosalud.com.");
+                    "Los datos del profesional no son válidos. La matrícula debe ser numérica y el email debe usar @centrosalud.com.");
         }
 
         this.profesionales.add(profesional);
@@ -183,7 +184,7 @@ public class SistemaTurnos {
             String fechaHasta) throws OperacionInvalidaException {
         Profesional profesional = buscarProfesionalPorId(idProfesional);
         if (profesional == null) {
-            throw new OperacionInvalidaException("Seleccione un profesional valido.");
+            throw new OperacionInvalidaException("Seleccione un profesional válido.");
         }
 
         Agenda agenda = new Agenda(
@@ -197,7 +198,7 @@ public class SistemaTurnos {
                 "Activa");
         if (!agenda.validarDisponibilidad(this.agendas)) {
             throw new OperacionInvalidaException(
-                    "La agenda no es valida, no respeta la vigencia, el horario o se superpone con otra.");
+                    "La agenda no es válida, no respeta la vigencia, el horario o se superpone con otra.");
         }
 
         this.agendas.add(agenda);
@@ -210,26 +211,26 @@ public class SistemaTurnos {
         Paciente paciente = buscarPacientePorId(idPaciente);
         Agenda agenda = buscarAgendaPorId(idAgenda);
         if (paciente == null) {
-            throw new OperacionInvalidaException("Seleccione un paciente valido.");
+            throw new OperacionInvalidaException("Seleccione un paciente válido.");
         }
         if (agenda == null || agenda.getProfesional() == null) {
-            throw new OperacionInvalidaException("Seleccione una agenda valida.");
+            throw new OperacionInvalidaException("Seleccione una agenda válida.");
         }
         if (!agenda.estaActiva()) {
-            throw new OperacionInvalidaException("La agenda seleccionada no esta activa.");
+            throw new OperacionInvalidaException("La agenda seleccionada no está activa.");
         }
         if (!esFechaFuturaOVigente(fecha)) {
             throw new OperacionInvalidaException("La fecha del turno debe ser hoy o futura.");
         }
         if (!agenda.contieneFecha(fecha)) {
             throw new OperacionInvalidaException(
-                    "La fecha no coincide con el dia o la vigencia de la agenda.");
+                    "La fecha no coincide con el día o la vigencia de la agenda.");
         }
         if (!agenda.contieneHorario(hora)) {
             throw new OperacionInvalidaException("El horario no pertenece a la agenda.");
         }
         if (existeTurnoEnHorario(idAgenda, fecha, hora)) {
-            throw new OperacionInvalidaException("El horario seleccionado ya esta ocupado.");
+            throw new OperacionInvalidaException("El horario seleccionado ya está ocupado.");
         }
         if (existeTurnoDeEspecialidadParaPaciente(paciente, agenda.getProfesional().getEspecialidad())) {
             throw new OperacionInvalidaException(
@@ -257,10 +258,10 @@ public class SistemaTurnos {
     public void anularTurno(int idTurno) throws OperacionInvalidaException {
         Turno turno = buscarTurnoPorId(idTurno);
         if (turno == null) {
-            throw new OperacionInvalidaException("Seleccione un turno valido.");
+            throw new OperacionInvalidaException("Seleccione un turno válido.");
         }
         if (!esTurnoCancelable(turno)) {
-            throw new OperacionInvalidaException("El turno ya esta anulado o no se puede cancelar.");
+            throw new OperacionInvalidaException("El turno ya está anulado o no se puede cancelar.");
         }
 
         turno.anularTurno();
@@ -309,11 +310,11 @@ public class SistemaTurnos {
             Profesional profesional = agenda.getProfesional();
             boolean coincideDia = diaSemana == null
                     || diaSemana.trim().isEmpty()
-                    || agenda.getDiaSemana().equalsIgnoreCase(diaSemana);
+                    || normalizarClave(agenda.getDiaSemana()).equals(normalizarClave(diaSemana));
             boolean coincideEspecialidad = especialidad == null
                     || especialidad.trim().isEmpty()
                     || (profesional != null
-                    && profesional.getEspecialidad().equalsIgnoreCase(especialidad));
+                    && normalizarClave(profesional.getEspecialidad()).equals(normalizarClave(especialidad)));
             if (coincideDia && coincideEspecialidad) {
                 resultado.add(agenda);
             }
@@ -346,7 +347,7 @@ public class SistemaTurnos {
         }
 
         for (Profesional profesional : this.profesionales) {
-            if (profesional.getEspecialidad().equalsIgnoreCase(normalizar(especialidad))
+            if (normalizarClave(profesional.getEspecialidad()).equals(normalizarClave(especialidad))
                     && tieneAgendaActiva(profesional.getIdProfesional())) {
                 resultado.add(profesional);
             }
@@ -360,7 +361,7 @@ public class SistemaTurnos {
             Profesional profesional = agenda.getProfesional();
             if (profesional != null
                     && profesional.getIdProfesional() == idProfesional
-                    && profesional.getEspecialidad().equalsIgnoreCase(normalizar(especialidad))
+                    && normalizarClave(profesional.getEspecialidad()).equals(normalizarClave(especialidad))
                     && agenda.estaActiva()
                     && tieneFechasDisponibles(agenda)) {
                 resultado.add(agenda);
@@ -450,11 +451,11 @@ public class SistemaTurnos {
         if (paciente == null) {
             return false;
         }
-        String nombre = normalizar(especialidad);
-        if (nombre.equalsIgnoreCase("Pediatria")) {
+        String nombre = normalizarClave(especialidad);
+        if (nombre.equals("pediatria")) {
             return paciente.esPediatricoActual();
         }
-        if (nombre.equalsIgnoreCase("Ginecologia")) {
+        if (nombre.equals("ginecologia")) {
             return paciente.esSexoFemenino();
         }
         return !nombre.isEmpty();
@@ -484,7 +485,7 @@ public class SistemaTurnos {
 
     private Especialidad buscarEspecialidadPorNombre(String nombre) {
         for (Especialidad especialidad : this.especialidades) {
-            if (especialidad.getNombre().equalsIgnoreCase(normalizar(nombre))) {
+            if (normalizarClave(especialidad.getNombre()).equals(normalizarClave(nombre))) {
                 return especialidad;
             }
         }
@@ -531,7 +532,7 @@ public class SistemaTurnos {
             if (turno.getPaciente() != null
                     && turno.getPaciente().getIdPaciente() == paciente.getIdPaciente()
                     && turno.getProfesional() != null
-                    && turno.getProfesional().getEspecialidad().equalsIgnoreCase(especialidad)
+                    && normalizarClave(turno.getProfesional().getEspecialidad()).equals(normalizarClave(especialidad))
                     && !turno.getEstado().equalsIgnoreCase("Anulado")
                     && esTurnoFuturoOVigente(turno)) {
                 return true;
@@ -621,13 +622,18 @@ public class SistemaTurnos {
         return valor == null ? "" : valor.trim();
     }
 
+    private String normalizarClave(String valor) {
+        String texto = normalizar(valor).toLowerCase();
+        return Normalizer.normalize(texto, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
+    }
+
     private List<Especialidad> crearEspecialidadesIniciales() {
         List<Especialidad> resultado = new ArrayList<>();
-        resultado.add(new Especialidad("Clinica medica"));
-        resultado.add(new Especialidad("Pediatria"));
-        resultado.add(new Especialidad("Cardiologia"));
-        resultado.add(new Especialidad("Ginecologia"));
-        resultado.add(new Especialidad("Gastroenterologia"));
+        resultado.add(new Especialidad("Clínica médica"));
+        resultado.add(new Especialidad("Pediatría"));
+        resultado.add(new Especialidad("Cardiología"));
+        resultado.add(new Especialidad("Ginecología"));
+        resultado.add(new Especialidad("Gastroenterología"));
         return resultado;
     }
 }

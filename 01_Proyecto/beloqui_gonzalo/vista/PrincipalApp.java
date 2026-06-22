@@ -46,14 +46,14 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Aplicacion interna para que los empleados administren el sistema de turnos.
+ * Aplicación interna para que los empleados administren el sistema de turnos.
  */
 public class PrincipalApp extends JFrame {
     private static final long serialVersionUID = 1L;
     private static final Color COLOR_PRINCIPAL = new Color(32, 89, 138);
     private static final Color COLOR_FONDO = new Color(245, 248, 250);
     private static final String[] DIAS = {
-        "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"
+        "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"
     };
 
     private final SistemaTurnos sistema = new SistemaTurnos();
@@ -78,7 +78,7 @@ public class PrincipalApp extends JFrame {
     private final ButtonGroup grupoSexoPaciente = new ButtonGroup();
     private final JTextField pacienteBuscarDni = new JTextField(12);
     private final DefaultTableModel modeloPacientes =
-            crearModelo("ID", "Nombre", "DNI", "Telefono", "Historia clinica", "Obra social");
+            crearModelo("ID", "Nombre", "DNI", "Teléfono", "Historia clínica", "Obra social");
     private final JTable tablaPacientes = new JTable(modeloPacientes);
 
     private final JTextField profesionalNombre = new JTextField(18);
@@ -90,7 +90,7 @@ public class PrincipalApp extends JFrame {
     private final JComboBox<String> profesionalEspecialidad = new JComboBox<>();
     private final JTextField profesionalBuscarDni = new JTextField(12);
     private final DefaultTableModel modeloProfesionales =
-            crearModelo("ID", "Nombre", "DNI", "Matricula", "Especialidad", "Email");
+            crearModelo("ID", "Nombre", "DNI", "Matrícula", "Especialidad", "Email");
     private final JTable tablaProfesionales = new JTable(modeloProfesionales);
 
     private final JTextField especialidadNombre = new JTextField(22);
@@ -107,7 +107,7 @@ public class PrincipalApp extends JFrame {
     private final JComboBox<String> agendaBuscarEspecialidad = new JComboBox<>();
     private final JCheckBox agendaSoloActivas = new JCheckBox("Mostrar solo agendas activas", true);
     private final DefaultTableModel modeloAgendas =
-            crearModelo("ID", "Profesional", "Especialidad", "Dia", "Horario", "Vigencia", "Estado");
+            crearModelo("ID", "Profesional", "Especialidad", "Día", "Horario", "Vigencia", "Estado");
     private final JTable tablaAgendas = new JTable(modeloAgendas);
 
     private final JTextField turnoPacienteDniAsignacion = new JTextField(12);
@@ -122,7 +122,6 @@ public class PrincipalApp extends JFrame {
             crearModelo("ID", "Paciente", "Profesional", "Especialidad", "Fecha", "Hora", "Estado");
     private final JTable tablaTurnos = new JTable(modeloTurnos);
     private Paciente turnoPacienteActual;
-    private boolean cambiosPendientes;
 
     public PrincipalApp() {
         configurarVentana();
@@ -272,11 +271,11 @@ public class PrincipalApp extends JFrame {
         panel.setBackground(COLOR_PRINCIPAL);
         panel.setBorder(BorderFactory.createEmptyBorder(10, 16, 10, 16));
 
-        JLabel titulo = new JLabel("Sistema interno de gestion de turnos");
+        JLabel titulo = new JLabel("Sistema interno de gestión de turnos");
         titulo.setForeground(Color.WHITE);
         titulo.setFont(titulo.getFont().deriveFont(Font.BOLD, 22f));
         JLabel subtitulo = new JLabel(
-                "Administracion de pacientes, profesionales, especialidades, agendas y turnos.");
+                "Administración de pacientes, profesionales, especialidades, agendas y turnos.");
         subtitulo.setForeground(new Color(225, 237, 247));
 
         panel.add(titulo);
@@ -292,8 +291,8 @@ public class PrincipalApp extends JFrame {
         agregarFila(formulario, c, 0, "Nombre:", pacienteNombre);
         agregarFila(formulario, c, 1, "Apellido:", pacienteApellido);
         agregarFila(formulario, c, 2, "DNI:", pacienteDni);
-        agregarFila(formulario, c, 3, "Telefono:", pacienteTelefono);
-        agregarFila(formulario, c, 4, "Historia clinica:", pacienteHistoria);
+        agregarFila(formulario, c, 3, "Teléfono:", pacienteTelefono);
+        agregarFila(formulario, c, 4, "Historia clínica:", pacienteHistoria);
         agregarFila(formulario, c, 5, "Obra social:", pacienteObraSocial);
         agregarFila(formulario, c, 6, "Email:", pacienteEmail);
         agregarFila(formulario, c, 7, "Fecha nacimiento:", pacienteNacimiento);
@@ -337,8 +336,8 @@ public class PrincipalApp extends JFrame {
         agregarFila(formulario, c, 0, "Nombre:", profesionalNombre);
         agregarFila(formulario, c, 1, "Apellido:", profesionalApellido);
         agregarFila(formulario, c, 2, "DNI:", profesionalDni);
-        agregarFila(formulario, c, 3, "Telefono:", profesionalTelefono);
-        agregarFila(formulario, c, 4, "Matricula:", profesionalMatricula);
+        agregarFila(formulario, c, 3, "Teléfono:", profesionalTelefono);
+        agregarFila(formulario, c, 4, "Matrícula:", profesionalMatricula);
         agregarFila(formulario, c, 5, "Especialidad:", profesionalEspecialidad);
         agregarFila(formulario, c, 6, "Email institucional:", profesionalEmail);
 
@@ -387,7 +386,7 @@ public class PrincipalApp extends JFrame {
         JPanel formulario = crearPanelFormulario("Alta de agenda");
         GridBagConstraints c = restricciones();
         agregarFila(formulario, c, 0, "Profesional:", agendaProfesional);
-        agregarFila(formulario, c, 1, "Dia:", agendaDia);
+        agregarFila(formulario, c, 1, "Día:", agendaDia);
         agregarFila(formulario, c, 2, "Hora inicio:", agendaHoraInicio);
         agregarFila(formulario, c, 3, "Hora fin:", agendaHoraFin);
         agregarFila(formulario, c, 4, "Fecha desde:", agendaFechaDesde);
@@ -400,7 +399,7 @@ public class PrincipalApp extends JFrame {
 
         JPanel listado = crearPanelListado("Consulta de agendas");
         JPanel filtros = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        filtros.add(new JLabel("Dia:"));
+        filtros.add(new JLabel("Día:"));
         filtros.add(agendaBuscarDia);
         filtros.add(new JLabel("Especialidad:"));
         filtros.add(agendaBuscarEspecialidad);
@@ -418,7 +417,7 @@ public class PrincipalApp extends JFrame {
 
     private JPanel crearPestanaTurnos() {
         JPanel panel = crearPanelPestana();
-        JPanel formulario = crearPanelFormulario("Asignacion de turno");
+        JPanel formulario = crearPanelFormulario("Asignación de turno");
         GridBagConstraints c = restricciones();
         JPanel buscarPaciente = new JPanel(new BorderLayout(5, 0));
         buscarPaciente.setOpaque(false);
@@ -451,7 +450,7 @@ public class PrincipalApp extends JFrame {
         asignar.addActionListener(evento -> asignarTurno());
         agregarBotones(formulario, c, 7, consultar, asignar);
 
-        JPanel listado = crearPanelListado("Busqueda y anulacion de turnos");
+        JPanel listado = crearPanelListado("Búsqueda y anulación de turnos");
         JPanel busqueda = new JPanel(new FlowLayout(FlowLayout.LEFT));
         busqueda.add(new JLabel("DNI del paciente:"));
         busqueda.add(turnoBuscarDni);
@@ -547,7 +546,7 @@ public class PrincipalApp extends JFrame {
             limpiarPaciente();
             recargarInterfaz();
         } catch (NumberFormatException e) {
-            mostrarError("La historia clinica debe ser un numero entero.");
+            mostrarError("La historia clínica debe ser un número entero.");
         } catch (OperacionInvalidaException e) {
             mostrarError(e.getMessage());
         }
@@ -556,7 +555,7 @@ public class PrincipalApp extends JFrame {
     private void buscarPaciente() {
         Paciente paciente = sistema.buscarPacientePorDni(pacienteBuscarDni.getText());
         if (paciente == null) {
-            mostrarError("No se encontro un paciente con ese DNI.");
+            mostrarError("No se encontró un paciente con ese DNI.");
             return;
         }
         actualizarTablaPacientes(java.util.Arrays.asList(paciente));
@@ -584,7 +583,7 @@ public class PrincipalApp extends JFrame {
     private void buscarProfesional() {
         Profesional profesional = sistema.buscarProfesionalPorDni(profesionalBuscarDni.getText());
         if (profesional == null) {
-            mostrarError("No se encontro un profesional con ese DNI.");
+            mostrarError("No se encontró un profesional con ese DNI.");
             return;
         }
         actualizarTablaProfesionales(java.util.Arrays.asList(profesional));
@@ -663,7 +662,7 @@ public class PrincipalApp extends JFrame {
             turnoEspecialidad.addItem(especialidad);
         }
         if (especialidades.isEmpty()) {
-            informar("El paciente no tiene especialidades disponibles segun sus restricciones o turnos vigentes.");
+            informar("El paciente no tiene especialidades disponibles según sus restricciones o turnos vigentes.");
         }
     }
 
@@ -742,7 +741,7 @@ public class PrincipalApp extends JFrame {
         if (horarios.isEmpty()) {
             informar("No hay horarios disponibles para la fecha seleccionada.");
         } else {
-            informar("Seleccione un horario y confirme la asignacion.");
+            informar("Seleccione un horario y confirme la asignación.");
         }
     }
 
@@ -789,7 +788,7 @@ public class PrincipalApp extends JFrame {
         int respuesta = JOptionPane.showConfirmDialog(
                 this,
                 "¿Desea anular el turno " + idTurno + "?",
-                "Confirmar anulacion",
+                "Confirmar anulación",
                 JOptionPane.YES_NO_OPTION);
         if (respuesta != JOptionPane.YES_OPTION) {
             return;
@@ -1039,8 +1038,8 @@ public class PrincipalApp extends JFrame {
     private boolean confirmarDescarteFormularios(String accion) {
         int respuesta = JOptionPane.showConfirmDialog(
                 this,
-                "Hay datos cargados en formularios que todavia no fueron registrados. "
-                        + "Si continua, se perderan al " + accion + ". ¿Desea continuar?",
+                "Hay datos cargados en formularios que todavía no fueron registrados. "
+                        + "Si continúa, se perderán al " + accion + ". ¿Desea continuar?",
                 "Formularios sin registrar",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE);
@@ -1066,77 +1065,14 @@ public class PrincipalApp extends JFrame {
         return false;
     }
 
-    private void salirConControl() {
-        if (!this.cambiosPendientes) {
-            confirmarSalidaSinCambios();
-            return;
-        }
-
-        Object[] opciones = {"Guardar y salir", "Salir sin guardar", "Cancelar"};
-        int respuesta = JOptionPane.showOptionDialog(
-                this,
-                "Hay cambios no guardados. ¿Desea guardarlos antes de salir?",
-                "Cambios pendientes",
-                JOptionPane.YES_NO_CANCEL_OPTION,
-                JOptionPane.WARNING_MESSAGE,
-                null,
-                opciones,
-                opciones[0]);
-        if (respuesta == 0) {
-            sistema.guardarDatos();
-            this.cambiosPendientes = false;
-            dispose();
-        } else if (respuesta == 1) {
-            dispose();
-        }
-    }
-
-    private void confirmarSalidaSinCambios() {
-        int respuesta = JOptionPane.showConfirmDialog(
-                this,
-                "¿Desea salir del sistema?",
-                "Confirmar salida",
-                JOptionPane.YES_NO_OPTION);
-        if (respuesta == JOptionPane.YES_OPTION) {
-            dispose();
-        }
-    }
-
-    private boolean confirmarDescarteCambios(String accion) {
-        int respuesta = JOptionPane.showConfirmDialog(
-                this,
-                "Hay cambios no guardados. Si continua, se perderan al "
-                        + accion + ". ¿Desea continuar?",
-                "Cambios pendientes",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE);
-        return respuesta == JOptionPane.YES_OPTION;
-    }
-
-    private void marcarCambiosPendientes() {
-        this.cambiosPendientes = true;
-        informar("Hay cambios pendientes de guardar.");
-    }
-
-    private void salir() {
-        int respuesta = JOptionPane.showConfirmDialog(
-                this,
-                "¿Desea salir del sistema?",
-                "Confirmar salida",
-                JOptionPane.YES_NO_OPTION);
-        if (respuesta == JOptionPane.YES_OPTION) {
-            dispose();
-        }
-    }
-
     private void mostrarExito(String mensaje) {
         informar(mensaje);
-        JOptionPane.showMessageDialog(this, mensaje, "Operacion completada", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, mensaje, "Operación completada", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void mostrarError(String mensaje) {
-        informar("Revise la operacion.");
-        JOptionPane.showMessageDialog(this, mensaje, "Operacion no valida", JOptionPane.ERROR_MESSAGE);
+        informar("Revise la operación.");
+        JOptionPane.showMessageDialog(this, mensaje, "Operación no válida", JOptionPane.ERROR_MESSAGE);
     }
 
     private void informar(String mensaje) {

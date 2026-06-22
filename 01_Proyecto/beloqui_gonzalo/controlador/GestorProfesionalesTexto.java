@@ -5,9 +5,12 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +23,8 @@ public class GestorProfesionalesTexto {
 
     public void guardarProfesionales(List<Profesional> profesionales) {
         crearCarpetaDatos();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.nombreArchivo))) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(this.nombreArchivo), StandardCharsets.UTF_8))) {
             for (Profesional profesional : profesionales) {
                 bw.write(profesional.toString());
                 bw.newLine();
@@ -32,7 +36,8 @@ public class GestorProfesionalesTexto {
 
     public void agregarProfesional(Profesional profesional) {
         crearCarpetaDatos();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.nombreArchivo, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(this.nombreArchivo, true), StandardCharsets.UTF_8))) {
             bw.write(profesional.toString());
             bw.newLine();
         } catch (IOException e) {
@@ -43,7 +48,8 @@ public class GestorProfesionalesTexto {
     public List<Profesional> leerProfesionales() {
         List<Profesional> profesionales = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(this.nombreArchivo))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(
+                new FileInputStream(this.nombreArchivo), StandardCharsets.UTF_8))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 profesionales.add(Profesional.fromString(linea));

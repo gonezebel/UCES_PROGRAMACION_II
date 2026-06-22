@@ -1,8 +1,8 @@
 ![Logo UCES](../02_imagenes/logo_uces.svg)
 
-**Carrera:** Tecnicatura Universitaria en Programacion
+**Carrera:** Tecnicatura Universitaria en Programación
 
-**Asignatura:** Programacion II
+**Asignatura:** Programación II
 
 **Nombre del/a docente:** Mario Daniel Detke
 
@@ -13,13 +13,13 @@
 
 ## Unidad 4 - Actividad 2
 
-### Introduccion
+### Introducción
 
-En esta actividad se amplio el sistema de turnos medicos desarrollado en la
+En esta actividad se amplió el sistema de turnos médicos desarrollado en la
 actividad anterior, incorporando componentes avanzados de Swing y reforzando la
-separacion por patron Modelo-Vista-Controlador.
+separación por patrón Modelo-Vista-Controlador.
 
-El proyecto quedo agrupado en cuatro paquetes principales:
+El proyecto quedó agrupado en cuatro paquetes principales:
 
 ```
 - modelo
@@ -28,101 +28,111 @@ El proyecto quedo agrupado en cuatro paquetes principales:
 - principal
 ```
 
-La clase de inicio de la aplicacion grafica se encuentra en
+La clase de inicio de la aplicación gráfica se encuentra en
 [PrincipalApp](../01_Proyecto/beloqui_gonzalo/principal/PrincipalApp.java) y
-delega la ejecucion en la ventana Swing ubicada en
+delega la ejecución en la ventana Swing ubicada en
 [vista/PrincipalApp](../01_Proyecto/beloqui_gonzalo/vista/PrincipalApp.java).
 
-### Aplicacion del patron MVC
+### Aplicación del patrón MVC
 
 **Modelo**
 
 El paquete [modelo](../01_Proyecto/beloqui_gonzalo/modelo) contiene las clases
 propias del dominio: pacientes, profesionales, especialidades, agendas, turnos,
 notificaciones y personas. Estas clases concentran datos y reglas propias de
-cada entidad, como validacion de DNI, telefono, fecha de nacimiento, matricula,
+cada entidad, como validación de DNI, teléfono, fecha de nacimiento, matrícula,
 vigencia de agenda y restricciones de turnos.
 
 **Vista**
 
 El paquete [vista](../01_Proyecto/beloqui_gonzalo/vista) contiene la interfaz
-grafica de Swing y la vista de consola. La clase `PrincipalApp` arma la ventana,
-los formularios, tablas, listas, menus, botones y cuadros de dialogo. Su
-responsabilidad es mostrar informacion, capturar datos del usuario y delegar la
-operacion al controlador.
+gráfica de Swing y la vista de consola. La clase `PrincipalApp` arma la ventana,
+los formularios, tablas, listas, menús, botones y cuadros de diálogo. Su
+responsabilidad es mostrar información, capturar datos del usuario y delegar la
+operación al controlador.
 
-Tambien se agrego `LoginDialog` como pantalla inicial de acceso al sistema.
+También se agregó `LoginDialog` como pantalla inicial de acceso al sistema.
 
 **Controlador**
 
 El paquete [controlador](../01_Proyecto/beloqui_gonzalo/controlador) contiene
 `SistemaTurnos` y los gestores de persistencia. `SistemaTurnos` concentra las
-operaciones del sistema: alta de pacientes, alta de profesionales, gestion de
-especialidades, creacion de agendas, asignacion de turnos, anulacion de turnos,
-busquedas y persistencia.
+operaciones del sistema: alta de pacientes, alta de profesionales, gestión de
+especialidades, creación de agendas, asignación de turnos, anulación de turnos,
+búsquedas y persistencia.
 
-Tambien se incorporo `Autenticador`, que valida las credenciales de ingreso sin
-mezclar esa regla con la construccion visual de Swing.
+También se incorporó `Autenticador`, que valida las credenciales de ingreso sin
+mezclar esa regla con la construcción visual de Swing.
 
 **Principal**
 
 El paquete [principal](../01_Proyecto/beloqui_gonzalo/principal) contiene los
-puntos de entrada del sistema. De esta forma, el arranque de la aplicacion no
-queda mezclado con la construccion visual ni con la logica de negocio.
+puntos de entrada del sistema. De esta forma, el arranque de la aplicación no
+queda mezclado con la construcción visual ni con la lógica de negocio.
 
 ### Componentes Swing incorporados
 
-La interfaz incorpora cajas de dialogo, casillas de verificacion, botones de
-opcion y listas para resolver operaciones concretas del sistema.
+La interfaz incorpora cajas de diálogo, casillas de verificación, botones de
+opción y listas para resolver operaciones concretas del sistema.
 
 **Pantalla de login**
 
-Antes de mostrar la ventana principal, la aplicacion solicita usuario y clave.
-La validacion se realiza mediante el controlador `Autenticador`. Para esta
-entrega academica se configuraron credenciales locales:
+Antes de mostrar la ventana principal, la aplicación solicita usuario y clave.
+La validación se realiza mediante el controlador `Autenticador`. Se configuraron
+las siguientes credenciales locales:
 
 ```
 - Usuario: admin
 - Clave: admin123
 ```
 
-**Cajas de dialogo**
+![Cuadro de diálogo de login](../02_imagenes/ff_cuadro_diálogo_login.jpg)
+
+**Cajas de diálogo**
 
 Se utiliza `JOptionPane` para informar operaciones exitosas, mostrar errores de
-validacion y confirmar acciones sensibles, como la anulacion de un turno o la
+validación y confirmar acciones sensibles, como la anulación de un turno o la
 salida del sistema. Esto evita que el usuario administrativo dependa de mensajes
 por consola.
 
-**Casillas de verificacion**
+![Confirmación de anulación de turno](../02_imagenes/gg_cuadro_confirmación_anulación_turno.jpg)
 
-Se utiliza `JCheckBox` en la consulta de agendas con la opcion "Mostrar solo
+**Casillas de verificación**
+
+Se utiliza `JCheckBox` en la consulta de agendas con la opción "Mostrar solo
 agendas activas". Esta casilla permite cambiar el filtro visual sin modificar
 los datos persistidos.
 
-**Botones de opcion**
+![Checkbox de agendas activas](../02_imagenes/hh_checkbox_agendas_activas.jpg)
+
+**Botones de opción**
 
 Se utilizan `JRadioButton` y `ButtonGroup` en el alta de pacientes para elegir
-el sexo. Esta decision evita cargar textos libres y permite aplicar correctamente
-las reglas de especialidades, por ejemplo Ginecologia y Pediatria.
+el sexo. Esta decisión evita cargar textos libres y permite aplicar
+correctamente las reglas de especialidades, por ejemplo Ginecología y Pediatría.
+
+![Opciones masculino femenino](../02_imagenes/ii_opciones_masc_fem.jpg)
 
 **Listas**
 
-Se utiliza `JList` en la asignacion de turnos para mostrar los horarios
+Se utiliza `JList` en la asignación de turnos para mostrar los horarios
 disponibles de una agenda en una fecha determinada. El empleado selecciona un
-horario libre y luego confirma la asignacion.
+horario libre y luego confirma la asignación.
+
+![Lista de horarios](../02_imagenes/jj_listas_horarios.jpg)
 
 ### Carga y guardado de datos
 
-La aplicacion carga los datos desde los archivos ubicados en
-[04_datos](../01_Proyecto/beloqui_gonzalo/04_datos) al iniciar y tambien permite
-recargarlos desde el menu y la barra de herramientas.
+La aplicación carga los datos desde los archivos ubicados en
+[04_datos](../01_Proyecto/beloqui_gonzalo/04_datos) al iniciar y también
+permite recargarlos desde el menú y la barra de herramientas.
 
-Las acciones principales de registro y modificacion guardan automaticamente los
+Las acciones principales de registro y modificación guardan automáticamente los
 datos en los archivos del proyecto. Esto evita que el usuario administrativo
-olvide persistir una operacion confirmada.
+olvide persistir una operación confirmada.
 
-Tambien se conserva una opcion explicita **Guardar datos** en la interfaz. Esta
-opcion delega en `SistemaTurnos.guardarDatos()` y persiste el estado completo
+También se conserva una opción explícita **Guardar datos** en la interfaz. Esta
+opción delega en `SistemaTurnos.guardarDatos()` y persiste el estado completo
 actual de:
 
 ```
@@ -136,37 +146,10 @@ actual de:
 Aunque algunos archivos utilizan formato XML, siguen siendo archivos de texto y
 pueden inspeccionarse sin herramientas binarias.
 
-La interfaz tambien detecta cuando existen formularios con datos cargados que
-todavia no fueron registrados. Si el usuario intenta cerrar el sistema o
-recargar datos en esa situacion, se muestra un cuadro de dialogo advirtiendo que
-esos datos escritos en pantalla se perderan si continua.
+La interfaz también detecta cuando existen formularios con datos cargados que
+todavía no fueron registrados. Si el usuario intenta cerrar el sistema o
+recargar datos en esa situación, se muestra un cuadro de diálogo advirtiendo que
+esos datos escritos en pantalla se perderán si continúa.
 
-### Funcionalidades disponibles
+![Confirmación de guardado](../02_imagenes/kk_confirmación_de_guardado.jpg)
 
-La ventana principal permite:
-
-```
-- Registrar pacientes.
-- Buscar pacientes por DNI.
-- Registrar profesionales.
-- Buscar profesionales por DNI.
-- Registrar especialidades.
-- Registrar agendas de atencion.
-- Consultar agendas por dia y especialidad.
-- Buscar paciente para asignar turno.
-- Seleccionar especialidad, profesional, agenda, fecha y horario disponible.
-- Asignar turnos.
-- Buscar turnos por paciente.
-- Anular turnos vigentes.
-- Recargar datos desde archivos.
-- Guardar datos en archivos.
-- Ingresar mediante pantalla de login.
-- Advertir formularios incompletos al cerrar o recargar.
-```
-
-### Conclusion
-
-La actividad incorpora los componentes avanzados solicitados por la consigna y
-mantiene la separacion entre modelo, vista, controlador y principal. La vista
-Swing no guarda datos directamente ni decide reglas de negocio: esas tareas se
-resuelven mediante el controlador `SistemaTurnos` y los gestores de archivos.

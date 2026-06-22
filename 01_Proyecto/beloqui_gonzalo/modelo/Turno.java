@@ -1,5 +1,7 @@
 package com.beloqui.modelo;
 
+import java.text.Normalizer;
+
 public class Turno {
     private static int contadorTurnos = 1;
 
@@ -147,13 +149,19 @@ public class Turno {
     }
 
     private boolean validarEspecialidadSegunEdad() {
-        if (this.profesional.getEspecialidad().equalsIgnoreCase("Pediatria")) {
+        String especialidad = normalizarClave(this.profesional.getEspecialidad());
+        if (especialidad.equals("pediatria")) {
             return this.paciente.esPediatricoEnFecha(getFecha());
         }
-        if (this.profesional.getEspecialidad().equalsIgnoreCase("Ginecologia")) {
+        if (especialidad.equals("ginecologia")) {
             return this.paciente.esSexoFemenino();
         }
         return true;
+    }
+
+    private String normalizarClave(String valor) {
+        String texto = normalizarTexto(valor).toLowerCase();
+        return Normalizer.normalize(texto, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
     }
 
     private boolean esHorarioEnCuartos(String hora) {

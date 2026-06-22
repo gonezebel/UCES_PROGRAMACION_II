@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.text.Normalizer;
 import java.util.List;
 
 public class Agenda {
@@ -126,13 +127,13 @@ public class Agenda {
     }
 
     public boolean validarDiaSemana() {
-        String dia = getDiaSemana();
-        return dia.equalsIgnoreCase("Lunes")
-                || dia.equalsIgnoreCase("Martes")
-                || dia.equalsIgnoreCase("Miercoles")
-                || dia.equalsIgnoreCase("Jueves")
-                || dia.equalsIgnoreCase("Viernes")
-                || dia.equalsIgnoreCase("Sabado");
+        String dia = normalizarClave(getDiaSemana());
+        return dia.equals("lunes")
+                || dia.equals("martes")
+                || dia.equals("miercoles")
+                || dia.equals("jueves")
+                || dia.equals("viernes")
+                || dia.equals("sabado");
     }
 
     public boolean validarHorario() {
@@ -179,7 +180,7 @@ public class Agenda {
         }
 
         return this.profesional.getIdProfesional() == otraAgenda.getProfesional().getIdProfesional()
-                && getDiaSemana().equalsIgnoreCase(otraAgenda.getDiaSemana())
+                && normalizarClave(getDiaSemana()).equals(normalizarClave(otraAgenda.getDiaSemana()))
                 && getHoraInicio().compareTo(otraAgenda.getHoraFin()) < 0
                 && getHoraFin().compareTo(otraAgenda.getHoraInicio()) > 0;
     }
@@ -217,6 +218,11 @@ public class Agenda {
         return valor.trim();
     }
 
+    private String normalizarClave(String valor) {
+        String texto = normalizarTexto(valor).toLowerCase();
+        return Normalizer.normalize(texto, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
+    }
+
     private boolean esHorarioEnCuartos(String hora) {
         if (!hora.matches("\\d{2}:\\d{2}")) {
             return false;
@@ -236,11 +242,12 @@ public class Agenda {
 
     private boolean coincideDiaSemana(LocalDate fecha) {
         DayOfWeek dia = fecha.getDayOfWeek();
-        return (dia == DayOfWeek.MONDAY && getDiaSemana().equalsIgnoreCase("Lunes"))
-                || (dia == DayOfWeek.TUESDAY && getDiaSemana().equalsIgnoreCase("Martes"))
-                || (dia == DayOfWeek.WEDNESDAY && getDiaSemana().equalsIgnoreCase("Miercoles"))
-                || (dia == DayOfWeek.THURSDAY && getDiaSemana().equalsIgnoreCase("Jueves"))
-                || (dia == DayOfWeek.FRIDAY && getDiaSemana().equalsIgnoreCase("Viernes"))
-                || (dia == DayOfWeek.SATURDAY && getDiaSemana().equalsIgnoreCase("Sabado"));
+        String diaAgenda = normalizarClave(getDiaSemana());
+        return (dia == DayOfWeek.MONDAY && diaAgenda.equals("lunes"))
+                || (dia == DayOfWeek.TUESDAY && diaAgenda.equals("martes"))
+                || (dia == DayOfWeek.WEDNESDAY && diaAgenda.equals("miercoles"))
+                || (dia == DayOfWeek.THURSDAY && diaAgenda.equals("jueves"))
+                || (dia == DayOfWeek.FRIDAY && diaAgenda.equals("viernes"))
+                || (dia == DayOfWeek.SATURDAY && diaAgenda.equals("sabado"));
     }
 }
