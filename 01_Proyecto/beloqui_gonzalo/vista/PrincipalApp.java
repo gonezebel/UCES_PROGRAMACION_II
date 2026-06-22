@@ -37,8 +37,6 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -549,44 +547,6 @@ public class PrincipalApp extends JFrame {
     @SuppressWarnings("unchecked")
     private static <T> ElementoCombo<T> obtenerSeleccion(JComboBox<ElementoCombo<T>> combo) {
         return (ElementoCombo<T>) combo.getSelectedItem();
-    }
-
-    private static void configurarApariencia() {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException e) {
-            // Se conserva la apariencia predeterminada de Swing.
-        }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            configurarApariencia();
-            if (!LoginDialog.mostrar(null)) {
-                return;
-            }
-            PrincipalApp app = new PrincipalApp();
-            if (args.length > 0) {
-                app.mostrarPanel(obtenerIndiceInicial(args[0]));
-            }
-            app.setVisible(true);
-        });
-    }
-
-    private static int obtenerIndiceInicial(String seccion) {
-        if ("profesionales".equalsIgnoreCase(seccion)) {
-            return 1;
-        }
-        if ("especialidades".equalsIgnoreCase(seccion)) {
-            return 2;
-        }
-        if ("agendas".equalsIgnoreCase(seccion)) {
-            return 3;
-        }
-        if ("turnos".equalsIgnoreCase(seccion)) {
-            return 4;
-        }
-        return 0;
     }
 
     public static class ElementoCombo<T> {

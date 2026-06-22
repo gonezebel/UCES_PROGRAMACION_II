@@ -29,9 +29,10 @@ El proyecto quedó agrupado en cuatro paquetes principales:
 ```
 
 La clase de inicio de la aplicación gráfica se encuentra en
-[PrincipalApp](../01_Proyecto/beloqui_gonzalo/principal/PrincipalApp.java) y
-delega la ejecución en la ventana Swing ubicada en
-[vista/PrincipalApp](../01_Proyecto/beloqui_gonzalo/vista/PrincipalApp.java).
+[PrincipalApp](../01_Proyecto/beloqui_gonzalo/principal/PrincipalApp.java). Desde
+ese punto se configura la apariencia de Swing, se muestra el login y se crea la
+ventana ubicada en [vista/PrincipalApp](../01_Proyecto/beloqui_gonzalo/vista/PrincipalApp.java).
+La vista no contiene el método `main`.
 
 ### Aplicación del patrón MVC
 

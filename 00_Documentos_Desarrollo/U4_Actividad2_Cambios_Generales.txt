@@ -43,7 +43,9 @@ Swing PrincipalApp, el diálogo LoginDialog, la vista de consola y la clase
 IconoHospital.
 
 El paquete principal contiene los puntos de entrada de la aplicación. Desde ahí
-se inicia la versión gráfica del sistema.
+se inicia la versión gráfica del sistema, se configura la apariencia de Swing, se
+muestra el login y se crea la ventana principal. La vista no contiene el método
+main de arranque.
 
 
 3. Pantalla de login
